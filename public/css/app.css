@@ -13864,9 +13864,25 @@ nav .navbar-brand {
   margin: 0;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 img {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+section {
+  padding-top: 20px;
+}
+
+section .title-section {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: calc(1.305rem + 0.66vw);
 }
 

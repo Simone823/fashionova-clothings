@@ -2,19 +2,19 @@
 import React, { useEffect } from 'react';
 /***************************************** */
 
-const ContactUs = () => {
+const CartShop = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
     return (
-        <section id='contact-us'>
+        <section id='cart-shop'>
             <div className='container'>
 
                 {/* title */}
                 <div className='row mb-5'>
                     <div className='col-12'>
-                        <h1 className='title-section'>Contattaci</h1>
+                        <h1 className='title-section'>Carrello</h1>
                     </div>
                 </div>
 
@@ -23,4 +23,4 @@ const ContactUs = () => {
     );
 }
 
-export default ContactUs;
+export default CartShop;

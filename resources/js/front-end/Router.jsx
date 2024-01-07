@@ -8,6 +8,7 @@ import PageLayout from './layouts/PageLayout';
 // Pages
 import Homepage from './pages/Homepage';
 import ContactUs from './pages/ContactUs';
+import CartShop from './pages/CartShop';
 /******************************************************************************** */
 
 const ReactIndex = () => {
@@ -18,6 +19,7 @@ const ReactIndex = () => {
                 <Route element={<PageLayout />}>
                     <Route path='/' element={<Homepage />} />
                     <Route path='/contact-us' element={<ContactUs />} />
+                    <Route path='/cart-shop' element={<CartShop />} />
                 </Route>
 
                 {/* error page without header footer */}

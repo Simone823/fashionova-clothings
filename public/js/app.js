@@ -45573,6 +45573,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_PageLayout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layouts/PageLayout */ "./resources/js/front-end/layouts/PageLayout.jsx");
 /* harmony import */ var _pages_Homepage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Homepage */ "./resources/js/front-end/pages/Homepage.jsx");
 /* harmony import */ var _pages_ContactUs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/ContactUs */ "./resources/js/front-end/pages/ContactUs.jsx");
+/* harmony import */ var _pages_CartShop__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/CartShop */ "./resources/js/front-end/pages/CartShop.jsx");
 /*** IMPORTS ***/
 
 
@@ -45581,6 +45582,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 // Pages
+
 
 
 /******************************************************************************** */
@@ -45594,6 +45596,9 @@ var ReactIndex = function ReactIndex() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/contact-us",
     element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_ContactUs__WEBPACK_IMPORTED_MODULE_4__["default"], null)
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/cart-shop",
+    element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_CartShop__WEBPACK_IMPORTED_MODULE_5__["default"], null)
   }))));
 };
 /* harmony default export */ __webpack_exports__["default"] = (ReactIndex);
@@ -45705,6 +45710,41 @@ var PageLayout = function PageLayout() {
 
 /***/ }),
 
+/***/ "./resources/js/front-end/pages/CartShop.jsx":
+/*!***************************************************!*\
+  !*** ./resources/js/front-end/pages/CartShop.jsx ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/*** IMPORTS ***/
+
+/***************************************** */
+
+var CartShop = function CartShop() {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    window.scrollTo(0, 0);
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    id: "cart-shop"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row mb-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "title-section"
+  }, "Carrello")))));
+};
+/* harmony default export */ __webpack_exports__["default"] = (CartShop);
+
+/***/ }),
+
 /***/ "./resources/js/front-end/pages/ContactUs.jsx":
 /*!****************************************************!*\
   !*** ./resources/js/front-end/pages/ContactUs.jsx ***!
@@ -45724,7 +45764,17 @@ var ContactUs = function ContactUs() {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     window.scrollTo(0, 0);
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "ContactUs");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    id: "contact-us"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row mb-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "title-section"
+  }, "Contattaci")))));
 };
 /* harmony default export */ __webpack_exports__["default"] = (ContactUs);
 
@@ -45749,7 +45799,17 @@ var Homepage = function Homepage() {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     window.scrollTo(0, 0);
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Homepage");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    id: "homepage"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row mb-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "title-section"
+  }, "Homepage")))));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Homepage);
 

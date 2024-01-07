@@ -8,7 +8,18 @@ const Homepage = () => {
     }, []);
 
     return (
-        <div>Homepage</div>
+        <section id='homepage'>
+            <div className='container'>
+
+                {/* title */}
+                <div className='row mb-5'>
+                    <div className='col-12'>
+                        <h1 className='title-section'>Homepage</h1>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     );
 }
 
