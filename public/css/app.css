@@ -13849,7 +13849,7 @@ fieldset:disabled .btn {
 
 nav {
   width: 100%;
-  position: sticky;
+  position: sticky !important;
   top: 0;
   left: 0;
   z-index: 100;
@@ -13859,7 +13859,7 @@ nav {
 
 nav .navbar-brand {
   display: block;
-  width: 70px;
+  width: 120px;
   padding: 0;
   margin: 0;
 }
@@ -13868,6 +13868,7 @@ nav .navbar-brand {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: 14px;
 }
 
 img {
@@ -13877,7 +13878,7 @@ img {
 }
 
 section {
-  padding-top: 20px;
+  padding: 20px 0;
 }
 
 section .title-section {

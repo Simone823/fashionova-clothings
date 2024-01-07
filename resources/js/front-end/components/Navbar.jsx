@@ -5,12 +5,12 @@ import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-md navbar-dark">
+    <nav className="navbar navbar-expand-md navbar-light bg-body-secondary">
       <div className="container">
 
         {/* logo */}
         <a className="navbar-brand" href="/">
-          <img src='storage/uploads/images/icon-white.png' alt='Logo' />
+          <img src='storage/uploads/images/icon-black.png' alt='Logo' />
         </a>
 
         {/* btn mobile */}
