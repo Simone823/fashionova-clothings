@@ -1,9 +1,15 @@
 /*** IMPORTS ***/
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
+// redux
+import { useSelector } from 'react-redux';
 /***************************************** */
 
 const Navbar = () => {
+  // redux
+  const {cart} = useSelector((state => state.cartShop));
+
   return (
     <nav className="navbar navbar-expand-md navbar-light shadow-sm">
       <div className="container">
@@ -44,8 +50,8 @@ const Navbar = () => {
             <li className='nav-item'>
               <NavLink to="/cart-shop" className='nav-link position-relative'>
                 <i className="fa-solid fa-cart-shopping fs-4"></i>
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                  0
+                <span className="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-primary">
+                  {cart.length}
                   <span className="visually-hidden">prodotti nel carrello</span>
                 </span>
               </NavLink>
