@@ -61743,7 +61743,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var Navbar = function Navbar() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-    className: "navbar navbar-expand-md navbar-light"
+    className: "navbar navbar-expand-md navbar-light shadow-sm"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -62292,8 +62292,8 @@ var store = Object(_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__["configureStore
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/simone/Desktop/e-commerce/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/simone/Desktop/e-commerce/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/simone/Desktop/fashionova-clothings/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/simone/Desktop/fashionova-clothings/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
