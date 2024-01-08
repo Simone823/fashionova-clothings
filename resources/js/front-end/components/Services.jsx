@@ -5,6 +5,11 @@ import React from 'react';
 const Services = () => {
     return (
         <div className='row gy-5'>
+            {/* Title */}
+            <div className='col-12'>
+                <h1 className='title-section'>Servizi</h1>
+            </div>
+
             {/* delivery */}
             <div className='col-12 col-md-4'>
                 <div className='icon-service d-flex justify-content-center mb-4'>
