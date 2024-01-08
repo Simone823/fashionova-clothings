@@ -13,4 +13,23 @@ nav {
         padding: 0;
         margin: 0;
     }
+
+    .navbar-collapse {
+        .navbar-nav {
+            .nav-item {
+                .nav-link {
+                    font-weight: bold;
+                    letter-spacing: 0.05em;
+                    color: $gray;
+                    transition: color 0.3s ease;
+                    width: max-content;
+
+                    &.active,
+                    &:hover {
+                        color: $black;
+                    }
+                }
+            }
+        }
+    }
 }

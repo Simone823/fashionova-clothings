@@ -13864,6 +13864,20 @@ nav .navbar-brand {
   margin: 0;
 }
 
+nav .navbar-collapse .navbar-nav .nav-item .nav-link {
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  color: #5f656c;
+  transition: color 0.3s ease;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+nav .navbar-collapse .navbar-nav .nav-item .nav-link.active,
+nav .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
+  color: #000;
+}
+
 #hero {
   height: 600px;
   background: url("/storage/uploads/images/hero-bg.jpg");
