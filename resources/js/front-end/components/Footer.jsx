@@ -79,7 +79,8 @@ const Footer = () => {
                         <h6>
                             © Copyright {new Date().getFullYear()} Fashionova Clothings | Tutti i diritti riservati.
                         </h6>
-                        <h6>Powered by
+                        <h6>
+                            Powered by
                             <a target='_blank' className="text-decoration-none fw-bold" href="https://simonedaglio.it"> @Simone Daglio</a>
                         </h6>
                     </div>
