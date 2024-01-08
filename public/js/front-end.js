@@ -61724,6 +61724,39 @@ var Footer = function Footer() {
 
 /***/ }),
 
+/***/ "./resources/js/front-end/components/Hero.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/front-end/components/Hero.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/*** IMPORTS ***/
+
+/***************************************** */
+
+var Hero = function Hero() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "hero",
+    className: "shadow-sm"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "container hero-text"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "fs-2"
+  }, "Crea il tuo stile unico con Fashionova Clothings. Scopri la moda che parla di te. Benvenuto in un mondo di eleganza e tendenze senza tempo. Esplora la nostra collezione e lascia che il tuo guardaroba rifletta la tua personalit\xE0. Scegli la qualit\xE0, abbraccia lo stile. Entra in Fashionova Clothings e fai della moda il tuo racconto.")))));
+};
+/* harmony default export */ __webpack_exports__["default"] = (Hero);
+
+/***/ }),
+
 /***/ "./resources/js/front-end/components/Navbar.jsx":
 /*!******************************************************!*\
   !*** ./resources/js/front-end/components/Navbar.jsx ***!
@@ -62152,10 +62185,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _customHook_useTitle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../customHook/useTitle */ "./resources/js/front-end/customHook/useTitle.js");
+/* harmony import */ var _components_Hero__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Hero */ "./resources/js/front-end/components/Hero.jsx");
 /*** IMPORTS ***/
 
 
 // Custom hook
+
 
 /******************************************* */
 
@@ -62166,15 +62201,9 @@ var Homepage = function Homepage() {
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     id: "homepage"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Hero__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row mb-5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "title-section"
-  }, "Homepage")))));
+  }));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Homepage);
 

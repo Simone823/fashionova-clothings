@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 
 // Custom hook
 import useTitle from '../customHook/useTitle';
+import Hero from '../components/Hero';
 /******************************************* */
 
 const Homepage = () => {
@@ -14,15 +15,11 @@ const Homepage = () => {
 
     return (
         <section id='homepage'>
+            {/* Hero */}
+            <Hero />
+
             <div className='container'>
-
-                {/* title */}
-                <div className='row mb-5'>
-                    <div className='col-12'>
-                        <h1 className='title-section'>Homepage</h1>
-                    </div>
-                </div>
-
+                
             </div>
         </section>
     );
