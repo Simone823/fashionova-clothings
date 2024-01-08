@@ -61808,7 +61808,7 @@ var Navbar = function Navbar() {
     className: "collapse navbar-collapse",
     id: "navbarNav"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-    className: "navbar-nav flex-grow-1 justify-content-center gap-4"
+    className: "navbar-nav flex-grow-1 justify-content-center gap-4 pt-5 pt-md-0 mb-4 mb-md-0"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {

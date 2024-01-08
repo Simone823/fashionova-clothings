@@ -27,7 +27,7 @@ const Navbar = () => {
         {/* menu */}
         <div className="collapse navbar-collapse" id="navbarNav">
           {/* NavLink */}
-          <ul className="navbar-nav flex-grow-1 justify-content-center gap-4">
+          <ul className="navbar-nav flex-grow-1 justify-content-center gap-4 pt-5 pt-md-0 mb-4 mb-md-0">
             <li className="nav-item">
               <NavLink to="/" className='nav-link text-uppercase'>
                 Home
