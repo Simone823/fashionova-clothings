@@ -8,8 +8,8 @@ import ReactDOM from 'react-dom';
 import Router from './front-end/Router.jsx';
 
 // redux
-// import { Provider } from 'react-redux';
-// import store from './front-end/redux/store';
+import { Provider } from 'react-redux';
+import store from './front-end/redux/store.js';
 /***************************************** */
 
 
@@ -17,9 +17,9 @@ import Router from './front-end/Router.jsx';
 if (document.getElementById('root')) {
     ReactDOM.render(
         <React.StrictMode>
-            {/* <Provider store={store}> */}
+            <Provider store={store}>
                 <Router />
-            {/* </Provider> */}
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );

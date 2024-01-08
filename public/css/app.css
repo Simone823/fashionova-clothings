@@ -13874,6 +13874,16 @@ footer .logo {
   display: block;
 }
 
+#cart-shop .icon-bag {
+  width: 160px;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  pointer-events: none;
+}
+
 * {
   margin: 0;
   padding: 0;
