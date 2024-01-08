@@ -4,6 +4,9 @@ import React, { useEffect } from 'react';
 // Custom hook
 import useTitle from '../customHook/useTitle';
 import Hero from '../components/Hero';
+
+// Components
+import Services from '../components/Services';
 /******************************************* */
 
 const Homepage = () => {
@@ -19,7 +22,8 @@ const Homepage = () => {
             <Hero />
 
             <div className='container'>
-                
+                {/* Services */}
+                <Services/>
             </div>
         </section>
     );

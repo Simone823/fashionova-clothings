@@ -61843,6 +61843,66 @@ var Navbar = function Navbar() {
 
 /***/ }),
 
+/***/ "./resources/js/front-end/components/Services.jsx":
+/*!********************************************************!*\
+  !*** ./resources/js/front-end/components/Services.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/*** IMPORTS ***/
+
+/******************************************* */
+
+var Services = function Services() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row gy-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-md-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "icon-service d-flex justify-content-center mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa-solid fa-truck-fast fs-1"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "fw-semibold"
+  }, "Consegna gratuita"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "mb-0"
+  }, "Ti offriamo la comodit\xE0 della consegna gratuita per tutti gli ordini superiori a 50\u20AC. Vogliamo assicurarci che tu possa godere dei tuoi acquisti senza preoccuparti dei costi di spedizione. Approfitta della nostra offerta di consegna gratuita per ordini sopra i 50\u20AC e ricevi i tuoi prodotti comodamente a casa tua, senza costi aggiuntivi."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-md-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "icon-service d-flex justify-content-center mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa-solid fa-right-left fs-1"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "fw-semibold"
+  }, "30 giorni di restituzione"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "mb-0"
+  }, "Offriamo una garanzia di soddisfazione entro 30 giorni dall'acquisto. Se per qualsiasi motivo non sei completamente soddisfatto del tuo acquisto, accettiamo resi entro 30 giorni dalla data di consegna. Gli articoli restituiti devono essere in condizioni originali, non utilizzati e con l'imballaggio intatto."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 col-md-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "icon-service d-flex justify-content-center mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fa-solid fa-key fs-1"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+    className: "fw-semibold"
+  }, "100% Pagamento sicuro"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "mb-0"
+  }, "La tua sicurezza \xE8 la nostra priorit\xE0 assoluta. Utilizziamo protocolli di crittografia avanzati e partner di pagamento affidabili per garantire transazioni sicure e protette. Ogni pagamento effettuato sul nostro sito \xE8 protetto al 100%, garantendo la tua tranquillit\xE0 e la riservatezza dei tuoi dati finanziari."))));
+};
+/* harmony default export */ __webpack_exports__["default"] = (Services);
+
+/***/ }),
+
 /***/ "./resources/js/front-end/customHook/useTitle.js":
 /*!*******************************************************!*\
   !*** ./resources/js/front-end/customHook/useTitle.js ***!
@@ -62186,11 +62246,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _customHook_useTitle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../customHook/useTitle */ "./resources/js/front-end/customHook/useTitle.js");
 /* harmony import */ var _components_Hero__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Hero */ "./resources/js/front-end/components/Hero.jsx");
+/* harmony import */ var _components_Services__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Services */ "./resources/js/front-end/components/Services.jsx");
 /*** IMPORTS ***/
 
 
 // Custom hook
 
+
+
+// Components
 
 /******************************************* */
 
@@ -62203,7 +62267,7 @@ var Homepage = function Homepage() {
     id: "homepage"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Hero__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
-  }));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Services__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Homepage);
 
