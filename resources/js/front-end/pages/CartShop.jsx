@@ -22,7 +22,8 @@ const CartShop = () => {
                 {cart.length == 0 ? (
                     <div className='row'>
                         <div className='col-12'>
-                            <div className='card bg-body-secondary border-0 shadow-sm p-4 d-flex justify-content-center align-items-center gap-5'>
+                            <div className='card card-empty-shop shadow-sm'>
+                                {/* icon bag */}
                                 <figure className='icon-bag'>
                                     <img src='/storage/uploads/images/icon-bag-black.svg' alt='Icon bag' />
                                 </figure>

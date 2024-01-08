@@ -13874,7 +13874,20 @@ footer .logo {
   display: block;
 }
 
-#cart-shop .icon-bag {
+#cart-shop .card-empty-shop {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  background-color: var(--bs-secondary-bg);
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  padding: 48px 24px;
+}
+
+#cart-shop .card-empty-shop .icon-bag {
   width: 160px;
   margin: 0;
   padding: 0;
@@ -13902,8 +13915,7 @@ a {
 }
 
 section {
-  padding-top: 20px;
-  padding-bottom: 40px;
+  padding: 40px 0;
 }
 
 section .title-section {

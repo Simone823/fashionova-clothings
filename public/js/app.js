@@ -61872,7 +61872,7 @@ var CartShop = function CartShop() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card bg-body-secondary border-0 shadow-sm p-4 d-flex justify-content-center align-items-center gap-5"
+    className: "card card-empty-shop shadow-sm"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("figure", {
     className: "icon-bag"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
