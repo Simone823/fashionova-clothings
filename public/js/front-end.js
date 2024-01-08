@@ -61742,7 +61742,7 @@ __webpack_require__.r(__webpack_exports__);
 var Hero = function Hero() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "hero",
-    className: "shadow-sm"
+    className: "shadow-sm mb-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container hero-text"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

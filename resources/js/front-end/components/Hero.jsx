@@ -4,7 +4,7 @@ import React from 'react';
 
 const Hero = () => {
     return (
-        <div id='hero' className='shadow-sm'>
+        <div id='hero' className='shadow-sm mb-5'>
             <div className='container hero-text'>
                 <div className='row'>
                     <div className='col-12'>
