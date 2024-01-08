@@ -1,8 +1,13 @@
 /*** IMPORTS ***/
 import React, { useEffect } from 'react';
+
+// Custom hook
+import useTitle from '../customHook/useTitle';
 /******************************************* */
 
 const Homepage = () => {
+    useTitle('Home');
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

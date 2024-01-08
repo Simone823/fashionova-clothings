@@ -61801,6 +61801,31 @@ var Navbar = function Navbar() {
 
 /***/ }),
 
+/***/ "./resources/js/front-end/customHook/useTitle.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/front-end/customHook/useTitle.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/*** IMPORTS ***/
+
+/***************************************** */
+
+var useTitle = function useTitle(title) {
+  // document title change
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.title = "Fashionova Clothings | ".concat(title);
+  }, [title]);
+};
+/* harmony default export */ __webpack_exports__["default"] = (useTitle);
+
+/***/ }),
+
 /***/ "./resources/js/front-end/layouts/PageLayout.jsx":
 /*!*******************************************************!*\
   !*** ./resources/js/front-end/layouts/PageLayout.jsx ***!
@@ -61842,9 +61867,13 @@ var PageLayout = function PageLayout() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _redux_reducers_cartShop_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../redux/reducers/cartShop.js */ "./resources/js/front-end/redux/reducers/cartShop.js");
+/* harmony import */ var _customHook_useTitle_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../customHook/useTitle.js */ "./resources/js/front-end/customHook/useTitle.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _redux_reducers_cartShop_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../redux/reducers/cartShop.js */ "./resources/js/front-end/redux/reducers/cartShop.js");
 /*** IMPORTS ***/
+
+
+// Custom hook
 
 
 // redux
@@ -61853,9 +61882,11 @@ __webpack_require__.r(__webpack_exports__);
 /***************************************** */
 
 var CartShop = function CartShop() {
+  Object(_customHook_useTitle_js__WEBPACK_IMPORTED_MODULE_1__["default"])('Carrello');
+
   // redux
-  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
-  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
+  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
+  var _useSelector = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
       return state.cartShop;
     }),
     cart = _useSelector.cart,
@@ -61899,17 +61930,23 @@ var CartShop = function CartShop() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! yup */ "./node_modules/yup/index.esm.js");
+/* harmony import */ var _customHook_useTitle_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../customHook/useTitle.js */ "./resources/js/front-end/customHook/useTitle.js");
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! yup */ "./node_modules/yup/index.esm.js");
 /*** IMPORTS ***/
 
 
-// import formik and yup
+// Custom hook
+
+
+// formik and yup
 
 
 /***************************************** */
 
 var ContactUs = function ContactUs() {
+  Object(_customHook_useTitle_js__WEBPACK_IMPORTED_MODULE_1__["default"])('Contattaci');
+
   // initial value form
   var form = {
     name: '',
@@ -61921,13 +61958,13 @@ var ContactUs = function ContactUs() {
   };
 
   // validation schema form
-  var validationForm = yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
-    name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().min(3, 'Il campo Nome deve contenere minimo 3 caratteri').max(35, 'Il Nome può contenere massimo 35 caratteri').required('Il campo Nome è richiesto').matches(/^[a-zA-Z]+$/, 'Il Nome può contenere solo lettere senza spazi'),
-    surname: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().min(3, 'Il campo Cognome deve contenere minimo 3 caratteri').max(35, 'Il Cognome può contenere massimo 35 caratteri').required('Il campo Cognome è richiesto').matches(/^[a-zA-Z]+$/, 'Il Cognome può contenere solo lettere senza spazi'),
-    email: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().email('Indirizzo Email non valido').required('Il campo Email è richiesto'),
-    phone: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Il campo Telefono è richiesto').max(10, 'Il numero di Telefono può contenere massimo 10 cifre numeriche').matches(/^(([+]|00)39)?((3[1-6][0-9]))(\d{7})$/, 'Il numero di Telefono deve essere valido e Italiano'),
-    message: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Il campo Messaggio è richiesto'),
-    privacyChecked: yup__WEBPACK_IMPORTED_MODULE_2__["bool"]().oneOf([true], 'È necessario accettare i termini e le condizioni')["default"](false)
+  var validationForm = yup__WEBPACK_IMPORTED_MODULE_3__["object"]({
+    name: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(3, 'Il campo Nome deve contenere minimo 3 caratteri').max(35, 'Il Nome può contenere massimo 35 caratteri').required('Il campo Nome è richiesto').matches(/^[a-zA-Z]+$/, 'Il Nome può contenere solo lettere senza spazi'),
+    surname: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().min(3, 'Il campo Cognome deve contenere minimo 3 caratteri').max(35, 'Il Cognome può contenere massimo 35 caratteri').required('Il campo Cognome è richiesto').matches(/^[a-zA-Z]+$/, 'Il Cognome può contenere solo lettere senza spazi'),
+    email: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().email('Indirizzo Email non valido').required('Il campo Email è richiesto'),
+    phone: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().required('Il campo Telefono è richiesto').max(10, 'Il numero di Telefono può contenere massimo 10 cifre numeriche').matches(/^(([+]|00)39)?((3[1-6][0-9]))(\d{7})$/, 'Il numero di Telefono deve essere valido e Italiano'),
+    message: yup__WEBPACK_IMPORTED_MODULE_3__["string"]().required('Il campo Messaggio è richiesto'),
+    privacyChecked: yup__WEBPACK_IMPORTED_MODULE_3__["bool"]().oneOf([true], 'È necessario accettare i termini e le condizioni')["default"](false)
   });
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     window.scrollTo(0, 0);
@@ -61964,7 +62001,7 @@ var ContactUs = function ContactUs() {
     className: "col-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card bg-body-secondary border-0 shadow-sm p-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
     initialValues: form,
     validationSchema: validationForm,
     onSubmit: function onSubmit(values, actions) {}
@@ -61986,7 +62023,7 @@ var ContactUs = function ContactUs() {
       name: "name",
       placeholder: "Il tuo nome",
       value: props.values.name
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
       name: "name",
       component: "div",
       className: "invalid-feedback"
@@ -62004,7 +62041,7 @@ var ContactUs = function ContactUs() {
       name: "surname",
       placeholder: "Il tuo cognome",
       value: props.values.surname
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
       name: "surname",
       component: "div",
       className: "invalid-feedback"
@@ -62022,7 +62059,7 @@ var ContactUs = function ContactUs() {
       name: "email",
       placeholder: "Il tuo indirizzo email",
       value: props.values.email
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
       name: "email",
       component: "div",
       className: "invalid-feedback"
@@ -62040,7 +62077,7 @@ var ContactUs = function ContactUs() {
       name: "phone",
       placeholder: "Il tuo numero di telefono",
       value: props.values.phone
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
       name: "phone",
       component: "div",
       className: "invalid-feedback"
@@ -62058,7 +62095,7 @@ var ContactUs = function ContactUs() {
       rows: "3",
       placeholder: "Scrivi qui il tuo messaggio...",
       value: props.values.message
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
       name: "message",
       component: "div",
       className: "invalid-feedback"
@@ -62078,7 +62115,7 @@ var ContactUs = function ContactUs() {
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
       className: "form-check-label",
       htmlFor: "privacyChecked"
-    }, "Acconsento al trattamento dei dati personali"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+    }, "Acconsento al trattamento dei dati personali"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["ErrorMessage"], {
       name: "privacyChecked",
       component: "div",
       className: "invalid-feedback"
@@ -62105,11 +62142,16 @@ var ContactUs = function ContactUs() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _customHook_useTitle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../customHook/useTitle */ "./resources/js/front-end/customHook/useTitle.js");
 /*** IMPORTS ***/
+
+
+// Custom hook
 
 /******************************************* */
 
 var Homepage = function Homepage() {
+  Object(_customHook_useTitle__WEBPACK_IMPORTED_MODULE_1__["default"])('Home');
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     window.scrollTo(0, 0);
   }, []);

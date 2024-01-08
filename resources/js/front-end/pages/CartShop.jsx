@@ -1,12 +1,17 @@
 /*** IMPORTS ***/
 import React, { useEffect } from 'react';
 
+// Custom hook
+import useTitle from '../customHook/useTitle.js';
+
 // redux
 import { useSelector, useDispatch } from 'react-redux';
 import { removeToCart, removeAllToCart } from '../redux/reducers/cartShop.js';
 /***************************************** */
 
 const CartShop = () => {
+    useTitle('Carrello');
+
     // redux
     const dispatch = useDispatch();
     const { cart, total } = useSelector((state) => state.cartShop);

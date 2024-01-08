@@ -1,12 +1,17 @@
 /*** IMPORTS ***/
 import React, { useEffect } from 'react';
 
-// import formik and yup
+// Custom hook
+import useTitle from '../customHook/useTitle.js';
+
+// formik and yup
 import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 /***************************************** */
 
 const ContactUs = () => {
+    useTitle('Contattaci');
+
     // initial value form
     const form = {
         name: '',
