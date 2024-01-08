@@ -61874,7 +61874,7 @@ var Services = function Services() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "description"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-    className: "fw-semibold"
+    className: "fw-semibold text-center"
   }, "Consegna gratuita"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "mb-0"
   }, "Ti offriamo la comodit\xE0 della consegna gratuita per tutti gli ordini superiori a 50\u20AC. Vogliamo assicurarci che tu possa godere dei tuoi acquisti senza preoccuparti dei costi di spedizione. Approfitta della nostra offerta di consegna gratuita per ordini sopra i 50\u20AC e ricevi i tuoi prodotti comodamente a casa tua, senza costi aggiuntivi."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61886,7 +61886,7 @@ var Services = function Services() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "description"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-    className: "fw-semibold"
+    className: "fw-semibold text-center"
   }, "30 giorni di restituzione"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "mb-0"
   }, "Offriamo una garanzia di soddisfazione entro 30 giorni dall'acquisto. Se per qualsiasi motivo non sei completamente soddisfatto del tuo acquisto, accettiamo resi entro 30 giorni dalla data di consegna. Gli articoli restituiti devono essere in condizioni originali, non utilizzati e con l'imballaggio intatto."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61898,7 +61898,7 @@ var Services = function Services() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "description"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-    className: "fw-semibold"
+    className: "fw-semibold text-center"
   }, "100% Pagamento sicuro"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "mb-0"
   }, "La tua sicurezza \xE8 la nostra priorit\xE0 assoluta. Utilizziamo protocolli di crittografia avanzati e partner di pagamento affidabili per garantire transazioni sicure e protette. Ogni pagamento effettuato sul nostro sito \xE8 protetto al 100%, garantendo la tua tranquillit\xE0 e la riservatezza dei tuoi dati finanziari."))));

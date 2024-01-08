@@ -17,7 +17,7 @@ const Services = () => {
                 </div>
 
                 <div className='description'>
-                    <h4 className='fw-semibold'>Consegna gratuita</h4>
+                    <h4 className='fw-semibold text-center'>Consegna gratuita</h4>
                     <p className='mb-0'>
                         Ti offriamo la comodità della consegna gratuita per tutti gli ordini superiori a 50€.
                         Vogliamo assicurarci che tu possa godere dei tuoi acquisti senza preoccuparti dei costi di spedizione.
@@ -34,7 +34,7 @@ const Services = () => {
                 </div>
 
                 <div className='description'>
-                    <h4 className='fw-semibold'>30 giorni di restituzione</h4>
+                    <h4 className='fw-semibold text-center'>30 giorni di restituzione</h4>
                     <p className='mb-0'>
                         Offriamo una garanzia di soddisfazione entro 30 giorni dall'acquisto.
                         Se per qualsiasi motivo non sei completamente soddisfatto del tuo acquisto,
@@ -52,7 +52,7 @@ const Services = () => {
                 </div>
 
                 <div className='description'>
-                    <h4 className='fw-semibold'>100% Pagamento sicuro</h4>
+                    <h4 className='fw-semibold text-center'>100% Pagamento sicuro</h4>
                     <p className='mb-0'>
                         La tua sicurezza è la nostra priorità assoluta.
                         Utilizziamo protocolli di crittografia avanzati e partner di pagamento affidabili per
