@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 // Front-end react router
-Route::view('/{path?}', 'layouts.app')->where('path', '.*');
+Route::view('/{path?}', 'layouts.front-end')->where('path', '.*');
