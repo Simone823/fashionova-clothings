@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Auth
+Auth::routes();
+
 // Guest
 Route::namespace('Guest')->group(function() {
     // Default
