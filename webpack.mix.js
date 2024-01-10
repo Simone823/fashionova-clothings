@@ -11,5 +11,7 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.react('resources/js/front-end.js', 'public/js')
-    .sass('resources/sass/front-end.scss', 'public/css');
+
+// Guest
+mix.js('resources/js/guest.js', 'public/js')
+    .sass('resources/sass/guest.scss', 'public/css');

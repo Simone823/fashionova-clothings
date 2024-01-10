@@ -13955,6 +13955,12 @@ footer .logo {
   pointer-events: none;
 }
 
+#auth-login .card {
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
 * {
   margin: 0;
   padding: 0;

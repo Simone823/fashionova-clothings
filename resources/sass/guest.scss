@@ -8,13 +8,14 @@
 @import '~bootstrap/scss/bootstrap';
 
 // Components
-@import './front-end/components/Navbar.scss';
-@import './front-end/components/Hero.scss';
-@import './front-end/components/Footer.scss';
+@import './guest/components/Navbar.scss';
+@import './guest/components/Hero.scss';
+@import './guest/components/Footer.scss';
 
-// Pages
-@import './front-end/pages/Homepage.scss';
-@import './front-end/pages/CartShop.scss';
+// Guest
+@import './guest/pages/Homepage.scss';
+@import './guest/pages/CartShop.scss';
+@import './guest/pages/auth/Login.scss';
 
 
 * {

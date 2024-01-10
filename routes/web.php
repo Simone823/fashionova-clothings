@@ -14,7 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+// Guest
+Route::namespace('Guest')->group(function() {
+    // Default
+    Route::get('/', 'HomeController@index')->name('guest.home');
 
-// Front-end react router
-Route::view('/{path?}', 'layouts.front-end')->where('path', '.*');
+    // Contact Us
+    Route::get('/contact-us', 'ContactUsController@index')->name('guest.contactUs');
+    Route::post('/contact-us/store', 'ContactUsController@store')->name('guest.contactUs.store');
+
+    // Cart Shop
+    Route::get('/cart-shop', 'CartShopController@index')->name('guest.cartShop');
+});
