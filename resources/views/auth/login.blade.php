@@ -9,7 +9,7 @@
                 <div class="col-12">
 
                     {{-- card login --}}
-                    <div class="card bg-body-secondary border-0 pb-4 shadow-sm">
+                    <div class="card card-login">
                         {{-- title --}}
                         <div class="card-header text-center bg-transparent py-3 mb-4">
                             <h3 class="fw-bold mb-0">Bello rivederti!</h3>

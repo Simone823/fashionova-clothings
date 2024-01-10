@@ -7,6 +7,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Utils
+@import './guest/utils/common.scss';
+
 // Components
 @import './guest/components/Navbar.scss';
 @import './guest/components/Hero.scss';
@@ -15,7 +18,6 @@
 // Guest
 @import './guest/pages/Homepage.scss';
 @import './guest/pages/CartShop.scss';
-@import './guest/pages/auth/Login.scss';
 
 
 * {
