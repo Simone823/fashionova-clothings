@@ -11,13 +11,13 @@
 @import './guest/utils/common.scss';
 
 // Components
-@import './guest/components/Navbar.scss';
-@import './guest/components/Hero.scss';
-@import './guest/components/Footer.scss';
+@import './components/guest/navbar.scss';
+@import './components/guest/hero.scss';
+@import './components/guest/footer.scss';
 
-// Guest
-@import './guest/pages/Homepage.scss';
-@import './guest/pages/CartShop.scss';
+// Guest views
+@import './guest/home.scss';
+@import './guest/cartShop.scss';
 
 
 * {
