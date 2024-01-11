@@ -1,20 +1,23 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 
-// Variables
-@import 'variables';
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// Components
-@import './front-end/components/Navbar.scss';
-@import './front-end/components/Hero.scss';
-@import './front-end/components/Footer.scss';
+// Variables
+@import 'variables';
 
-// Pages
-@import './front-end/pages/Homepage.scss';
-@import './front-end/pages/CartShop.scss';
+// Utils
+@import './utils/guest/common.scss';
+
+// Components
+@import './components/guest/navbar.scss';
+@import './components/guest/hero.scss';
+@import './components/guest/footer.scss';
+
+// Guest views
+@import './guest/home.scss';
+@import './guest/cartShop.scss';
 
 
 * {
@@ -22,6 +25,7 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 14px;
+    font-family: $font-family-sans-serif;
 }
 
 img {
