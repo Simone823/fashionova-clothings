@@ -14,5 +14,15 @@ class Region extends Model
     protected $fillable = [
         'name',
         'nation_id'
-    ];   
+    ];
+    
+    public function nation()
+    {
+        return $this->belongsTo(Nation::class);
+    }
+
+    public function provinces()
+    {
+        return $this->hasMany(Province::class);
+    }
 }

@@ -17,4 +17,14 @@ class Nation extends Model
         'sigle_iso_3',
         'sigle_iso_2'
     ];
+
+    public function regions()
+    {
+        return $this->hasMany(Region::class);
+    }
+
+    public function provinces()
+    {
+        return $this->hasMany(Province::class);
+    }
 }
