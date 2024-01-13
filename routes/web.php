@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Auth
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Guest
 Route::namespace('Guest')->group(function() {
@@ -28,4 +28,22 @@ Route::namespace('Guest')->group(function() {
 
     // Cart Shop
     Route::get('/cart-shop', 'CartShopController@index')->name('guest.cartShop');
+});
+
+// Auth group
+Route::middleware('auth')->group(function() {
+
+    // User
+    Route::prefix('user')->name('user.')->namespace('User')->group(function() {
+        // Dashboard
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+        // Profile
+        Route::get('/profiles/show/{id}', 'ProfileController@show')->name('profiles.show');
+        Route::get('/profiles/edit/{id}', 'ProfileController@edit')->name('profiles.edit');
+        Route::post('/profiles/update/{id}', 'ProfileController@update')->name('profiles.update');
+        Route::post('/profiles/change-password/{id}', 'ProfileController@changePassword')->name('profiles.changePassword');
+        Route::delete('/profiles/delete/{id}', 'ProfileController@destroy')->name('profiles.delete');
+    });
+
 });

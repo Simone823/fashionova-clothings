@@ -34,6 +34,7 @@
 
             {{-- buttons --}}
             <ul class='navbar-nav gap-4 align-items-md-center'>
+                {{-- Cart shop --}}
                 <li class='nav-item'>
                     <a href="{{ route('guest.cartShop') }}" class='nav-link position-relative @if (Route::is('guest.cartShop')) active @endif'>
                         <i class="fa-solid fa-cart-shopping fs-4"></i>
@@ -42,6 +43,8 @@
                         </span>
                     </a>
                 </li>
+
+                {{-- User --}}
                 <li class="nav-item">
                     <div class="dropdown">
                         <button class="bg-transparent text-secondary border-0 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,6 +64,32 @@
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                             @endguest
+
+                            {{-- Auth --}}
+                            @auth
+                                <li class="px-1">
+                                    <a class="btn btn-primary w-100 text-uppercase fw-bolder px-5" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                        Esci
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item @if(Route::is('user.dashboard')) active @endif" href="{{route('user.dashboard')}}">
+                                        <i class="fa-solid fa-grip"></i>
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item @if(Route::is('user.profiles.*')) active @endif" href="{{route('user.profiles.show', Auth::id())}}">
+                                        <i class="fa-solid fa-user-gear"></i>
+                                        Profilo
+                                    </a>
+                                </li>
+                            @endauth
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
