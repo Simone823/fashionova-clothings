@@ -495,7 +495,7 @@ class ProvincesSeeder extends Seeder
             ],
             [
                 'sigle' => 'RC',
-                'name' => 'Reggio Di Calabria',
+                'name' => 'Reggio Calabria',
                 'nation_id' => $idItalyNation,
                 'region_id' => Region::where('name', 'Calabria')->pluck('id')->first()
             ],
