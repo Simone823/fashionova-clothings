@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/guest.js') }}" defer></script>
+    @stack('javascript')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

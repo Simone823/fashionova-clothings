@@ -40,4 +40,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relazione user_address
+    public function addresses()
+    {
+        return $this->hasMany(UserAddress::class)->orderBy('is_primary', 'desc');
+    }
 }

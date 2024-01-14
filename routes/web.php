@@ -43,7 +43,9 @@ Route::middleware('auth')->group(function() {
         Route::get('/profiles/edit/{id}', 'ProfileController@edit')->name('profiles.edit');
         Route::post('/profiles/update/{id}', 'ProfileController@update')->name('profiles.update');
         Route::post('/profiles/change-password/{id}', 'ProfileController@changePassword')->name('profiles.changePassword');
+        Route::post('/profiles/create-address/{id}', 'ProfileController@createAddress')->name('profiles.createAddress');
         Route::delete('/profiles/delete/{id}', 'ProfileController@destroy')->name('profiles.delete');
+        Route::delete('/profiles/delete-address/{id}/{userId}', 'ProfileController@deleteAddress')->name('profiles.deleteAddress');
     });
 
 });
