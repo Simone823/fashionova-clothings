@@ -83,7 +83,7 @@
                         <div class="row">
                             {{-- title --}}
                             <div class="col-12 mb-4">
-                                <h4 class="fw-semibold mb-0">Indirizzi</h4>
+                                <h4 class="fw-semibold mb-0">Dettagli Indirizzi</h4>
                             </div>
 
                             @if(count($user->addresses) > 0)
@@ -101,7 +101,7 @@
 
                                         {{-- nation id --}}
                                         <div class="col-12 col-md-6 mb-4 form-group">
-                                            <label for="nation_id" class="form-label">Nazione*</label>
+                                            <label for="nation_id" class="form-label">Nazione</label>
                                             <select class="form-select @error('nation_id') is-invalid @enderror" name="nation_id" id="nation_id" readonly disabled>
                                                 <option value="" selected hidden>-- Seleziona una Nazione --</option>
                                                 <option selected value="{{App\Nation::where('name', 'Italia')->pluck('id')->first()}}">{{App\Nation::where('name', 'Italia')->pluck('name')->first()}}</option>
@@ -116,7 +116,7 @@
 
                                         {{-- region_id --}}
                                         <div class="col-12 col-md-6 mb-4 form-group">
-                                            <label for="region_id" class="form-label">Regione*</label>
+                                            <label for="region_id" class="form-label">Regione</label>
                                             <select onchange="filterProvinceByRegionId(event)" class="form-select" name="region_id" id="region_id" readonly disabled>
                                                 <option value="" selected hidden>-- Seleziona una Regione --</option>
                                                 @foreach (App\Region::orderBy('name', 'asc')->get() as $region)
@@ -127,7 +127,7 @@
 
                                         {{-- province_id --}}
                                         <div class="col-12 col-md-6 mb-4 form-group">
-                                            <label for="province_id" class="form-label">Provincia*</label>
+                                            <label for="province_id" class="form-label">Provincia</label>
                                             <select class="form-select" name="province_id" id="province_id" readonly disabled>
                                                 <option value="">-- Seleziona una Provincia --</option>
                                                 @foreach (App\Province::orderBy('name', 'asc')->get() as $province)
@@ -138,7 +138,7 @@
 
                                         {{-- city_id --}}
                                         <div class="col-12 col-md-6 mb-4 form-group">
-                                            <label for="city_id" class="form-label">Comune*</label>
+                                            <label for="city_id" class="form-label">Comune</label>
                                             <select class="form-select" name="city_id" id="city_id" readonly disabled>
                                                 <option value="" selected hidden>-- Seleziona un Comune --</option>
                                                 @foreach (App\City::orderBy('name', 'asc')->get() as $city)
@@ -149,19 +149,19 @@
 
                                         {{-- cap --}}
                                         <div class="col-12 col-md-6 mb-4 form-group">
-                                            <label for="cap" class="form-label">Cap*</label>
+                                            <label for="cap" class="form-label">Cap</label>
                                             <input type="number" class="form-control" id="cap" name="cap" value="{{$address->cap}}" placeholder="Cap" readonly>
                                         </div>
 
                                         {{-- address --}}
                                         <div class="col-12 col-md-6 mb-4 form-group">
-                                            <label for="address" class="form-label">Indirizzo*</label>
+                                            <label for="address" class="form-label">Indirizzo</label>
                                             <input type="text" class="form-control" id="address" name="address" value="{{$address->address}}" placeholder="Via / Piazza" readonly>
                                         </div>
 
                                         {{-- house number --}}
                                         <div class="col-12 col-md-6 mb-4 form-group">
-                                            <label for="house_number" class="form-label">Numero Civico*</label>
+                                            <label for="house_number" class="form-label">Numero Civico</label>
                                             <input type="text" class="form-control" id="house_number" name="house_number" value="{{$address->house_number}}" placeholder="Numero civico" readonly>
                                         </div>
 
