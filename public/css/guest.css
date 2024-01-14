@@ -13857,6 +13857,15 @@ fieldset:disabled .btn {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
+.modal-dialog-large {
+  max-width: 800px !important;
+}
+
+select:disabled {
+  background-color: revert !important;
+  --bs-form-select-bg-img: none !important;
+}
+
 nav {
   width: 100%;
   position: sticky !important;
