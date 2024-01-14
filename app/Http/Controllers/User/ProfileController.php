@@ -145,7 +145,28 @@ class ProfileController extends Controller
             'city_id' => 'required|integer|exists:cities,id',
             'cap' => 'required|numeric|digits:5',
             'address' => 'required|string|min:3|max:255',
-            'house_number' => 'required|string|max:255'
+            'house_number' => [
+                'required',
+                'string',
+                'max:255',
+                function ($attribute, $value, $fail) use ($id, $request) {
+                    // indirizzo utente esistente
+                    $existingAddress = UserAddress::where([
+                        'user_id' => $id,
+                        'nation_id' => $request->nation_id,
+                        'region_id' => $request->region_id,
+                        'province_id' => $request->province_id,
+                        'city_id' => $request->city_id,
+                        'cap' => $request->cap,
+                        'address' => ucwords($request->address),
+                        'house_number' => $request->house_number,
+                    ])->first();
+    
+                    if ($existingAddress) {
+                        $fail('Esiste già un indirizzo con i dettagli forniti.');
+                    }
+                }
+            ]
         ]);
 
         // recupero l'utente
