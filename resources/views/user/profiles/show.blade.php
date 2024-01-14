@@ -166,7 +166,7 @@
                                         </div>
 
                                         {{-- btn delete --}}
-                                        <div class="col-12">
+                                        <div class="col-12 mb-4">
                                             <form action="{{route('user.profiles.deleteAddress', [$address->id, $user->id])}}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -176,13 +176,18 @@
                                                 </button>
                                             </form>
                                         </div>
+
+                                        {{-- line divider --}}
+                                        <div class="col-12">
+                                            <div class="line"></div>
+                                        </div>
                                     </div> 
                                 @endforeach
 
                                 @else
                                     <div class="col-12 col-md-6">
                                         <div class="alert alert-primary" role="alert">
-                                            Non hai nessun indirizzo.
+                                            Nessun Indirizzo presente.
                                         </div>
                                     </div>
                             @endif

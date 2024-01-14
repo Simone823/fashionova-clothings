@@ -36,7 +36,7 @@
                     {{-- nation id --}}
                     <div class="col-12 col-md-6 mb-4 form-group">
                         <label for="nation_id" class="form-label">Nazione*</label>
-                        <select class="form-select @error('nation_id') is-invalid @enderror" name="nation_id" id="nation_id" required>
+                        <select class="form-select @error('nation_id') is-invalid @enderror" name="nation_id" id="nation_id" required disabled>
                             <option value="" selected hidden>-- Seleziona una Nazione --</option>
                             <option selected value="{{App\Nation::where('name', 'Italia')->pluck('id')->first()}}">{{App\Nation::where('name', 'Italia')->pluck('name')->first()}}</option>
                         </select>

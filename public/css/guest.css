@@ -13866,6 +13866,12 @@ select:disabled {
   --bs-form-select-bg-img: none !important;
 }
 
+.line {
+  border: 1px solid rgba(95, 101, 108, 0.5);
+  border-radius: 9999px;
+  border-width: 0.5px !important;
+}
+
 nav {
   width: 100%;
   position: sticky !important;
