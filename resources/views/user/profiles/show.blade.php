@@ -88,7 +88,7 @@
 
                             @if(count($user->addresses) > 0)
                                 @foreach($user->addresses as $address)
-                                    <div class="row mb-5">
+                                    <div class="row mb-4">
                                         {{-- is primary --}}
                                         <div class="col-12 mb-4">
                                             <div class="form-check form-switch">
