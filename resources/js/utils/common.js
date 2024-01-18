@@ -7,18 +7,28 @@ openModal = (idHtmlModal) => {
 }
 
 // FILTRA PROVINCE BY ID REGIONE
-filterProvinceByRegionId = (event) => {
+filterProvinceByRegionId = (event, clearSelectProvince = true) => {
+    const idAddressMatch = event.target.id.match(/user_address_(\d+)_region_id/);
     const regionId = event.target.value;
-    const provinceSelect = document.querySelector('select[id="province_id"');
+
+    // Select e options privince_id
+    let provinceSelect;
+    if (idAddressMatch) {
+        provinceSelect = document.querySelector(`select[id="user_address_${idAddressMatch[1]}_province_id"]`);
+    } else {
+        provinceSelect = document.querySelector("select[id='province_id']");
+    }
     const provinceOptions = provinceSelect.getElementsByTagName('option');
 
     // reset valore select province_id
-    provinceSelect.value = "";
+    if (clearSelectProvince) {
+        provinceSelect.value = "";
+    }
 
     // filtro per province per regione id
     Array.from(provinceOptions).forEach((option) => {
         const optionRegionId = option.getAttribute('data-region-id');
-    
+
         if (optionRegionId == regionId) {
             option.style.display = 'block';
         } else {
@@ -28,13 +38,23 @@ filterProvinceByRegionId = (event) => {
 }
 
 // FILTRA COMUNI BY PROVINCIA ID
-filterCitiesByProvinceId = (event) => {
+filterCitiesByProvinceId = (event, clearSelectCity = true) => {
+    const idAddressMatch = event.target.id.match(/user_address_(\d+)_province_id/);
     const provinceId = event.target.value;
-    const citiesSelect = document.querySelector('select[id="city_id"');
+
+    // Select e options city_id
+    let citiesSelect;
+    if (idAddressMatch) {
+        citiesSelect = document.querySelector(`select[id="user_address_${idAddressMatch[1]}_city_id"]`);
+    } else {
+        citiesSelect = document.querySelector("select[id='city_id']");
+    }
     const citiesOption = citiesSelect.getElementsByTagName('option');
 
     // reset value select city_id
-    citiesSelect.value = "";
+    if (clearSelectCity) {
+        citiesSelect.value = "";
+    }
 
     // filtro comuni per provincia id
     Array.from(citiesOption).forEach((option) => {
