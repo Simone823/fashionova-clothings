@@ -136,8 +136,8 @@
 
                                             {{-- province_id --}}
                                             <div class="col-12 col-md-6 mb-4 form-group">
-                                                <label for="province_id" class="form-label">Provincia</label>
-                                                <select class="form-select @error("user_addresses.{$address->id}.province_id") is-invalid @enderror" name="user_addresses[{{ $address->id }}][province_id]" id="user_address_{{ $address->id }}_province_id" required>
+                                                <label for="user_address_{{ $address->id }}_province_id" class="form-label">Provincia</label>
+                                                <select onchange="filterCitiesByProvinceId(event)" class="form-select @error("user_addresses.{$address->id}.province_id") is-invalid @enderror" name="user_addresses[{{ $address->id }}][province_id]" id="user_address_{{ $address->id }}_province_id" required>
                                                     <option value="">-- Seleziona una Provincia --</option>
                                                     @foreach ($provinces as $province)
                                                         <option {{$address->province_id == $province->id || old("user_addresses.{$address->id}.province_id") == $province->id ? 'selected' : ''}} data-region-id="{{$province->region_id}}" value="{{$province->id}}">{{$province->name}}</option>
@@ -153,7 +153,7 @@
 
                                             {{-- city_id --}}
                                             <div class="col-12 col-md-6 mb-4 form-group">
-                                                <label for="city_id" class="form-label">Comune</label>
+                                                <label for="user_address_{{ $address->id }}_city_id" class="form-label">Comune</label>
                                                 <select class="form-select @error("user_addresses.{$address->id}.city_id") is-invalid @enderror" name="user_addresses[{{ $address->id }}][city_id]" id="user_address_{{ $address->id }}_city_id" required>
                                                     <option value="" selected hidden>-- Seleziona un Comune --</option>
                                                     @foreach ($cities as $city)
@@ -170,7 +170,7 @@
 
                                             {{-- cap --}}
                                             <div class="col-12 col-md-6 mb-4 form-group">
-                                                <label for="cap" class="form-label">Cap</label>
+                                                <label for="user_address_{{ $address->id }}_cap" class="form-label">Cap</label>
                                                 <input type="number" class="form-control @error("user_addresses.{$address->id}.cap") is-invalid @enderror" name="user_addresses[{{ $address->id }}][cap]" id="user_address_{{ $address->id }}_cap" value="{{old("user_addresses.{$address->id}.cap", $address->cap)}}" placeholder="Cap" required>
                                             
                                                 @error("user_addresses.{$address->id}.cap")
@@ -182,7 +182,7 @@
 
                                             {{-- address --}}
                                             <div class="col-12 col-md-6 mb-4 form-group">
-                                                <label for="address" class="form-label">Indirizzo</label>
+                                                <label for="user_address_{{ $address->id }}_address" class="form-label">Indirizzo</label>
                                                 <input type="text" class="form-control @error("user_addresses.{$address->id}.address") is-invalid @enderror" name="user_addresses[{{ $address->id }}][address]" id="user_address_{{ $address->id }}_address" value="{{old("user_addresses.{$address->id}.address", $address->address)}}" placeholder="Via / Piazza">
                                             
                                                 @error("user_addresses.{$address->id}.address")
@@ -194,7 +194,7 @@
 
                                             {{-- house number --}}
                                             <div class="col-12 col-md-6 mb-4 form-group">
-                                                <label for="house_number" class="form-label">Numero Civico</label>
+                                                <label for="user_address_{{ $address->id }}_house_number" class="form-label">Numero Civico</label>
                                                 <input type="text" class="form-control @error("user_addresses.{$address->id}.house_number") is-invalid @enderror" name="user_addresses[{{ $address->id }}][house_number]" id="user_address_{{ $address->id }}_house_number" value="{{old("user_addresses.{$address->id}.house_number", $address->house_number)}}" placeholder="Numero civico" >
                                             
                                                 @error("user_addresses.{$address->id}.house_number")
@@ -236,4 +236,27 @@
 
         </div>
     </section>
+
+    {{-- JS --}}
+    @push('javascript')
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', () => {
+                // indirizzi utente
+                const userAddresses = @json($user->addresses);
+
+                // se esitono gli indirizzi utente filtro i campi territori
+                if (userAddresses.length) {
+                    userAddresses.forEach((address) => {
+                        // filter province by region
+                        const selectRegion = document.querySelector(`select[id="user_address_${address.id}_region_id"]`);
+                        filterProvinceByRegionId({ target: { id: selectRegion.id, value: selectRegion.value } }, false);
+
+                        // filter citites by province
+                        const selectProvince = document.querySelector(`select[id="user_address_${address.id}_province_id"]`);
+                        filterCitiesByProvinceId({ target: { id: selectProvince.id, value: selectProvince.value } }, false);
+                    });
+                }
+            });
+        </script> 
+    @endpush
 @endsection
