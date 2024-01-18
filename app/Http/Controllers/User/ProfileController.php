@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
+use App\City;
 use App\Http\Controllers\Controller;
+use App\Nation;
+use App\Province;
+use App\Region;
 use App\User;
 use App\UserAddress;
 use Illuminate\Http\Request;
@@ -52,7 +56,13 @@ class ProfileController extends Controller
             return abort(401);
         }
 
-        return view('user.profiles.edit', compact('user'));
+        // territiori
+        $nation = Nation::where('name', 'Italia')->first();
+        $regions = Region::orderBy('name', 'asc')->get();
+        $provinces = Province::orderBy('name', 'asc')->get();
+        $cities = City::orderBy('name', 'asc')->get();
+
+        return view('user.profiles.edit', compact('user', 'nation', 'regions', 'provinces', 'cities'));
     }
 
     /**
@@ -68,8 +78,61 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required|string|min:4|max:100',
             'surname' => 'required|string|min:4|max:100',
-            'email' => "required|email|unique:users,email,{$id}"
+            'email' => "required|email|unique:users,email,{$id}",
         ]);
+
+        // valido i campi indirizzi, se nella richiesta esiste l'array user_addresses
+        if ($request->has('user_addresses')) {
+            $request->validate([
+                'user_addresses.*.is_primary' => [
+                    "nullable",
+                    function ($attribute, $value, $fail) use ($id) {   
+                        // Recupera l'indice dell'indirizzo corrente all'interno dell'array
+                        $idUserAddress = explode('.', str_replace('user_addresses.', '', $attribute));
+
+                        // indirizzo utente primario esistente
+                        $userAddressPrimary = UserAddress::where([
+                            'is_primary' => 1, 
+                            'user_id' => $id
+                        ])->where('id', '!=', $idUserAddress[0])->first();
+
+                        if ($userAddressPrimary) {
+                            $fail('Esiste già un indirizzo primario.');
+                        }
+                    }
+                ],
+                'user_addresses.*.nation_id' => 'required|integer|exists:nations,id',
+                'user_addresses.*.region_id' => 'required|integer|exists:regions,id',
+                'user_addresses.*.province_id' => 'required|integer|exists:provinces,id',
+                'user_addresses.*.city_id' => 'required|integer|exists:cities,id',
+                'user_addresses.*.cap' => 'required|numeric|digits:5',
+                'user_addresses.*.address' => 'required|string|min:3|max:255',
+                'user_addresses.*.house_number' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    function ($attribute, $value, $fail) use ($id, $request) {
+                        // recupero l'indice dell'indirizzo corrente all'interno dell'array
+                        $idUserAddress = explode('.', str_replace('user_addresses.', '', $attribute));
+
+                        // verifico l'esistenza di un indirizzo utente con gli stessi dettagli, escludendo l'indirizzo corrente
+                        $existingAddress = UserAddress::where([
+                            'nation_id' => $request->input("user_addresses.{$idUserAddress[0]}.nation_id"),
+                            'region_id' => $request->input("user_addresses.{$idUserAddress[0]}.region_id"),
+                            'province_id' => $request->input("user_addresses.{$idUserAddress[0]}.province_id"),
+                            'city_id' => $request->input("user_addresses.{$idUserAddress[0]}.city_id"),
+                            'cap' => $request->input("user_addresses.{$idUserAddress[0]}.cap"),
+                            'address' => ucwords($request->input("user_addresses.{$idUserAddress[0]}.address")),
+                            'house_number' => $value,
+                        ])->where('id', '!=', $idUserAddress[0])->first();
+
+                        if ($existingAddress) {
+                            $fail('Esiste già un indirizzo con i dettagli forniti.');
+                        }
+                    }
+                ],
+            ]);
+        }
 
         // recupero l'utente
         $user = User::findOrFail($id);
@@ -84,6 +147,23 @@ class ProfileController extends Controller
         $user->surname = ucfirst($request->surname);
         $user->email = strtolower($request->email);
         $user->update();
+
+        // aggiorno gli indirizzi se esistono
+        if ($request->has('user_addresses')) {
+            foreach ($request->user_addresses as $idAddress => $address) {
+                // recupero e aggiorno l'indirizzo tramite id
+                $userAddress = UserAddress::findOrFail($idAddress);
+                $userAddress->is_primary = isset($address['is_primary']) && $address['is_primary'] == 'on' ? 1 : 0;
+                $userAddress->nation_id = $address['nation_id'];
+                $userAddress->region_id = $address['region_id'];
+                $userAddress->province_id = $address['province_id'];
+                $userAddress->city_id = $address['city_id'];
+                $userAddress->cap = $address['cap'];
+                $userAddress->address = ucwords($address['address']);
+                $userAddress->house_number = $address['house_number'];
+                $userAddress->update();
+            }
+        }
 
         return redirect()->route('user.profiles.show', $user->id);
     }
