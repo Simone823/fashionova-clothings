@@ -32,6 +32,9 @@
 
         {{-- main --}}
         <main>
+            {{-- flash message --}}
+            @include('components.flashMessage')
+            
             @yield('content')
         </main>
 
