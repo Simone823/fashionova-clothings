@@ -215,7 +215,7 @@ class ProfileController extends Controller
     public function createAddress(Request $request, $id)
     {
         // validazione
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'is_primary' => [
                 "nullable",
                 function ($attribute, $value, $fail) use ($id) {   
@@ -256,6 +256,10 @@ class ProfileController extends Controller
                 }
             ]
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator->errors(), 'profilesCreateAddress');
+        }
 
         // recupero l'utente
         $user = User::findOrFail($id);
