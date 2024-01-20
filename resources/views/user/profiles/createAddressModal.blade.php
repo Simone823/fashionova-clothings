@@ -134,18 +134,18 @@
                             </div>
                         @endif
                     </div>
-                </div>
 
-                {{-- buttons --}}
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary text-uppercase">
-                        Salva
-                    </button>
-                    <button type="button" class="btn btn-primary text-uppercase" data-bs-dismiss="modal">
-                        Annulla
-                    </button>
-                </div>
-            </form>
+                    {{-- buttons --}}
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary text-uppercase">
+                            Salva
+                        </button>
+                        <button type="button" class="btn btn-primary text-uppercase" data-bs-dismiss="modal">
+                            Annulla
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
