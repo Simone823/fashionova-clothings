@@ -1,0 +1,119 @@
+#sidebar {
+    flex-shrink: 0;
+    width: $sidebar-width;
+    height: 100%;
+    background-color: $sidebar-color;
+    padding: 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+
+    // Sidebar chiusa
+    &.close {
+        margin-left: -$sidebar-width;
+    }
+
+    // Nav logo
+    .nav-brand {
+        display: block;
+        max-width: max-content;
+        margin: 0 auto;
+
+        .nav-logo {
+            max-width: 140px;
+            margin: 0;
+        }
+    }
+
+    .navbar-nav {
+        flex-grow: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+            border-radius: 2px;
+            background-color: $gray;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $info;
+            border-radius: 2px;
+        }
+
+        .nav-item {
+            width: 100%;
+
+            .nav-link span,
+            .accordion-button::after,
+            .accordion-sidebar-title {
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .nav-link,
+    .accordion-button,
+    .list-group-item {
+        color: $sidebar-link-color;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        padding: 8px 0;
+        transition: color 0.3s ease;
+
+        i {
+            width: 20px;
+        }
+
+        &:hover,
+        &.active,
+        &.accordion-active-link {
+            color: $sidebar-link-color-hover;
+        }
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: $sidebar-link-color-hover;
+    }
+
+    .accordion {
+        .accordion-item {
+            background: transparent;
+            border: none !important;
+
+            .accordion-button {
+                background: transparent;
+                box-shadow: none;
+
+                &::after {
+                    filter: brightness(0) saturate(100%) invert(83%) sepia(20%) saturate(119%) hue-rotate(169deg)
+                        brightness(85%) contrast(88%);
+                }
+            }
+
+            .accordion-collapse {
+                .accordion-body {
+                    padding: 5px 15px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        height: calc(100% - #{$mainbar-height});
+        margin-top: $mainbar-height;
+        position: absolute;
+        transform: translateX(-100%);
+        z-index: 50;
+
+        // Sidebar chiusa
+        &.close {
+            margin-left: 0;
+            width: $sidebar-width;
+            position: absolute;
+            transform: translateX(0);
+            box-shadow: 10px 0 10px rgba($color: $black, $alpha: 0.2);
+        }
+    }
+}

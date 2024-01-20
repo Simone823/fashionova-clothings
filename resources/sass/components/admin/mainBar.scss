@@ -1,0 +1,104 @@
+#main-bar {
+    width: 100%;
+    height: $mainbar-height;
+    background-color: $sidebar-color;
+    position: sticky;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 1.875rem;
+
+    .hamburger-btn {
+        background: transparent;
+        border: 0;
+        transition: transform 0.3s ease;
+
+        &.is-active {
+            transform: rotate(180deg);
+        }
+    }
+
+    .buttons-right {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+
+        .dropdown {
+            .dropdown-toggle {
+                border: none;
+                background: transparent;
+                display: flex;
+                align-items: center;
+
+                &::after {
+                    margin-left: 6px;
+                }
+
+                span {
+                    margin-left: 6px;
+                }
+            }
+
+            .dropdown-menu {
+                background-color: $sidebar-color;
+
+                .dropdown-header {
+                    color: $black;
+                }
+
+                .dropdown-item {
+                    color: $black;
+                    padding: 8px 16px;
+                    transition: background-color 0.3s ease;
+
+                    &:hover,
+                    &:active,
+                    &:focus,
+                    &.active {
+                        color: $white;
+                        background-color: $gray;
+                    }
+                }
+
+                &.animate {
+                    animation: fadeInUp 0.5s ease;
+
+                    @keyframes fadeInUp {
+                        from {
+                            opacity: 0;
+                            transform: translateY(-2px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .hamburger-btn {
+            transform: rotate(180deg);
+
+            &.is-active {
+                transform: rotate(0);
+            }
+        }
+
+        .buttons-right {
+            .dropdown {
+                .dropdown-toggle {
+                    span {
+                        display: none;
+                        visibility: hidden;
+                    }
+                }
+            }
+        }
+    }
+}

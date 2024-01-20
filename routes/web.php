@@ -48,4 +48,9 @@ Route::middleware('auth')->group(function() {
         Route::delete('/profiles/delete-address/{id}/{userId}', 'ProfileController@deleteAddress')->name('profiles.deleteAddress');
     });
 
+    // Admin
+    Route::middleware('roleAdmin')->prefix('admin')->name('admin.')->namespace('Admin')->group(function() {
+        // Dashboard
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    });
 });

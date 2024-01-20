@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -40206,6 +40206,25 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/admin.js":
+/*!*******************************!*\
+  !*** ./resources/js/admin.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*** IMPORTS ***/
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+// Utils
+__webpack_require__(/*! ./utils/common */ "./resources/js/utils/common.js");
+
+// Components
+__webpack_require__(/*! ./components/admin/sidebar */ "./resources/js/components/admin/sidebar.js");
+/***************************************** */
+
+/***/ }),
+
 /***/ "./resources/js/bootstrap.js":
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
@@ -40256,22 +40275,31 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/guest.js":
-/*!*******************************!*\
-  !*** ./resources/js/guest.js ***!
-  \*******************************/
+/***/ "./resources/js/components/admin/sidebar.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/admin/sidebar.js ***!
+  \**************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-/*** IMPORTS ***/
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+document.addEventListener('DOMContentLoaded', function () {
+  // Apri l'accordion che contiene un link attivo
+  var activeLinkAccordion = document.querySelector('.accordion-active-link');
+  if (activeLinkAccordion) {
+    var accordionElement = activeLinkAccordion.parentNode.parentNode;
+    var accordion = new bootstrap.Collapse(accordionElement);
+    accordion.show();
+  }
+  /********************************************* */
+});
 
-// Utils
-__webpack_require__(/*! ./utils/common */ "./resources/js/utils/common.js");
-
-// Views Guest
-__webpack_require__(/*! ./views/guest/cartShop */ "./resources/js/views/guest/cartShop.js");
-/***************************************** */
+// apri e chiudi sidebar
+toggleCloseSidebar = function toggleCloseSidebar() {
+  var sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('close');
+  var hamburgerBtn = document.querySelector('.hamburger-btn');
+  hamburgerBtn.classList.toggle('is-active');
+};
 
 /***/ }),
 
@@ -40354,131 +40382,14 @@ filterCitiesByProvinceId = function filterCitiesByProvinceId(event) {
 
 /***/ }),
 
-/***/ "./resources/js/views/guest/cartShop.js":
-/*!**********************************************!*\
-  !*** ./resources/js/views/guest/cartShop.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// set local storage
-if (!localStorage.getItem('cart') || !localStorage.getItem('total')) {
-  localStorage.setItem('cart', '[]');
-  localStorage.setItem('total', '0');
-}
-
-// Ottieni il numero totale dei prodotti nel carrello
-getTotalItemToCart = function getTotalItemToCart() {
-  var itemsCart = JSON.parse(localStorage.getItem('cart'));
-  return itemsCart.length;
-};
-
-//! DA TRASFORMARE
-// addToCart: (state, action) => {
-//     if(state.cart.length === 0) {
-//         state.cart.push(action.payload);
-//     } else {
-//         // find item
-//         let findItem = state.cart.find(el => el.id === action.payload.id);
-
-//         if(findItem === undefined) {
-//             state.cart.push(action.payload);
-//         }
-//     }
-
-//     // somma prezzo stesso prodotto
-//     let sumItem;
-
-//     // somma totale prezzo
-//     let totalCart = 0;
-
-//     // for state cart
-//     for (let i = 0; i < state.cart.length; i++) {
-//         sumItem = state.cart[i].likes * 1;
-//         totalCart += sumItem;
-//     }
-
-//     // state total
-//     state.total = totalCart;
-
-//     // set item localStorage
-//     localStorage.setItem('cart', JSON.stringify(state.cart));
-
-//     // localStorage set item total 
-//     localStorage.setItem('total', totalCart);
-// },
-
-// removeToCart: (state, action) => {
-//     state.cart = state.cart.filter((el) => el.id !== action.payload);
-
-//     // somma prezzo stesso prodotto
-//     let sumItem;
-
-//     // somma totale prezzo
-//     let totalCart = 0;
-
-//     // for state cart
-//     for (let i = 0; i < state.cart.length; i++) {
-//         sumItem = state.cart[i].likes * 1;
-//         totalCart += sumItem;
-//     }
-
-//     // state total 
-//     state.total = totalCart;
-
-//     // set cart localStorage
-//     localStorage.setItem('cart', JSON.stringify(state.cart));
-
-//     // localStorage set item total 
-//     localStorage.setItem('total', totalCart);
-// },
-
-// removeAllToCart: (state) => {
-//     // reset
-//     state.cart = [];
-//     state.total = 0;
-
-//     // localStorage cart
-//     localStorage.setItem('cart', JSON.stringify(state.cart));
-
-//     // localStorage set total
-//     localStorage.setItem('total', state.total);
-// }
-
-/***/ }),
-
-/***/ "./resources/sass/admin.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/admin.scss ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/guest.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/guest.scss ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!*********************************************************************************************!*\
-  !*** multi ./resources/js/guest.js ./resources/sass/guest.scss ./resources/sass/admin.scss ***!
-  \*********************************************************************************************/
+/***/ 1:
+/*!*************************************!*\
+  !*** multi ./resources/js/admin.js ***!
+  \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/simone/Desktop/fashionova-clothings/resources/js/guest.js */"./resources/js/guest.js");
-__webpack_require__(/*! /Users/simone/Desktop/fashionova-clothings/resources/sass/guest.scss */"./resources/sass/guest.scss");
-module.exports = __webpack_require__(/*! /Users/simone/Desktop/fashionova-clothings/resources/sass/admin.scss */"./resources/sass/admin.scss");
+module.exports = __webpack_require__(/*! /Users/simone/Desktop/fashionova-clothings/resources/js/admin.js */"./resources/js/admin.js");
 
 
 /***/ })
