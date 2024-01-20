@@ -187,7 +187,7 @@ class ProfileController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors(), 'profiles_change_password');
+            return redirect()->back()->withInput()->withErrors($validator->errors(), 'profilesChangePassword');
         }
 
         // recupero l'utente
