@@ -3,12 +3,15 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -41,9 +44,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Relazione user_address
-    public function addresses()
+    /**
+     * Relazione verso tabella -> user_address
+     *
+     * @return HasMany
+     */
+    public function addresses(): HasMany
     {
         return $this->hasMany(UserAddress::class)->orderBy('is_primary', 'desc');
+    }
+
+    /**
+     * Relazione Roles (molti a molti)
+     *
+     * @return BelongsToMany
+     */
+    public function roles(): BelongsToMany
+    {
+        return $this->morphToMany(
+            Role::class,
+            'model',
+            config('permission.table_names.model_has_roles'),
+            config('permission.column_names.model_morph_key'),
+            'role_id'
+        );
     }
 }
