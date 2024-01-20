@@ -18,14 +18,20 @@ class RolesSeeder extends Seeder
             array(
                 'name' => 'Administrator',
                 'permissions' => Permission::all()->pluck('id')
+            ),
+            array(
+                'name' => 'User',
+                'permissions' => array()
             )
         );
 
         foreach ($roles as $role) {
             $newRole = Role::create(['name' => $role['name']]);
 
-            foreach ($role['permissions'] as $permission) {
-                $newRole->givePermissionTo($permission);
+            if (count($role['permissions']) > 0) {
+                foreach ($role['permissions'] as $permission) {
+                    $newRole->givePermissionTo($permission);
+                }
             }
         }
     }
