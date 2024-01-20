@@ -24,7 +24,7 @@
             {{-- card form --}}
             <div class='row'>
                 <div class='col-12'>
-                    <div class='card bg-body-secondary border-0 shadow-sm p-4'>
+                    <div class='card border-0 shadow-sm p-4'>
                         <form action="{{route('guest.contactUs.store')}}" method="POST" class='row'>
                             @csrf
 

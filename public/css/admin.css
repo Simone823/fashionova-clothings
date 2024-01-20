@@ -13853,7 +13853,7 @@ fieldset:disabled .btn {
   flex-shrink: 0;
   width: 240px;
   height: 100%;
-  background-color: var(--bs-secondary-bg);
+  background-color: #d7d7d7;
   padding: 1rem 0.75rem;
   display: flex;
   flex-direction: column;
@@ -13885,7 +13885,7 @@ fieldset:disabled .btn {
 #sidebar .navbar-nav::-webkit-scrollbar {
   width: 4px;
   border-radius: 2px;
-  background-color: #5f656c;
+  background-color: #5f5f60;
 }
 
 #sidebar .navbar-nav::-webkit-scrollbar-thumb {
@@ -13906,7 +13906,7 @@ fieldset:disabled .btn {
 #sidebar .nav-link,
 #sidebar .accordion-button,
 #sidebar .list-group-item {
-  color: #5f656c;
+  color: #5f5f60;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -13975,7 +13975,7 @@ fieldset:disabled .btn {
 #main-bar {
   width: 100%;
   height: 56px;
-  background-color: var(--bs-secondary-bg);
+  background-color: #d7d7d7;
   position: sticky;
   z-index: 50;
   top: 0;
@@ -14018,7 +14018,7 @@ fieldset:disabled .btn {
 }
 
 #main-bar .buttons-right .dropdown .dropdown-menu {
-  background-color: var(--bs-secondary-bg);
+  background-color: #d7d7d7;
 }
 
 #main-bar .buttons-right .dropdown .dropdown-menu .dropdown-header {
@@ -14036,7 +14036,7 @@ fieldset:disabled .btn {
 #main-bar .buttons-right .dropdown .dropdown-menu .dropdown-item:focus,
 #main-bar .buttons-right .dropdown .dropdown-menu .dropdown-item.active {
   color: #fff;
-  background-color: #5f656c;
+  background-color: #5f5f60;
 }
 
 #main-bar .buttons-right .dropdown .dropdown-menu.animate {

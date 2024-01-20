@@ -9,7 +9,7 @@
                 <div class="col-md-10">
 
                     {{-- card register --}}
-                    <div class="card bg-body-secondary border-0 pb-4 shadow-sm">
+                    <div class="card border-0 pb-4 shadow-sm">
                         {{-- title --}}
                         <div class="card-header text-center bg-transparent py-3 mb-4">
                             <h3 class="fw-bold mb-0">Sono un nuovo cliente</h3>

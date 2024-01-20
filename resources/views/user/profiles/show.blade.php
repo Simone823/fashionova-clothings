@@ -16,7 +16,7 @@
             {{-- card profile --}}
             <div class='row'>
                 <div class='col-12'>
-                    <div class='card bg-body-secondary border-0 shadow-sm p-4'>
+                    <div class='card border-0 shadow-sm p-4'>
 
                         {{-- user details --}}
                         <div class='row mb-4'>

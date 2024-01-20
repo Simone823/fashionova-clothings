@@ -26,7 +26,7 @@
             {{-- card profile --}}
             <div class='row'>
                 <div class='col-12'>
-                    <div class='card bg-body-secondary border-0 shadow-sm p-4'>
+                    <div class='card border-0 shadow-sm p-4'>
                         <form action="{{route('user.profiles.update', $user->id)}}" method="POST" class='row'>
                             @csrf
 

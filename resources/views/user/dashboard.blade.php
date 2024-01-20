@@ -17,7 +17,7 @@
             <div class='row gy-5'>
                 {{-- my orders --}}
                 <div class='col-12 col-sm-6 col-lg-4'>
-                    <a href="" class='card bg-body-secondary border-0 shadow-sm p-4 d-flex justify-content-center align-items-center gap-4'>
+                    <a href="" class='card border-0 shadow-sm p-4 d-flex justify-content-center align-items-center gap-4'>
                         <i class="fa-solid fa-boxes-stacked fs-1"></i>
                         <p class="mb-0 fs-5 fw-bolder">I miei Ordini</p>
                     </a>
@@ -25,7 +25,7 @@
 
                 {{-- my cart shop --}}
                 <div class='col-12 col-sm-6 col-lg-4'>
-                    <a href="{{route('guest.cartShop')}}" class='card bg-body-secondary border-0 shadow-sm p-4 d-flex justify-content-center align-items-center gap-4'>
+                    <a href="{{route('guest.cartShop')}}" class='card border-0 shadow-sm p-4 d-flex justify-content-center align-items-center gap-4'>
                         <i class="fa-solid fa-cart-shopping fs-1"></i>
                         <p class="mb-0 fs-5 fw-bolder">Il mio Carrello</p>
                     </a>
@@ -33,7 +33,7 @@
 
                 {{-- my profile --}}
                 <div class='col-12 col-sm-6 col-lg-4'>
-                    <a href="{{route('user.profiles.show', Auth::id())}}" class='card bg-body-secondary border-0 shadow-sm p-4 d-flex justify-content-center align-items-center gap-4'>
+                    <a href="{{route('user.profiles.show', Auth::id())}}" class='card border-0 shadow-sm p-4 d-flex justify-content-center align-items-center gap-4'>
                         <i class="fa-solid fa-user-gear fs-1"></i>
                         <p class="mb-0 fs-5 fw-bolder">Il mio Profilo</p>
                     </a>
