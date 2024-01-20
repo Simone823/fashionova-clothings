@@ -165,7 +165,10 @@ class ProfileController extends Controller
             }
         }
 
-        return redirect()->route('user.profiles.show', $user->id);
+        return redirect()->route('user.profiles.show', $user->id)->with(
+            'success', 
+            "Il tuo Profilo è stato aggiornato con successo."
+        );
     }
 
     /**
@@ -194,7 +197,7 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->password);
         $user->update();
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'La tua password è stata aggiornata con successo.');
     }
 
     /**
@@ -270,7 +273,10 @@ class ProfileController extends Controller
         $newUserAddress->house_number = $request->house_number;
         $newUserAddress->save();
 
-        return redirect()->back();
+        return redirect()->back()->with(
+            'success', 
+            "L'Indirizzo è stato creato con successo. {$newUserAddress->address}, {$newUserAddress->house_number}, {$newUserAddress->cap}, {$newUserAddress->city->name}, {$newUserAddress->province->sigle}"
+        );
     }
 
     /**
@@ -292,7 +298,10 @@ class ProfileController extends Controller
         // elimino l'utente
         $user->delete();
 
-        return redirect()->route('guest.home');
+        return redirect()->route('guest.home')->with(
+            'success', 
+            "Il tuo account con indirizzo mail: {$user->email}, è stato eliminato con successo."
+        );
     }
 
     /**
@@ -317,6 +326,9 @@ class ProfileController extends Controller
         // elimino l'indirizzo utente
         $userAddress->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with(
+            'success', 
+            "L'indirizzo è stato eliminato con successo. {$userAddress->address}, {$userAddress->house_number}, {$userAddress->cap}, {$userAddress->city->name}, {$userAddress->province->sigle}"
+        );
     }
 }
