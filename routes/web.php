@@ -34,7 +34,7 @@ Route::namespace('Guest')->group(function() {
 Route::middleware('auth')->group(function() {
 
     // User
-    Route::prefix('user')->name('user.')->namespace('User')->group(function() {
+    Route::middleware('roleUser')->prefix('user')->name('user.')->namespace('User')->group(function() {
         // Dashboard
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
