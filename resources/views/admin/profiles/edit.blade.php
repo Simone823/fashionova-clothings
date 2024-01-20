@@ -3,7 +3,7 @@
 @section('metaTitle', "Modifica Profilo: {$user->name} {$user->surname}")
 
 @section('content')
-    <section id="profile-edit">
+    <section id="admin-profiles-edit">
         <div class="container-fluid">
 
             {{-- title --}}
@@ -17,7 +17,7 @@
             </div>
 
             {{-- form --}}
-            <div class="card px-3 py-4 shadow-sm border-0 bg-body-secondary">
+            <div class="card px-3 py-4 shadow-sm border-0">
                 <form action="{{route('admin.profiles.update', $user->id)}}" method="post">
                     @csrf
 

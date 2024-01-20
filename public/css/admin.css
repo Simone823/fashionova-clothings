@@ -13849,6 +13849,10 @@ fieldset:disabled .btn {
   }
 }
 
+.card {
+  background-color: #d7d7d7;
+}
+
 #sidebar {
   flex-shrink: 0;
   width: 240px;

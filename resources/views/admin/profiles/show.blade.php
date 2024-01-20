@@ -3,7 +3,7 @@
 @section('metaTitle', "Visualizza Profilo: {$user->name} {$user->surname}")
 
 @section('content')
-    <section id="profile-show">
+    <section id="admin-profiles-show">
         <div class="container-fluid">
 
             {{-- title --}}
@@ -17,7 +17,7 @@
             </div>
 
             {{-- card --}}
-            <div class="card px-3 py-4 shadow-sm border-0 bg-body-secondary">
+            <div class="card px-3 py-4 shadow-sm border-0">
                 {{-- Actions btn --}}
                 <div class="row mb-5">
                     <div class="col-12 d-flex flex-wrap gap-3">
