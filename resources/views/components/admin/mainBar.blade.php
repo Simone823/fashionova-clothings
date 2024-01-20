@@ -11,6 +11,7 @@
             {{-- btn profile --}}
             <div class="dropdown">
                 <button class="dropdown-toggle fw-semibold" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="0,9">
+                    <i class="fa-solid fa-user me-1"></i>
                     <span>{{Auth::user()->name}} {{Auth::user()->surname}}</span>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark animate shadow" aria-labelledby="profileDropdown">

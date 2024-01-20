@@ -89,7 +89,9 @@
                 transform: rotate(0);
             }
         }
+    }
 
+    @media screen and (max-width: 365px) {
         .buttons-right {
             .dropdown {
                 .dropdown-toggle {

@@ -14067,7 +14067,9 @@ fieldset:disabled .btn {
   #main-bar .hamburger-btn.is-active {
     transform: rotate(0);
   }
+}
 
+@media screen and (max-width: 365px) {
   #main-bar .buttons-right .dropdown .dropdown-toggle span {
     display: none;
     visibility: hidden;
