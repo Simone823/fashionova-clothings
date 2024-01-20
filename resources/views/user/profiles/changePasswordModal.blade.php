@@ -20,25 +20,25 @@
                     {{-- password --}}
                     <div class="form-group mb-4">
                         <label for="password" class="form-label">Nuova Password*</label>
-                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}" placeholder="Scrivi la nuova password" required autocomplete="off" autofocus="off">
+                        <input type="password" class="form-control @if($errors->profiles_change_password->has('password')) is-invalid @endif" id="password" name="password" value="{{ old('password') }}" placeholder="Scrivi la nuova password" required autocomplete="off" autofocus="off">
 
-                        @error('password')
+                        @if ($errors->profiles_change_password->has('password'))
                             <div class="text-danger mt-1">
-                                {{ $message }}
+                                {{ $errors->profiles_change_password->first('password') }}
                             </div>
-                        @enderror
+                        @endif
                     </div>
 
                     {{-- password confirm --}}
                     <div class="form-group mb-4">
                         <label for="password-confirm" class="form-label">Conferma nuova Password*</label>
-                        <input type="password" class="form-control @error('password-confirm') is-invalid @enderror" id="password-confirm" name="password_confirmation" value="" placeholder="Conferma la nuova password" required autocomplete="off" autofocus="off">
+                        <input type="password" class="form-control @if($errors->profiles_change_password->has('password_confirmation')) is-invalid @endif" id="password-confirm" name="password_confirmation" value="" placeholder="Conferma la nuova password" required autocomplete="off" autofocus="off">
 
-                        @error('password_confirmation')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        @if ($errors->profiles_change_password->has('password_confirmation'))
+                            <div class="text-danger mt-1">
+                                {{ $errors->profiles_change_password->first('password_confirmation') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -55,3 +55,12 @@
         </div>
     </div>
 </div>
+
+{{-- JS --}}
+@push('javascript')
+    @if ($errors->profiles_change_password->any())
+        <script type="module">
+            openModal('changePasswordUserModal');
+        </script>
+    @endif
+@endpush

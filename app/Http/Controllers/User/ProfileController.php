@@ -12,6 +12,7 @@ use App\UserAddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {    
@@ -181,9 +182,13 @@ class ProfileController extends Controller
     public function changePassword(Request $request, $id)
     {
         // validazione request
-        $request->validate([
-            'password' => 'required|string|min:8|confirmed'
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|string|min:8|confirmed',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors(), 'profiles_change_password');
+        }
 
         // recupero l'utente
         $user = User::findOrFail($id);

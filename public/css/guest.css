@@ -13847,6 +13847,17 @@ fieldset:disabled .btn {
   }
 }
 
+section {
+  padding: 40px 0;
+}
+
+section .title-section {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: calc(1.305rem + 0.66vw);
+  font-weight: bold;
+}
+
 .card-login {
   width: 100%;
   max-width: 520px;
@@ -13996,16 +14007,5 @@ img {
 
 a {
   text-decoration: none;
-}
-
-section {
-  padding: 40px 0;
-}
-
-section .title-section {
-  text-transform: uppercase;
-  text-align: center;
-  font-size: calc(1.305rem + 0.66vw);
-  font-weight: bold;
 }
 
