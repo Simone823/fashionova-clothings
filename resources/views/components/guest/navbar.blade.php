@@ -78,10 +78,19 @@
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
-                                    <a class="dropdown-item @if(Route::is('user.dashboard')) active @endif" href="{{route('user.dashboard')}}">
-                                        <i class="fa-solid fa-grip"></i>
-                                        Dashboard
-                                    </a>
+                                    @hasrole('User')
+                                        <a class="dropdown-item @if(Route::is('user.dashboard')) active @endif" href="{{route('user.dashboard')}}">
+                                            <i class="fa-solid fa-grip"></i>
+                                            Dashboard
+                                        </a>
+                                    @endhasrole
+
+                                    @hasrole('Administrator')
+                                        <a class="dropdown-item @if(Route::is('admin.dashboard')) active @endif" href="{{route('admin.dashboard')}}">
+                                            <i class="fa-solid fa-grip"></i>
+                                            Dashboard
+                                        </a>
+                                    @endhasrole
                                 </li>
                                 <li>
                                     <a class="dropdown-item @if(Route::is('user.profiles.*')) active @endif" href="{{route('user.profiles.show', Auth::id())}}">

@@ -52,5 +52,11 @@ Route::middleware('auth')->group(function() {
     Route::middleware('roleAdmin')->prefix('admin')->name('admin.')->namespace('Admin')->group(function() {
         // Dashboard
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+        // Profile
+        Route::get('/profiles/show/{id}', 'ProfileController@show')->name('profiles.show');
+        Route::get('/profiles/edit/{id}', 'ProfileController@edit')->name('profiles.edit');
+        Route::post('/profiles/update/{id}', 'ProfileController@update')->name('profiles.update');
+        Route::post('/profiles/change-password/{id}', 'ProfileController@changePassword')->name('profiles.changePassword');
     });
 });

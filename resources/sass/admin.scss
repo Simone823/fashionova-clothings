@@ -40,6 +40,10 @@ body {
     main {
         flex-grow: 1;
         overflow-y: auto;
+
+        section {
+            padding: 0 0.5rem;
+        }
     }
 }
 

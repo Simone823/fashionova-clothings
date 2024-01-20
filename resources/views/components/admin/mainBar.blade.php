@@ -28,12 +28,12 @@
                     <li><hr class="dropdown-divider bg-secondary"></li>
 
                     {{-- Profile --}}
-                    {{-- <li>
-                        <a class="dropdown-item @if(Route::is('profile.*')) active @endif" href="{{ route('profile.show', Auth::id()) }}">
+                    <li>
+                        <a class="dropdown-item @if(Route::is('admin.profiles.*')) active @endif" href="{{ route('admin.profiles.show', Auth::id()) }}">
                             <i class="fa-solid fa-user-gear"></i>
-                            @lang('users.profile.title')
+                            Profilo
                         </a>
-                    </li> --}}
+                    </li>
 
                     {{-- Logout --}}
                     <li>
