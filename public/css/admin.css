@@ -13853,6 +13853,15 @@ fieldset:disabled .btn {
   background-color: #d7d7d7;
 }
 
+input:-moz-read-only, textarea:-moz-read-only {
+  background-color: #ebe9e9 !important;
+}
+
+input:read-only,
+textarea:read-only {
+  background-color: #ebe9e9 !important;
+}
+
 #sidebar {
   flex-shrink: 0;
   width: 240px;
