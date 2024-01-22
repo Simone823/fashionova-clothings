@@ -40310,6 +40310,12 @@ toggleCloseSidebar = function toggleCloseSidebar() {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 // APRI UN MODAL QUANDO SI VERIFICANO ERRORI DI VALIDAZIONE
 openModal = function openModal(idHtmlModal) {
   var modal = new bootstrap.Modal(document.getElementById(idHtmlModal), {
@@ -40378,6 +40384,36 @@ filterCitiesByProvinceId = function filterCitiesByProvinceId(event) {
       option.style.display = 'none';
     }
   });
+};
+
+// Inizializza tootip
+document.addEventListener('DOMContentLoaded', function () {
+  var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  var tooltipList = _toConsumableArray(tooltipTriggerList).map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+});
+
+// ricerca in una tabella
+searchOnTable = function searchOnTable() {
+  var searchInput = document.getElementById("searchInput");
+  var filter = searchInput.value.toUpperCase();
+  var table = document.querySelector("table");
+  var tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td");
+    for (var j = 0; j < td.length; j++) {
+      if (td[j]) {
+        var txtValue = td[j].textContent || td[j].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          break;
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
 };
 
 /***/ }),

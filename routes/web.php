@@ -58,5 +58,14 @@ Route::middleware('auth')->group(function() {
         Route::get('/profiles/edit/{id}', 'ProfileController@edit')->name('profiles.edit');
         Route::post('/profiles/update/{id}', 'ProfileController@update')->name('profiles.update');
         Route::post('/profiles/change-password/{id}', 'ProfileController@changePassword')->name('profiles.changePassword');
+
+        // Users
+        Route::get('/users/index', 'UserController@index')->name('users.index');
+        Route::get('/users/create', 'UserController@create')->name('users.create');
+        Route::post('/users/store', 'UserController@store')->name('users.store');
+        Route::get('/users/show/{id}', 'UserController@show')->name('users.show');
+        Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
+        Route::post('/users/update/{id}', 'UserController@update')->name('users.update');
+        Route::delete('/users/delete/{id}', 'UserController@destroy')->name('users.delete');
     });
 });

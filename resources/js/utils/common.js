@@ -67,3 +67,32 @@ filterCitiesByProvinceId = (event, clearSelectCity = true) => {
         }
     });
 }
+
+// Inizializza tootip
+document.addEventListener('DOMContentLoaded', function () {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+});
+
+// ricerca in una tabella
+searchOnTable = () => {
+    let searchInput = document.getElementById("searchInput");
+    let filter = searchInput.value.toUpperCase();
+    let table = document.querySelector("table");
+    let tr = table.getElementsByTagName("tr");
+
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td");
+        for (var j = 0; j < td.length; j++) {
+            if (td[j]) {
+                let txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    break;
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+}
