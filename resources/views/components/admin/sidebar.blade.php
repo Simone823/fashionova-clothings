@@ -39,13 +39,13 @@
                             @endcan --}}
 
                             {{-- Roles --}}
-                            {{-- @can('roles_view')
-                                <a class="list-group-item list-group-item-action @if (Route::is('administrator.roles.*')) accordion-active-link @endif"
-                                    href="{{ route('administrator.roles.index') }}">
+                            @can('roles_view')
+                                <a class="list-group-item list-group-item-action @if (Route::is('admin.roles.*')) accordion-active-link @endif"
+                                    href="{{ route('admin.roles.index') }}">
                                     <i class="fa-solid fa-medal"></i>
-                                    @lang('roles.title')
+                                    Ruoli
                                 </a>
-                            @endcan --}}
+                            @endcan
                             
                             {{-- Users --}}
                             @can('users_view')

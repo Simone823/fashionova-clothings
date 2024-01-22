@@ -34,7 +34,7 @@ class UserController extends Controller
         }
 
         // recupero utenti
-        $users = User::sortable(['name' => 'asc'])->paginate(20);
+        $users = User::sortable(['name' => 'asc'])->paginate(config('app.default_paginate'));
 
         return view('admin.users.index', compact('users'));
     }
