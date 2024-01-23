@@ -30,13 +30,13 @@
                     <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMenuSidebar">
                         <div class="accordion-body">
                             {{-- Permissions --}}
-                            {{-- @can('permissions_view')
-                                <a class="list-group-item list-group-item-action @if (Route::is('administrator.permissions.*')) accordion-active-link @endif"
-                                    href="{{ route('administrator.permissions.index') }}">
+                            @can('permissions_view')
+                                <a class="list-group-item list-group-item-action @if (Route::is('admin.permissions.*')) accordion-active-link @endif"
+                                    href="{{ route('admin.permissions.index') }}">
                                     <i class="fa-solid fa-briefcase"></i>
-                                    @lang('permissions.title')
+                                    Permessi
                                 </a>
-                            @endcan --}}
+                            @endcan
 
                             {{-- Roles --}}
                             @can('roles_view')

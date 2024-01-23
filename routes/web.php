@@ -32,7 +32,6 @@ Route::namespace('Guest')->group(function() {
 
 // Auth group
 Route::middleware('auth')->group(function() {
-
     // User
     Route::middleware('roleUser')->prefix('user')->name('user.')->namespace('User')->group(function() {
         // Dashboard
@@ -58,6 +57,14 @@ Route::middleware('auth')->group(function() {
         Route::get('/profiles/edit/{id}', 'ProfileController@edit')->name('profiles.edit');
         Route::post('/profiles/update/{id}', 'ProfileController@update')->name('profiles.update');
         Route::post('/profiles/change-password/{id}', 'ProfileController@changePassword')->name('profiles.changePassword');
+
+        // Permissions
+        Route::get('/permissions/index', 'PermissionController@index')->name('permissions.index');
+        Route::get('/permissions/create', 'PermissionController@create')->name('permissions.create');
+        Route::post('/permissions/store', 'PermissionController@store')->name('permissions.store');
+        Route::get('/permissions/edit/{id}', 'PermissionController@edit')->name('permissions.edit');
+        Route::post('/permissions/update/{id}', 'PermissionController@update')->name('permissions.update');
+        Route::delete('/permissions/delete/{id}', 'PermissionController@destroy')->name('permissions.delete');
 
         // Roles
         Route::get('/roles/index', 'RoleController@index')->name('roles.index');
