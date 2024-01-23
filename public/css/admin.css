@@ -13898,7 +13898,7 @@ textarea:read-only {
 #sidebar .navbar-nav::-webkit-scrollbar {
   width: 4px;
   border-radius: 2px;
-  background-color: #5f5f60;
+  background-color: #535354;
 }
 
 #sidebar .navbar-nav::-webkit-scrollbar-thumb {
@@ -13919,7 +13919,9 @@ textarea:read-only {
 #sidebar .nav-link,
 #sidebar .accordion-button,
 #sidebar .list-group-item {
-  color: #5f5f60;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  color: #535354;
   display: flex;
   gap: 8px;
   align-items: center;
@@ -13957,10 +13959,6 @@ textarea:read-only {
 #sidebar .accordion .accordion-item .accordion-button {
   background: transparent;
   box-shadow: none;
-}
-
-#sidebar .accordion .accordion-item .accordion-button::after {
-  filter: brightness(0) saturate(100%) invert(83%) sepia(20%) saturate(119%) hue-rotate(169deg) brightness(85%) contrast(88%);
 }
 
 #sidebar .accordion .accordion-item .accordion-collapse .accordion-body {
@@ -14049,7 +14047,7 @@ textarea:read-only {
 #main-bar .buttons-right .dropdown .dropdown-menu .dropdown-item:focus,
 #main-bar .buttons-right .dropdown .dropdown-menu .dropdown-item.active {
   color: #fff;
-  background-color: #5f5f60;
+  background-color: #535354;
 }
 
 #main-bar .buttons-right .dropdown .dropdown-menu.animate {

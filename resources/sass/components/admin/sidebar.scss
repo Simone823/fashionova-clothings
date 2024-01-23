@@ -55,6 +55,8 @@
     .nav-link,
     .accordion-button,
     .list-group-item {
+        font-weight: 500;
+        letter-spacing: 0.025em;
         color: $sidebar-link-color;
         display: flex;
         gap: 8px;
@@ -85,11 +87,6 @@
             .accordion-button {
                 background: transparent;
                 box-shadow: none;
-
-                &::after {
-                    filter: brightness(0) saturate(100%) invert(83%) sepia(20%) saturate(119%) hue-rotate(169deg)
-                        brightness(85%) contrast(88%);
-                }
             }
 
             .accordion-collapse {
