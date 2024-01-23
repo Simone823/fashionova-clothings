@@ -13862,6 +13862,12 @@ textarea:read-only {
   background-color: #ebe9e9 !important;
 }
 
+textarea {
+  height: 110px;
+  overflow-y: auto;
+  resize: none;
+}
+
 #sidebar {
   flex-shrink: 0;
   width: 240px;

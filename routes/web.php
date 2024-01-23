@@ -82,5 +82,10 @@ Route::middleware('auth')->group(function() {
         Route::get('/users/edit/{id}', 'UserController@edit')->name('users.edit');
         Route::post('/users/update/{id}', 'UserController@update')->name('users.update');
         Route::delete('/users/delete/{id}', 'UserController@destroy')->name('users.delete');
+
+        // Contacts
+        Route::get('/contacts/index', 'ContactController@index')->name('contacts.index');
+        Route::get('/contacts/show/{id}', 'ContactController@show')->name('contacts.show');
+        Route::delete('/contacts/delete/{id}', 'ContactController@destroy')->name('contacts.delete');
     });
 });

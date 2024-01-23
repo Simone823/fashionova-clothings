@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Contact extends Model
 {
+    use Sortable;
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -18,5 +21,20 @@ class Contact extends Model
         'phone',
         'subject',
         'message'
+    ];
+
+    /**
+     * Sortable
+     *
+     * @var array
+     */
+    public $sortable = [
+        'name',
+        'surname',
+        'email',
+        'phone',
+        'subject',
+        'created_at',
+        'updated_at'
     ];
 }

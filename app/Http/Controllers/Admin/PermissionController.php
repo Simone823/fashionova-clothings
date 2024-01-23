@@ -28,7 +28,7 @@ class PermissionController extends Controller
         }
 
         // recupero tutti i permessi
-        $permissions = Permission::orderBy('name', 'asc')->paginate(config('app.default_paginate'));
+        $permissions = Permission::sortable(['name' => 'asc'])->paginate(config('app.default_paginate'));
 
         return view('admin.permissions.index', compact('permissions'));
     }

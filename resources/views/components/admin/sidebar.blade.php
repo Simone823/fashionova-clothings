@@ -18,6 +18,16 @@
             </a>
         </li>
 
+        {{-- Contatti --}}
+        @can('contacts_view')
+            <li class="nav-item mb-2">
+                <a class="nav-link @if (Route::is('admin.contacts.*')) active @endif" href="{{ route('admin.contacts.index') }}">
+                    <i class="fa-solid fa-address-book"></i>
+                    <span>Contatti</span>
+                </a>
+            </li>
+        @endcan
+
         {{-- Ruolo Admin --}}
         @hasrole('Administrator')
             <li class="nav-item accordion mb-2" id="accordionMenuSidebar">

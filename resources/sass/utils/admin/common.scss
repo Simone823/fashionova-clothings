@@ -10,3 +10,9 @@ textarea {
         background-color: #ebe9e9 !important;
     }
 }
+
+textarea {
+    height: 110px;
+    overflow-y: auto;
+    resize: none;
+}
