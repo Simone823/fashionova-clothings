@@ -4,9 +4,11 @@
 }
 
 // INPUTS
-input,
-textarea {
-    &:read-only {
+input:not(input[type="checkbox"]),
+textarea,
+select {
+    &:read-only,
+    &:disabled {
         background-color: #ebe9e9 !important;
     }
 }

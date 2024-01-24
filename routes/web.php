@@ -90,5 +90,9 @@ Route::middleware('auth')->group(function() {
         Route::get('/contacts/index', 'ContactController@index')->name('contacts.index');
         Route::get('/contacts/show/{id}', 'ContactController@show')->name('contacts.show');
         Route::delete('/contacts/delete/{id}', 'ContactController@destroy')->name('contacts.delete');
+
+        // User Addresses
+        Route::get('/user-addresses/index', 'UserAddressController@index')->name('userAddresses.index');
+        Route::get('/user-addresses/show/{id}', 'UserAddressController@show')->name('userAddresses.show');
     });
 });

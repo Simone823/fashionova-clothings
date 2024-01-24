@@ -13853,12 +13853,16 @@ fieldset:disabled .btn {
   background-color: #d7d7d7;
 }
 
-input:-moz-read-only, textarea:-moz-read-only {
+input:not(input[type=checkbox]):-moz-read-only, textarea:-moz-read-only, select:-moz-read-only {
   background-color: #ebe9e9 !important;
 }
 
-input:read-only,
-textarea:read-only {
+input:not(input[type=checkbox]):read-only,
+input:not(input[type=checkbox]):disabled,
+textarea:read-only,
+textarea:disabled,
+select:read-only,
+select:disabled {
   background-color: #ebe9e9 !important;
 }
 
@@ -14103,6 +14107,7 @@ html,
 body {
   width: 100%;
   height: 100%;
+  color: #000;
 }
 
 #app {

@@ -28,6 +28,16 @@
             </li>
         @endcan
 
+        {{-- Indirizzi utente --}}
+        @can('user_addresses_view')
+            <li class="nav-item mb-2">
+                <a class="nav-link @if (Route::is('admin.userAddresses.*')) active @endif" href="{{ route('admin.userAddresses.index') }}">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Indirizzi Utente</span>
+                </a>
+            </li>
+        @endcan
+
         {{-- Ruolo Admin --}}
         @hasrole('Administrator')
             <li class="nav-item accordion mb-2" id="accordionMenuSidebar">

@@ -3,9 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class UserAddress extends Model
 {
+    use Sortable;
+
+    /**
+     * fillable
+     *
+     * @var array
+     */
     protected $fillable = [
         'is_primary',
         'user_id',
@@ -16,6 +24,25 @@ class UserAddress extends Model
         'cap',
         'address',
         'house_number'
+    ];
+
+    /**
+     * sortable
+     *
+     * @var array
+     */
+    public $sortable = [
+        'is_primary',
+        'user_id',
+        'nation_id',
+        'region_id',
+        'province_id',
+        'city_id',
+        'cap',
+        'address',
+        'house_number',
+        'created_at',
+        'updated_at'
     ];
 
     public function user()

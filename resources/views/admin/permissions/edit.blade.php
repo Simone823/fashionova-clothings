@@ -3,7 +3,7 @@
 @section('metaTitle', "Modifica Permesso: {$permission->name}")
 
 @section('content')
-    <section id="permissions-edit">
+    <section id="admin-permissions-edit">
         <div class="container-fluid">
 
             {{-- title --}}
