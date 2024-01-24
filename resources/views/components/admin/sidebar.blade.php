@@ -32,7 +32,7 @@
         @hasrole('Administrator')
             <li class="nav-item accordion mb-2" id="accordionMenuSidebar">
                 {{-- Users management --}}
-                <div class="accordion-item mb-2">
+                <div class="accordion-item">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                         <i class="fa-solid fa-gear"></i>
                         <span class="accordion-sidebar-title">Impostazioni</span>
@@ -70,5 +70,28 @@
                 </div>
             </li>
         @endhasrole
+
+        {{-- Admin tool --}}
+        @can('admin_tool')
+            <li class="nav-item accordion mb-2" id="accordionMenuSidebar">
+                <div class="accordion-item">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="fa-solid fa-wrench"></i>
+                        <span class="accordion-sidebar-title">
+                            Admin Tool
+                        </span>
+                    </button>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionMenuSidebar">
+                        <div class="accordion-body">
+                            {{-- cache clear all --}}
+                            <a class="list-group-item list-group-item-action" href="{{ route('admin.adminTools.cacheClearAll') }}">
+                                <i class="fa-solid fa-cookie"></i>
+                                Svuota la Cache
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        @endcan
     </ul>
 </aside>

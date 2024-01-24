@@ -49,6 +49,9 @@ Route::middleware('auth')->group(function() {
 
     // Admin
     Route::middleware('roleAdmin')->prefix('admin')->name('admin.')->namespace('Admin')->group(function() {
+        // Admin Tools
+        Route::get('/admin-tools/cache-clear-all', 'AdminToolController@cacheClearAll')->name('adminTools.cacheClearAll');
+
         // Dashboard
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
