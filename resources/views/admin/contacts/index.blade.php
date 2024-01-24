@@ -87,7 +87,7 @@
                                         <tr>
                                             <td colspan="50" class=" bg-info bg-opacity-75 p-3">
                                                 <strong>Info!</strong>
-                                                @lang('global.no-record-on-table')
+                                                Nessun record in tabella.
                                             </td>
                                         </tr>
                                     @endif

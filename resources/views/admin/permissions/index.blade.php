@@ -94,10 +94,10 @@
                                             </tr>
                                         @endforeach
                                     @else
-                                        <div class="alert alert-info">
+                                        <td colspan="50" class=" bg-info bg-opacity-75 p-3">
                                             <strong>Info!</strong>
-                                            Nessuna informazione
-                                        </div>
+                                            Nessun record in tabella.
+                                        </td>
                                     @endif
                                 </tbody>
                             </table>

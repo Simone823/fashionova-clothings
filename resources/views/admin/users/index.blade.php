@@ -106,12 +106,10 @@
                                             </tr>
                                         @endforeach
                                     @else
-                                        <tr>
-                                            <td colspan="50" class=" bg-info bg-opacity-75 p-3">
-                                                <strong>Info!</strong>
-                                                @lang('global.no-record-on-table')
-                                            </td>
-                                        </tr>
+                                        <td colspan="50" class=" bg-info bg-opacity-75 p-3">
+                                            <strong>Info!</strong>
+                                            Nessun record in tabella.
+                                        </td>
                                     @endif
                                 </tbody>
                             </table>
