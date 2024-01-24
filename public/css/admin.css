@@ -14039,6 +14039,7 @@ textarea {
 
 #main-bar .buttons-right .dropdown .dropdown-menu {
   background-color: #d7d7d7;
+  inset: 20px auto auto 0px !important;
 }
 
 #main-bar .buttons-right .dropdown .dropdown-menu .dropdown-header {

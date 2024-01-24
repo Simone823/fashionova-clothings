@@ -43,6 +43,7 @@
 
             .dropdown-menu {
                 background-color: $sidebar-color;
+                inset: 20px auto auto 0px !important;
 
                 .dropdown-header {
                     color: $black;
