@@ -93,10 +93,19 @@
                                     @endhasrole
                                 </li>
                                 <li>
-                                    <a class="dropdown-item @if(Route::is('user.profiles.*')) active @endif" href="{{route('user.profiles.show', Auth::id())}}">
-                                        <i class="fa-solid fa-user-gear"></i>
-                                        Profilo
-                                    </a>
+                                    @hasrole('User')
+                                        <a class="dropdown-item @if(Route::is('user.profiles.*')) active @endif" href="{{route('user.profiles.show', Auth::id())}}">
+                                            <i class="fa-solid fa-user-gear"></i>
+                                            Profilo
+                                        </a>
+                                    @endhasrole
+
+                                    @hasrole('Administrator')
+                                        <a class="dropdown-item @if(Route::is('admin.profiles.*')) active @endif" href="{{route('admin.profiles.show', Auth::id())}}">
+                                            <i class="fa-solid fa-user-gear"></i>
+                                            Profilo
+                                        </a>
+                                    @endhasrole
                                 </li>
                             @endauth
                             <li><a class="dropdown-item" href="#">Another action</a></li>
