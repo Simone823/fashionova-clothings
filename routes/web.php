@@ -52,6 +52,11 @@ Route::middleware('auth')->group(function() {
         // Admin Tools
         Route::get('/admin-tools/cache-clear-all', 'AdminToolController@cacheClearAll')->name('adminTools.cacheClearAll');
 
+        // Details Company
+        Route::get('/details-company/show', 'DetailCompanyController@show')->name('detailsCompany.show');
+        Route::get('/details-company/edit', 'DetailCompanyController@edit')->name('detailsCompany.edit');
+        Route::post('/details-company/update', 'DetailCompanyController@update')->name('detailsCompany.update');
+
         // Dashboard
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 

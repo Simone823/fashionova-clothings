@@ -13,7 +13,19 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Fashionova Clothings'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dettagli Azienda
+    |--------------------------------------------------------------------------
+    */
+    'details_company' => [
+        'address' => 'Via Esempio 10, Italia',
+        'email' => 'fashionova@test.local',
+        'phone' => '(+39) 000 000 0000',
+        'hours' => 'Da Lunedi a Venerdì 9:15-12:30 / 14.30-18-00',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -175,6 +187,7 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        October\Rain\Config\ServiceProvider::class,
 
         /*
          * Application Service Providers...

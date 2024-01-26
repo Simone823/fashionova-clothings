@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8df99951a50beeda319dbfb28f597fda",
+    "content-hash": "b61e9f23400bfe2f6f3ea28392ba0259",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -190,6 +190,71 @@
                 }
             ],
             "time": "2023-12-11T17:09:12+00:00"
+        },
+        {
+            "name": "daftspunk/laravel-config-writer",
+            "version": "v1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/daftspunk/laravel-config-writer.git",
+                "reference": "13f15f3fb60047edaef8e839588d95d52e1c8a66"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/daftspunk/laravel-config-writer/zipball/13f15f3fb60047edaef8e839588d95d52e1c8a66",
+                "reference": "13f15f3fb60047edaef8e839588d95d52e1c8a66",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "5.*|6.*|7.*|8.*|9.*|10.*|11.*|12.*|13.*|14.*|15.*|16.*|17.*|18.*|19.*|20.*",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.8",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "October\\Rain\\Config\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "October\\Rain\\Config\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexey Bobkov",
+                    "email": "aleksey.bobkov@gmail.com"
+                },
+                {
+                    "name": "Samuel Georges",
+                    "email": "daftspunky@gmail.com"
+                }
+            ],
+            "description": "Laravel provider to be able to rewrite configuration",
+            "homepage": "http://octobercms.com",
+            "keywords": [
+                "config",
+                "laravel",
+                "october",
+                "october cms",
+                "provider",
+                "write"
+            ],
+            "support": {
+                "issues": "https://github.com/daftspunk/laravel-config-writer/issues",
+                "source": "https://github.com/daftspunk/laravel-config-writer/tree/v1.2.2"
+            },
+            "time": "2023-08-10T11:25:38+00:00"
         },
         {
             "name": "doctrine/inflector",

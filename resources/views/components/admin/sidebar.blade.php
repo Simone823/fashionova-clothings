@@ -75,6 +75,15 @@
                                     Utenti
                                 </a>
                             @endcan
+
+                            {{-- Dettagli Azienda --}}
+                            @can('details_company_view')
+                                <a class="list-group-item list-group-item-action @if (Route::is('admin.detailsCompany.*')) accordion-active-link @endif"
+                                    href="{{ route('admin.detailsCompany.show') }}">
+                                    <i class="fa-solid fa-building"></i>
+                                    Dettagli Azienda
+                                </a>
+                            @endcan
                         </div>
                     </div>
                 </div>
