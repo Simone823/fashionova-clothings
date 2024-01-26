@@ -28,6 +28,16 @@
             </li>
         @endcan
 
+        {{-- Categorie --}}
+        @can('categories_view')
+            <li class="nav-item mb-2">
+                <a class="nav-link @if (Route::is('admin.categories.*')) active @endif" href="{{ route('admin.categories.index') }}">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Categorie</span>
+                </a>
+            </li>
+        @endcan
+
         {{-- Indirizzi utente --}}
         @can('user_addresses_view')
             <li class="nav-item mb-2">

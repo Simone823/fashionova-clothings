@@ -94,5 +94,13 @@ Route::middleware('auth')->group(function() {
         // User Addresses
         Route::get('/user-addresses/index', 'UserAddressController@index')->name('userAddresses.index');
         Route::get('/user-addresses/show/{id}', 'UserAddressController@show')->name('userAddresses.show');
+
+        // Categories
+        Route::get('/categories/index', 'CategoryController@index')->name('categories.index');
+        Route::get('/categories/create', 'CategoryController@create')->name('categories.create');
+        Route::post('/categories/store', 'CategoryController@store')->name('categories.store');
+        Route::get('/categories/edit/{id}', 'CategoryController@edit')->name('categories.edit');
+        Route::post('/categories/update/{id}', 'CategoryController@update')->name('categories.update');
+        Route::delete('/categories/delete/{id}', 'CategoryController@destroy')->name('categories.delete');
     });
 });
