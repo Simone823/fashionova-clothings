@@ -38,6 +38,16 @@
             </li>
         @endcan
 
+        {{-- Taglie --}}
+        @can('sizes_view')
+            <li class="nav-item mb-2">
+                <a class="nav-link @if (Route::is('admin.sizes.*')) active @endif" href="{{ route('admin.sizes.index') }}">
+                    <i class="fa-solid fa-ruler-combined"></i>
+                    <span>Taglie</span>
+                </a>
+            </li>
+        @endcan
+
         {{-- Indirizzi utente --}}
         @can('user_addresses_view')
             <li class="nav-item mb-2">

@@ -102,5 +102,13 @@ Route::middleware('auth')->group(function() {
         Route::get('/categories/edit/{id}', 'CategoryController@edit')->name('categories.edit');
         Route::post('/categories/update/{id}', 'CategoryController@update')->name('categories.update');
         Route::delete('/categories/delete/{id}', 'CategoryController@destroy')->name('categories.delete');
+
+        // Sizes
+        Route::get('/sizes/index', 'SizeController@index')->name('sizes.index');
+        Route::get('/sizes/create', 'SizeController@create')->name('sizes.create');
+        Route::post('/sizes/store', 'SizeController@store')->name('sizes.store');
+        Route::get('/sizes/edit/{id}', 'SizeController@edit')->name('sizes.edit');
+        Route::post('/sizes/update/{id}', 'SizeController@update')->name('sizes.update');
+        Route::delete('/sizes/delete/{id}', 'SizeController@destroy')->name('sizes.delete');
     });
 });
