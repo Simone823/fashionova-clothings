@@ -18,21 +18,11 @@
             </a>
         </li>
 
-        {{-- Contatti --}}
-        @can('contacts_view')
-            <li class="nav-item mb-2">
-                <a class="nav-link @if (Route::is('admin.contacts.*')) active @endif" href="{{ route('admin.contacts.index') }}">
-                    <i class="fa-solid fa-address-book"></i>
-                    <span>Contatti</span>
-                </a>
-            </li>
-        @endcan
-
         {{-- Categorie --}}
         @can('categories_view')
             <li class="nav-item mb-2">
                 <a class="nav-link @if (Route::is('admin.categories.*')) active @endif" href="{{ route('admin.categories.index') }}">
-                    <i class="fa-solid fa-layer-group"></i>
+                    <i class="fa-solid fa-tags"></i>
                     <span>Categorie</span>
                 </a>
             </li>
@@ -44,6 +34,16 @@
                 <a class="nav-link @if (Route::is('admin.sizes.*')) active @endif" href="{{ route('admin.sizes.index') }}">
                     <i class="fa-solid fa-ruler-combined"></i>
                     <span>Taglie</span>
+                </a>
+            </li>
+        @endcan
+
+        {{-- Contatti --}}
+        @can('contacts_view')
+            <li class="nav-item mb-2">
+                <a class="nav-link @if (Route::is('admin.contacts.*')) active @endif" href="{{ route('admin.contacts.index') }}">
+                    <i class="fa-solid fa-address-book"></i>
+                    <span>Contatti</span>
                 </a>
             </li>
         @endcan

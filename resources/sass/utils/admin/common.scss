@@ -3,6 +3,11 @@
     background-color: $light-gray;
 }
 
+// INPUT SEARCH
+#searchInput {
+    max-width: 300px;
+}
+
 // INPUTS
 input:not(input[type="checkbox"]),
 textarea,

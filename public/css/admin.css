@@ -13853,6 +13853,10 @@ fieldset:disabled .btn {
   background-color: #d7d7d7;
 }
 
+#searchInput {
+  max-width: 300px;
+}
+
 input:not(input[type=checkbox]):-moz-read-only, textarea:-moz-read-only, select:-moz-read-only {
   background-color: #ebe9e9 !important;
 }
