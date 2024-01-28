@@ -53,8 +53,8 @@
                                         <th scope="col">@sortablelink('genre.name', 'Genere', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('price', 'Prezzo (€)', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('discount_percent', 'Sconto (%)', '', ['class' => 'link-dark'])</th>
-                                        <th scope="col">@sortablelink('categories.name', 'Categorie', '', ['class' => 'link-dark'])</th>
-                                        <th scope="col">@sortablelink('sizes.name', 'Taglie', '', ['class' => 'link-dark'])</th>
+                                        <th scope="col">Categorie</th>
+                                        <th scope="col">Taglie</th>
                                         <th scope="col">@sortablelink('total_quantity', 'Totale Quantità', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('created_at', 'Data creazione', '', ['class' => 'link-dark'])</th>
                                         <th scope="col"></th>
