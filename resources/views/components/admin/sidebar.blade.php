@@ -22,7 +22,7 @@
         @can('categories_view')
             <li class="nav-item mb-2">
                 <a class="nav-link @if (Route::is('admin.categories.*')) active @endif" href="{{ route('admin.categories.index') }}">
-                    <i class="fa-solid fa-tags"></i>
+                    <i class="fa-solid fa-layer-group"></i>
                     <span>Categorie</span>
                 </a>
             </li>
@@ -34,6 +34,16 @@
                 <a class="nav-link @if (Route::is('admin.sizes.*')) active @endif" href="{{ route('admin.sizes.index') }}">
                     <i class="fa-solid fa-ruler-combined"></i>
                     <span>Taglie</span>
+                </a>
+            </li>
+        @endcan
+
+        {{-- Prodotti --}}
+        @can('products_view')
+            <li class="nav-item mb-2">
+                <a class="nav-link @if (Route::is('admin.products.*')) active @endif" href="{{ route('admin.products.index') }}">
+                    <i class="fa-solid fa-box-archive"></i>
+                    <span>Prodotti</span>
                 </a>
             </li>
         @endcan

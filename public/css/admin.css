@@ -13857,15 +13857,17 @@ fieldset:disabled .btn {
   max-width: 300px;
 }
 
-input:not(input[type=checkbox]):-moz-read-only, textarea:-moz-read-only, select:-moz-read-only {
+input:not(input[type=checkbox]):-moz-read-only, textarea:-moz-read-only {
   background-color: #ebe9e9 !important;
 }
 
 input:not(input[type=checkbox]):read-only,
 input:not(input[type=checkbox]):disabled,
 textarea:read-only,
-textarea:disabled,
-select:read-only,
+textarea:disabled {
+  background-color: #ebe9e9 !important;
+}
+
 select:disabled {
   background-color: #ebe9e9 !important;
 }

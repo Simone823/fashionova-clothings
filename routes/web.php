@@ -49,11 +49,11 @@ Route::middleware('auth')->group(function() {
 
     // Admin
     Route::middleware('roleAdmin')->prefix('admin')->name('admin.')->namespace('Admin')->group(function() {
-        // Admin Tools
-        Route::get('/admin-tools/cache-clear-all', 'AdminToolController@cacheClearAll')->name('adminTools.cacheClearAll');
-
         // Dashboard
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+        
+        // Admin Tools
+        Route::get('/admin-tools/cache-clear-all', 'AdminToolController@cacheClearAll')->name('adminTools.cacheClearAll');
 
         // Profile
         Route::get('/profiles/show/{id}', 'ProfileController@show')->name('profiles.show');
@@ -86,14 +86,14 @@ Route::middleware('auth')->group(function() {
         Route::post('/users/update/{id}', 'UserController@update')->name('users.update');
         Route::delete('/users/delete/{id}', 'UserController@destroy')->name('users.delete');
 
+        // User Addresses
+        Route::get('/user-addresses/index', 'UserAddressController@index')->name('userAddresses.index');
+        Route::get('/user-addresses/show/{id}', 'UserAddressController@show')->name('userAddresses.show');
+
         // Contacts
         Route::get('/contacts/index', 'ContactController@index')->name('contacts.index');
         Route::get('/contacts/show/{id}', 'ContactController@show')->name('contacts.show');
         Route::delete('/contacts/delete/{id}', 'ContactController@destroy')->name('contacts.delete');
-
-        // User Addresses
-        Route::get('/user-addresses/index', 'UserAddressController@index')->name('userAddresses.index');
-        Route::get('/user-addresses/show/{id}', 'UserAddressController@show')->name('userAddresses.show');
 
         // Categories
         Route::get('/categories/index', 'CategoryController@index')->name('categories.index');
@@ -110,5 +110,14 @@ Route::middleware('auth')->group(function() {
         Route::get('/sizes/edit/{id}', 'SizeController@edit')->name('sizes.edit');
         Route::post('/sizes/update/{id}', 'SizeController@update')->name('sizes.update');
         Route::delete('/sizes/delete/{id}', 'SizeController@destroy')->name('sizes.delete');
+
+        // Products
+        Route::get('/products/index', 'ProductController@index')->name('products.index');
+        Route::get('/products/create', 'ProductController@create')->name('products.create');
+        Route::post('/products/store', 'ProductController@store')->name('products.store');
+        Route::get('/products/show/{id}', 'ProductController@show')->name('products.show');
+        Route::get('/products/edit/{id}', 'ProductController@edit')->name('products.edit');
+        Route::post('/products/update/{id}', 'ProductController@update')->name('products.update');
+        Route::delete('/products/delete/{id}', 'ProductController@destroy')->name('products.delete');
     });
 });
