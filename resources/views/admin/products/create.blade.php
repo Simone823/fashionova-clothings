@@ -50,16 +50,19 @@
                             <input type="text" class="form-control" id="code" name="code" placeholder="AUTOCALCOLATO AL SALVATAGGIO" readonly>
                         </div>
 
-                        {{-- genre --}}
+                        {{-- genre_id --}}
                         <div class="col-12 col-md-6 form-group">
-                            <label for="genre" class="form-label">Genere*</label>
-                            <select class="form-select @error('genre') is-invalid @enderror" name="genre" id="genre" required >
+                            <label for="genre_id" class="form-label">Genere*</label>
+                            <select class="form-select @error('genre_id') is-invalid @enderror" name="genre_id" id="genre_id" required >
                                 <option value="" selected hidden>-- Seleziona un Genere --</option>
-                                <option {{old('genre') == 'Uomo' ? 'selected' : ''}} value="Uomo">Uomo</option>
-                                <option {{old('genre') == 'Donna' ? 'selected' : ''}} value="Donna">Donna</option>
+                                @foreach ($genres as $genre)
+                                    <option {{old('genre_id') == $genre->id ? 'selected' : ''}} value="{{$genre->id}}">
+                                        {{$genre->name}}
+                                    </option>
+                                @endforeach
                             </select>
     
-                            @error('genre')    
+                            @error('genre_id')    
                                 <div class="text-danger mt-1">
                                     {{ $message }}
                                 </div>

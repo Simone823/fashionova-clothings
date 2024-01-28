@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Kyslik\ColumnSortable\Sortable;
 
@@ -17,7 +18,7 @@ class Product extends Model
      */
     protected $fillable = [
         'name',
-        'genre',
+        'genre_id',
         'price',
         'discount_percent',
         'description'
@@ -31,13 +32,22 @@ class Product extends Model
     public $sortable = [
         'code',
         'name',
-        'genre',
         'price',
         'discount_percent',
         'total_quantity',
         'created_at',
         'updated_at'
     ];
+    
+    /**
+     * Relazione molti a uno con tabella -> 'genres' 
+     *
+     * @return BelongsTo
+     */
+    public function genre(): BelongsTo
+    {
+        return $this->belongsTo(Genre::class);
+    }
 
     /**
      * Relazione molti a molti con tabella -> 'categories'

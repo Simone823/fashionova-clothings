@@ -15,12 +15,13 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 255)->unique();
+            $table->string('code', 255)->nullable()->unique();
             $table->string('name')->unique();
-            $table->enum('genre', ['Uomo', 'Donna']);
+            $table->unsignedBigInteger('genre_id');
+            $table->foreign('genre_id')->references('id')->on('genres')->onUpdate('cascade')->onDelete('cascade');
             $table->decimal('price', 10, 2);
             $table->integer('total_quantity')->default(0);
-            $table->decimal('discount_percent', 5, 2)->nullable()->default(0.00);
+            $table->decimal('discount_percent', 5, 2)->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

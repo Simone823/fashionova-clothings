@@ -69,12 +69,15 @@
                         <input type="text" class="form-control" id="code" name="code" value="{{$product->code}}" readonly>
                     </div>
 
-                    {{-- genre --}}
+                    {{-- genre_id --}}
                     <div class="col-12 col-md-6 form-group">
-                        <label for="genre" class="form-label">Genere</label>
-                        <select class="form-select" name="genre" id="genre" disabled >
-                            <option {{$product->genre == 'Uomo' ? 'selected' : ''}} value="Uomo">Uomo</option>
-                            <option {{$product->genre == 'Donna' ? 'selected' : ''}} value="Donna">Donna</option>
+                        <label for="genre_id" class="form-label">Genere*</label>
+                        <select class="form-select" name="genre_id" id="genre_id" disabled >
+                            @foreach ($genres as $genre)
+                                <option {{$product->genre_id == $genre->id ? 'selected' : ''}} value="{{$genre->id}}">
+                                    {{$genre->name}}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
 

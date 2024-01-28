@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Genre;
 use App\Http\Controllers\Controller;
 use App\Product;
 use App\Size;
@@ -47,10 +48,11 @@ class ProductController extends Controller
         }
 
         // relazioni
+        $genres = Genre::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
         $sizes = Size::orderBy('name', 'asc')->get();
 
-        return view('admin.products.create', compact('categories', 'sizes'));
+        return view('admin.products.create', compact('genres', 'categories', 'sizes'));
     }
 
     /**
@@ -69,7 +71,7 @@ class ProductController extends Controller
         // validazione request
         $request->validate([
             'name' => 'required|unique:products,name',
-            'genre' => 'required|in:Uomo,Donna',
+            'genre_id' => 'required|exists:genres,id',
             'price' => 'required|numeric|between:0,9999999.99',
             'discount_percent' => 'nullable|numeric|between:0,999.99',
             'description' => 'nullable|string',
@@ -93,7 +95,7 @@ class ProductController extends Controller
         // creo un nuovo prodotto
         $newProduct = new Product();
         $newProduct->name = ucfirst($request->name);
-        $newProduct->genre = $request->genre;
+        $newProduct->genre_id = $request->genre_id;
         $newProduct->price = $request->price;
         $newProduct->discount_percent = $request->discount_percent;
         $newProduct->description = $request->description;
@@ -139,10 +141,11 @@ class ProductController extends Controller
         // recupero il prodotto
         $product = Product::findOrFail($id);
 
+        $genres = Genre::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
         $sizes = Size::orderBy('name', 'asc')->get();
 
-        return view('admin.products.show', compact('product', 'categories', 'sizes'));
+        return view('admin.products.show', compact('product', 'genres', 'categories', 'sizes'));
     }
 
     /**
@@ -161,10 +164,11 @@ class ProductController extends Controller
         // recupero il prodotto
         $product = Product::findOrFail($id);
 
+        $genres = Genre::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
         $sizes = Size::orderBy('name', 'asc')->get();
 
-        return view('admin.products.edit', compact('product', 'categories', 'sizes'));
+        return view('admin.products.edit', compact('product', 'genres', 'categories', 'sizes'));
     }
 
     /**
@@ -184,7 +188,7 @@ class ProductController extends Controller
         // validazione request
         $request->validate([
             'name' => "required|unique:products,name,{$id}",
-            'genre' => 'required|in:Uomo,Donna',
+            'genre_id' => 'required|exists:genres,id',
             'price' => 'required|numeric|between:0,9999999.99',
             'discount_percent' => 'nullable|numeric|between:0,999.99',
             'description' => 'nullable|string',
@@ -210,7 +214,7 @@ class ProductController extends Controller
 
         // aggiorno il prodotto
         $product->name = ucfirst($request->name);
-        $product->genre = $request->genre;
+        $product->genre_id = $request->genre_id;
         $product->price = $request->price;
         $product->discount_percent = $request->discount_percent;
         $product->description = $request->description;

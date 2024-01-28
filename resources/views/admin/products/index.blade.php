@@ -50,7 +50,7 @@
                                     <tr>
                                         <th scope="col">@sortablelink('name', 'Nome', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('code', 'Codice Prodotto', '', ['class' => 'link-dark'])</th>
-                                        <th scope="col">@sortablelink('genre', 'Genere', '', ['class' => 'link-dark'])</th>
+                                        <th scope="col">@sortablelink('genre.name', 'Genere', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('price', 'Prezzo (€)', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('discount_percent', 'Sconto (%)', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('categories.name', 'Categorie', '', ['class' => 'link-dark'])</th>
@@ -66,7 +66,7 @@
                                             <tr>
                                                 <td>{{ $product->name }}</td>
                                                 <td>{{ $product->code }}</td>
-                                                <td>{{ $product->genre }}</td>
+                                                <td>{{ $product->genre->name }}</td>
                                                 <td>{{ $product->price }}</td>
                                                 <td>{{ $product->discount_percent }}</td>
                                                 <td>

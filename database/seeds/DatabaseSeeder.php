@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             CitiesSeeder::class,
             CategoriesSeeder::class,
             SizesSeeder::class,
+            GenresSeeder::class,
         ]);
     }
 }
