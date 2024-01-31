@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             SizesSeeder::class,
             GenresSeeder::class,
+            ColorsSeeder::class
         ]);
     }
 }

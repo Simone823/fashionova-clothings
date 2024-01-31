@@ -111,6 +111,14 @@ Route::middleware('auth')->group(function() {
         Route::post('/sizes/update/{id}', 'SizeController@update')->name('sizes.update');
         Route::delete('/sizes/delete/{id}', 'SizeController@destroy')->name('sizes.delete');
 
+        // Colors
+        Route::get('/colors/index', 'ColorController@index')->name('colors.index');
+        Route::get('/colors/create', 'ColorController@create')->name('colors.create');
+        Route::post('/colors/store', 'ColorController@store')->name('colors.store');
+        Route::get('/colors/edit/{id}', 'ColorController@edit')->name('colors.edit');
+        Route::post('/colors/update/{id}', 'ColorController@update')->name('colors.update');
+        Route::delete('/colors/delete/{id}', 'ColorController@destroy')->name('colors.delete');
+
         // Products
         Route::get('/products/index', 'ProductController@index')->name('products.index');
         Route::get('/products/create', 'ProductController@create')->name('products.create');
