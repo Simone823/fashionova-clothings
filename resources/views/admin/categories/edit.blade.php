@@ -10,7 +10,7 @@
             <div class="row mb-4">
                 <div class="col-12">
                     <h3 class="title-page">
-                        <i class="fa-solid fa-tags fs-4"></i>
+                        <i class="fa-solid fa-layer-group fs-4"></i>
                         Modifica Categoria
                     </h3>
                 </div>
