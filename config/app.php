@@ -175,6 +175,7 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -240,6 +241,7 @@ return [
         /*
          * Packages
          */
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

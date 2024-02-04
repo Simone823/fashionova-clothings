@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Storage;
 use Kyslik\ColumnSortable\Sortable;
+use Intervention\Image\Facades\Image;
 
 class Product extends Model
 {
@@ -145,7 +146,7 @@ class Product extends Model
                 $numberFile = intval($matches[2]);
                 $maxFileNumbers[$colorName] = isset($maxFileNumbers[$colorName]) ? max($maxFileNumbers[$colorName], $numberFile) : $numberFile;
             }
-            
+
             foreach ($imagesColors as $colorId => $imagesColor) {
                 // contatore per il numero del file del colore attuale
                 $colorName = Color::where('id', $colorId)->pluck('name')->first();
@@ -156,12 +157,19 @@ class Product extends Model
                     $productName = str_replace(' ', '-', $this->name);
                     $nameFile = "{$productName}_{$colorName}-{$fileNumber}.{$image->extension()}";
 
-                    // path immagine salvato in storage public
-                    $imgPath = Storage::putFileAs('public/uploads/images/products', $image, $nameFile);
+                    // ridimensiono l'immagine
+                    $imageResized = Image::make($image->getRealPath())->resize(952, 1215, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->encode();
+                    
+                    // Salva l'immagine in storage public con il nome del file corretto
+                    $imageResized->save(Storage::path('public/uploads/images/products/'.$nameFile));
 
-                    // pusho il path img sul arrayPathImages
-                    $imgPath = str_replace('public/', '', $imgPath);
-                    array_push($arrayPathImages, $imgPath);
+                    // Ottieni il percorso completo del file ridimensionato
+                    $imagePath = "uploads/images/products/{$imageResized->basename}";
+
+                    // Pusha il percorso dell'immagine nell'arrayPathImages
+                    array_push($arrayPathImages, $imagePath);
 
                     // incrementa numero file per il prossimo file
                     $fileNumber++;
