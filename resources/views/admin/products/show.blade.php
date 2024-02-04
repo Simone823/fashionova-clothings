@@ -130,7 +130,7 @@
                     </div>
 
                     <div class="col-12 form-group">
-                        @foreach ($categories as $category)    
+                        @foreach ($product->categories as $category) 
                             <input {{$product->categories->contains($category) ? 'checked' : ''}} type="checkbox" class="btn-check" id="categories-{{$category->id}}" name="categories[]" value="{{$category->id}}" disabled>
                             <label class="btn btn-outline-dark" for="categories-{{$category->id}}">
                                 {{$category->name}}
@@ -140,17 +140,40 @@
                 </div>
 
                 {{-- detail sizes --}}
-                <div class="row gy-4 mb-5">
+                <div class="row gx-5">
                     {{-- subtitle --}}
-                    <div class="col-12">
+                    <div class="col-12 mb-4">
                         <h5 class="fw-semibold mb-0">Dettagli Taglie</h5>
                     </div>
-                
-                    @foreach ($sizes as $size)
-                        <div class="col-12 col-md-6 form-group">
-                            <label for="size-{{$size->id}}" class="form-label">Taglia: {{$size->name}}</label>
-                            <p class="mb-2">Quantità disponibile</p>
-                            <input type="number" class="form-control" id="size-{{$size->id}}" name="sizes[{{$size->id}}]" value="{{$product->sizes->firstWhere('id', $size->id)->pivot->quantity_available ?? ''}}" min="1" readonly>
+                    
+                    {{-- taglie e relativi colori con relative quantità --}}
+                    @foreach ($product->sizes as $size)
+                        <div class="col-12 col-md-6 form-group mb-4">
+                            <p class="mb-2 fw-bolder text-uppercase">Taglia: {{ $size->name }}</p>
+                            
+                            {{-- size colors --}}
+                            <div class="size-colors">
+                                @foreach ($product->colors()->wherePivot('size_id', $size->id)->get() as $color)
+                                    <div class="row gy-2">
+                                        {{-- color name --}}
+                                        <div class="col-12 col-sm-6 color">
+                                            <label class="form-label" for="size-{{ $size->id }}-{{$color->id}}-color_name">Colore</label>
+                                            <input type="text" id="size-{{ $size->id }}-{{$color->id}}-color_name" class="form-control" value="{{$color->name}}" readonly>
+                                        </div>
+                                        
+                                        {{-- quantity --}}
+                                        <div class="col-12 col-sm-6 size-color-quantities mb-3">
+                                            <label for="size-{{ $size->id }}-{{$color->id}}-quantity_available" class="form-label">Quantità</label>
+                                            <input type="number" class="form-control" id="size-{{ $size->id }}-{{$color->id}}-quantity_available" name="sizes[{{ $size->id }}][colors][{{$color->id}}][quantity_available]" value="{{$product->colors()->where('colors.id', $color->id)->wherePivot('size_id', $size->id)->first()->pivot->quantity_available ?? ''}}" min="1" readonly >
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                                {{-- line divider --}}
+                                <div class="col-12 pb-3">
+                                    <div class="border-bottom border-light-subtle"></div>
+                                </div>
+                            </div>   
                         </div>
                     @endforeach
                 </div>

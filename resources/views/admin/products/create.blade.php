@@ -18,7 +18,7 @@
 
             {{-- card --}}
             <div class="card px-3 py-4 shadow-sm border-0">
-                <form action="{{route('admin.products.store')}}" method="post">
+                <form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     {{-- detail product --}}
@@ -134,23 +134,76 @@
                     </div>
 
                     {{-- detail sizes --}}
+                    <div class="row gx-5">
+                        {{-- subtitle --}}
+                        <div class="col-12 mb-4">
+                            <h5 class="fw-semibold mb-0">Dettagli Taglie</h5>
+                        </div>
+                        
+                        {{-- taglie e relativi colori con relative quantità --}}
+                        @foreach ($sizes as $size)
+                            <div class="col-12 col-md-6 form-group mb-4">
+                                <p class="mb-2 fw-bolder text-uppercase">Taglia: {{ $size->name }}</p>
+
+                                @error('sizes')
+                                    <div class="text-danger mt-1">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                                
+                                {{-- size colors --}}
+                                <div class="size-colors">
+                                    @foreach ($colors as $color)
+                                        <div class="row gy-2">
+                                            {{-- color name --}}
+                                            <div class="col-12 col-sm-6 color">
+                                                <label class="form-label" for="size-{{ $size->id }}-{{$color->id}}-color_name">Colore</label>
+                                                <input type="text" id="size-{{ $size->id }}-{{$color->id}}-color_name" class="form-control" value="{{$color->name}}" readonly>
+                                            </div>
+                                            
+                                            {{-- quantity --}}
+                                            <div class="col-12 col-sm-6 size-color-quantities mb-3">
+                                                <label for="size-{{ $size->id }}-{{$color->id}}-quantity_available" class="form-label">Quantità</label>
+                                                <input type="number" class="form-control" id="size-{{ $size->id }}-{{$color->id}}-quantity_available" name="sizes[{{ $size->id }}][colors][{{$color->id}}][quantity_available]" value="{{ old("sizes.{$size->id}.colors.{$color->id}.quantity_available") }}" min="1">
+                                                
+                                                @error("sizes.{$size->id}.colors.{$color->id}.quantity_available")
+                                                    <div class="text-danger mt-1">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                    {{-- line divider --}}
+                                    <div class="col-12 pb-3">
+                                        <div class="border-bottom border-light-subtle"></div>
+                                    </div>
+                                </div>   
+                            </div>
+                        @endforeach
+                    </div>
+
+                    {{-- detail images color --}}
                     <div class="row gy-4 mb-5">
                         {{-- subtitle --}}
                         <div class="col-12">
-                            <h5 class="fw-semibold mb-0">Dettagli Taglie</h5>
+                            <h5 class="fw-semibold mb-0">Dettagli Immagini per Colore</h5>
                         </div>
-                    
-                        @foreach ($sizes as $size)
-                            <div class="col-12 col-md-6 form-group">
-                                <label for="size-{{ $size->id }}" class="form-label">Taglia: {{ $size->name }}</label>
-                                <p class="mb-2">Quantità disponibile</p>
-                                <input type="number" class="form-control" id="size-{{ $size->id }}" name="sizes[{{ $size->id }}]" placeholder="Inserisci la quantità disponibile" value="{{ old('sizes.' . $size->id) }}" min="1">
-                                
-                                @if($errors->has('sizes'))
+
+                        {{-- immagini per colore --}}
+                        @foreach ($colors as $color)
+                            <div class="col-12 col-sm-6 size-color-images">
+                                <p class="mb-2 fst-italic">Colore: {{$color->name}}</p>
+
+                                <label for="images_colors-{{$color->id}}" class="form-label">Immagini</label>
+                                <input type="file" accept="image/png,image/jpg,image/jpeg,image/webp" class="form-control" id="images_colors-{{$color->id}}" name="images_colors[{{ $color->id }}][]" multiple >
+                            
+                                @error("images_colors.{$color->id}.*")
                                     <div class="text-danger mt-1">
-                                        {{ $errors->first('sizes') }}
+                                        {{ $message }}
                                     </div>
-                                @endif
+                                @enderror
                             </div>
                         @endforeach
                     </div>

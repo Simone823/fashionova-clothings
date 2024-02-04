@@ -38,6 +38,16 @@
             </li>
         @endcan
 
+        {{-- Colori --}}
+        @can('colors_view')
+            <li class="nav-item mb-2">
+                <a class="nav-link @if (Route::is('admin.colors.*')) active @endif" href="{{ route('admin.colors.index') }}">
+                    <i class="fa-solid fa-palette"></i>
+                    <span>Colori</span>
+                </a>
+            </li>
+        @endcan
+
         {{-- Prodotti --}}
         @can('products_view')
             <li class="nav-item mb-2">

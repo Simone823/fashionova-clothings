@@ -28,3 +28,17 @@ textarea {
     overflow-y: auto;
     resize: none;
 }
+
+// IMAGES
+.image-product,
+.carousel-image-product {
+    width: 100%;
+    max-width: 360px;
+    height: 460px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.carousel-image-product {
+    margin: 0 auto;
+}

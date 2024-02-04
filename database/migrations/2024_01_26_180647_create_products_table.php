@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->integer('total_quantity')->default(0);
             $table->decimal('discount_percent', 5, 2)->nullable();
             $table->text('description')->nullable();
+            $table->json('images')->nullable();
             $table->timestamps();
         });
     }

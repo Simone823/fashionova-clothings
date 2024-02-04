@@ -13878,6 +13878,21 @@ textarea {
   resize: none;
 }
 
+.image-product,
+.carousel-image-product {
+  width: 100%;
+  max-width: 360px;
+  height: 460px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.carousel-image-product {
+  margin: 0 auto;
+}
+
 #sidebar {
   flex-shrink: 0;
   width: 240px;

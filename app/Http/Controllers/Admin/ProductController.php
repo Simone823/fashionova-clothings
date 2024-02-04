@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\Color;
 use App\Genre;
 use App\Http\Controllers\Controller;
 use App\Product;
@@ -51,8 +52,9 @@ class ProductController extends Controller
         $genres = Genre::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
         $sizes = Size::orderBy('name', 'asc')->get();
+        $colors = Color::orderBy('name', 'asc')->get();
 
-        return view('admin.products.create', compact('genres', 'categories', 'sizes'));
+        return view('admin.products.create', compact('genres', 'categories', 'sizes', 'colors'));
     }
 
     /**
@@ -80,16 +82,22 @@ class ProductController extends Controller
                 'required',
                 'array',
                 function ($attribute, $value, $fail) {
-                    // verifica se almeno una taglia ha delle quantità non vuote
-                    foreach ($value as $sizeId => $quantity) {
-                        if (!empty($quantity) && $quantity != 0 && $quantity != 0.00) {
-                            return;
+                    // Verifica se almeno una taglia ha delle quantità non vuote
+                    foreach ($value as $size) {
+                        foreach ($size['colors'] as $color) {
+                            if (!empty($color['quantity_available']) && is_numeric($color['quantity_available']) && $color['quantity_available'] > 0) {
+                                return;
+                            }
                         }
                     }
-    
-                    $fail('È necessario inserire una quantità almeno per una taglia.');
+
+                    $fail('Inserire una quantità almeno per una taglia e un colore.');
                 }
-            ]
+            ],
+            'sizes.*.colors.*.quantity_available' => 'nullable|integer|min:1',
+            'images_colors' => 'nullable|array',
+            'images_colors.*' => 'nullable|array',
+            'images_colors.*.*' => 'nullable|image|mimetypes:image/png,image/jpg,image/jpeg,image/webp|max:1024'
         ]);
 
         // creo un nuovo prodotto
@@ -109,15 +117,33 @@ class ProductController extends Controller
             $newProduct->categories()->attach($category);
         }
 
-        // aggiungi relazione taglie con relative quantità
-        foreach ($request->sizes as $sizeId => $quantity) {
-            if (!empty($quantity) && $quantity != 0 && $quantity != 0.00) {
-                $newProduct->sizes()->attach($sizeId, ['quantity_available' => $quantity]);
+        // aggiungi relazione taglie e colori con relative quantità
+        foreach ($request->sizes as $sizeId => $size) {
+            // check se la taglia deve essere allegato o no
+            $attachSize = false;
+
+            foreach ($size['colors'] as $colorId => $color) {
+                if (!empty($color['quantity_available']) && is_numeric($color['quantity_available']) && $color['quantity_available'] > 0) {
+                    // se la quantità non è vuota allego anche la taglia
+                    $attachSize = true;
+
+                    $newProduct->colors()->attach($colorId, [
+                        'size_id' => $sizeId,
+                        'quantity_available' => $color['quantity_available']
+                    ]);
+                }
+            }
+
+            if ($attachSize) {
+                $newProduct->sizes()->attach($sizeId);
             }
         }
 
         // calcola e setta quantità totale
         $newProduct->calculateAndSetTotalQuantity();
+
+        // Salvo e setto le immagini
+        $newProduct->uploadImagesColors($request->images_colors);
 
         return redirect()->route('admin.products.show', $newProduct->id)->with(
             'success',
@@ -142,10 +168,8 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         $genres = Genre::orderBy('name', 'asc')->get();
-        $categories = Category::orderBy('name', 'asc')->get();
-        $sizes = Size::orderBy('name', 'asc')->get();
 
-        return view('admin.products.show', compact('product', 'genres', 'categories', 'sizes'));
+        return view('admin.products.show', compact('product', 'genres'));
     }
 
     /**
@@ -167,8 +191,9 @@ class ProductController extends Controller
         $genres = Genre::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
         $sizes = Size::orderBy('name', 'asc')->get();
+        $colors = Color::orderBy('name', 'asc')->get();
 
-        return view('admin.products.edit', compact('product', 'genres', 'categories', 'sizes'));
+        return view('admin.products.edit', compact('product', 'genres', 'categories', 'sizes', 'colors'));
     }
 
     /**
@@ -197,16 +222,22 @@ class ProductController extends Controller
                 'required',
                 'array',
                 function ($attribute, $value, $fail) {
-                    // verifica se almeno una taglia ha delle quantità non vuote
-                    foreach ($value as $sizeId => $quantity) {
-                        if (!empty($quantity) && $quantity != 0 && $quantity != 0.00) {
-                            return;
+                    // Verifica se almeno una taglia ha delle quantità non vuote
+                    foreach ($value as $size) {
+                        foreach ($size['colors'] as $color) {
+                            if (!empty($color['quantity_available']) && is_numeric($color['quantity_available']) && $color['quantity_available'] > 0) {
+                                return;
+                            }
                         }
                     }
-    
-                    $fail('È necessario inserire una quantità almeno per una taglia.');
+
+                    $fail('Inserire una quantità almeno per una taglia e un colore.');
                 }
-            ]
+            ],
+            'sizes.*.colors.*.quantity_available' => 'nullable|integer|min:1',
+            'images_colors' => 'nullable|array',
+            'images_colors.*' => 'nullable|array',
+            'images_colors.*.*' => 'nullable|image|mimetypes:image/png,image/jpg,image/jpeg,image/webp|max:1024'
         ]);
 
         // recupero il prodotto
@@ -223,16 +254,35 @@ class ProductController extends Controller
         // aggiorno le categorie
         $product->categories()->sync($request->categories);
 
-        // aggiorno le taglie e relative quantità
+        // aggiorno relazione taglie e colori con relative quantità
         $product->sizes()->detach();
-        foreach ($request->sizes as $sizeId => $quantity) {
-            if (!empty($quantity) && $quantity != 0 && $quantity != 0.00) {
-                $product->sizes()->attach($sizeId, ['quantity_available' => $quantity]);
+        $product->colors()->detach();
+        foreach ($request->sizes as $sizeId => $size) {
+            // check se la taglia deve essere allegato o no
+            $attachSize = false;
+
+            foreach ($size['colors'] as $colorId => $color) {
+                if (!empty($color['quantity_available']) && is_numeric($color['quantity_available']) && $color['quantity_available'] > 0) {
+                    // se la quantità non è vuota allego anche la taglia
+                    $attachSize = true;
+
+                    $product->colors()->attach($colorId, [
+                        'size_id' => $sizeId,
+                        'quantity_available' => $color['quantity_available']
+                    ]);
+                }
+            }
+
+            if ($attachSize) {
+                $product->sizes()->attach($sizeId);
             }
         }
 
         // calcola e setta quantità totale
         $product->calculateAndSetTotalQuantity();
+
+        // setto le immagini
+        $product->uploadImagesColors($request->images_colors, $request->replace_images_colors);
 
         return redirect()->route('admin.products.show', $product->id)->with(
             'success',
@@ -258,6 +308,9 @@ class ProductController extends Controller
 
         // elimino il prodotto
         $product->delete();
+
+        // elimino le immagini
+        $product->deleteAllImages();
 
         return redirect()->route('admin.products.index')->with(
             'success',
