@@ -120,6 +120,33 @@
                         <label for="description" class="form-label">Descrizione</label>
                         <textarea class="form-control" id="description" name="description" readonly >{{$product->description}}</textarea>
                     </div>
+
+                    {{-- images --}}
+                    @if (!empty($product->images))
+                        <div class="col-12">
+                            <label class="form-label">Immagini</label>
+                            <div id="carouselImages" class="carousel slide carousel-image-product">
+                                <div class="carousel-inner">
+                                    @foreach (json_decode($product->images) as $key => $pathImage)
+                                        <div class="carousel-item {{$key == 0 ? ' active' : ''}}">
+                                            <img src="/storage/{{ $pathImage }}" class="image-product" alt="{{str_replace(' ', '', $pathImage)}}">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h5>{{str_replace(' ', '', $pathImage)}}</h5>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselImages" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    @endif
                 </div>
 
                 {{-- detail categories --}}

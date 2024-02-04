@@ -70,14 +70,18 @@
                                                 <td>{{ $product->price }}</td>
                                                 <td>{{ $product->discount_percent }}</td>
                                                 <td>
-                                                    @foreach ($product->categories as $category)
-                                                        <span class="badge text-bg-dark p-1 px-2 fw-normal">{{ $category->name }}</span>
-                                                    @endforeach
+                                                    <div class="d-flex gap-1">
+                                                        @foreach ($product->categories as $category)
+                                                            <span class="badge text-bg-dark p-1 px-2 fw-normal">{{ $category->name }}</span>
+                                                        @endforeach
+                                                    </div>
                                                 </td>
                                                 <td>
-                                                    @foreach ($product->sizes as $size)
-                                                        <span class="badge text-bg-dark p-1 px-2 fw-normal">{{ $size->name }}</span>
-                                                    @endforeach
+                                                    <div class="d-flex gap-1">
+                                                        @foreach ($product->sizes as $size)
+                                                            <span class="badge text-bg-dark p-1 px-2 fw-normal">{{ $size->name }}</span>
+                                                        @endforeach
+                                                    </div>
                                                 </td>
                                                 <td>{{$product->total_quantity}}</td>
                                                 <td>

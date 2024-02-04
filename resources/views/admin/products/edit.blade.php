@@ -218,7 +218,7 @@
                                         });
                                     @endphp
                                     @if (count($colorImages) > 0)
-                                        <div id="carouselImagesColor{{$color->name}}" class="carousel slide carousel-image-product mt-3">
+                                        <div id="carouselImagesColor{{$color->name}}" class="carousel slide carousel-image-product mt-3 mx-auto">
                                             <div class="carousel-inner">
                                                 @php $colorActive = false; @endphp
                                                 @foreach ($colorImages as $pathImage)

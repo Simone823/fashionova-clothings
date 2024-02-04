@@ -96,3 +96,21 @@ searchOnTable = () => {
         }
     }
 }
+
+// NASCONDI INPUT E LA SUA COL
+hideInput = (idInputHtml) => {
+    const input = jQuery(`input[id="${idInputHtml}"]`);
+    input.parent().addClass("d-none");
+}
+
+// MOSTRA INPUT E LA SUA COL
+showInput = (idInputHtml) => {
+    const input = jQuery(`input[id="${idInputHtml}"]`);
+    input.parent().removeClass("d-none");
+}
+
+// SETTA IL VALORE AD UN INPUT
+setValueOnInput = (idInputHtml, value) => {
+    const input = jQuery(`input[id="${idInputHtml}"]`);
+    input.val(value);
+}

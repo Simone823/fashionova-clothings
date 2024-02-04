@@ -88,7 +88,7 @@
                             <label for="discount_percent" class="form-label">
                                 Sconto (%)
                             </label>
-                            <input type="number" class="form-control @error('discount_percent') is-invalid @enderror" id="discount_percent" name="discount_percent" value="{{old('discount_percent')}}">
+                            <input onchange="showInput('price_discounted')" type="number" class="form-control @error('discount_percent') is-invalid @enderror" id="discount_percent" name="discount_percent" value="{{old('discount_percent')}}">
 
                             @error('discount_percent')
                                 <div class="text-danger mt-1">

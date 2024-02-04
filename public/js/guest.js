@@ -40388,6 +40388,24 @@ searchOnTable = function searchOnTable() {
   }
 };
 
+// NASCONDI INPUT E LA SUA COL
+hideInput = function hideInput(idInputHtml) {
+  var input = jQuery("input[id=\"".concat(idInputHtml, "\"]"));
+  input.parent().addClass("d-none");
+};
+
+// MOSTRA INPUT E LA SUA COL
+showInput = function showInput(idInputHtml) {
+  var input = jQuery("input[id=\"".concat(idInputHtml, "\"]"));
+  input.parent().removeClass("d-none");
+};
+
+// SETTA IL VALORE AD UN INPUT
+setValueOnInput = function setValueOnInput(idInputHtml, value) {
+  var input = jQuery("input[id=\"".concat(idInputHtml, "\"]"));
+  input.val(value);
+};
+
 /***/ }),
 
 /***/ "./resources/js/views/guest/cartShop.js":
