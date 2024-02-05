@@ -13872,6 +13872,53 @@ section .title-section {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
+.card-product {
+  max-width: none;
+}
+
+.card-product .image-product {
+  min-height: 410px;
+  max-height: 410px;
+  overflow: hidden;
+}
+
+.card-product .image-product img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+.card-product .image-product .wrapper-badges {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card-product .carousel-inner {
+  max-width: 100%;
+}
+
+@media screen and (max-width: 576px) {
+  .card-product {
+    max-width: -moz-max-content;
+    max-width: max-content;
+    margin: 0 auto;
+  }
+
+  .card-product .image-product {
+    max-width: 350px;
+    height: auto;
+  }
+}
+
 .modal-dialog-large {
   max-width: 800px !important;
 }
@@ -14010,5 +14057,8 @@ img {
 
 a {
   text-decoration: none;
+  color: initial;
+  width: -moz-max-content;
+  width: max-content;
 }
 

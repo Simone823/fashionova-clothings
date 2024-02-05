@@ -25,6 +25,48 @@ section {
     box-shadow: 0 0.125rem 0.25rem rgba($color: $black, $alpha: 0.075);
 }
 
+.card-product {
+    max-width: none;
+
+    .image-product {
+        min-height: 410px;
+        max-height: 410px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .wrapper-badges {
+            position: absolute;
+            z-index: 1;
+            top: 10px;
+            left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+    }
+    
+    .carousel-inner {
+        max-width: 100%;
+    }
+
+    @media screen and (max-width: 576px) {
+        max-width: max-content;
+        margin: 0 auto;
+
+        .image-product {
+            max-width: 350px;
+            height: auto;
+        }
+    }
+}
+
 // MODAL
 .modal-dialog-large {
     max-width: 800px !important;
