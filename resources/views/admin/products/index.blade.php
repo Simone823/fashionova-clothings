@@ -56,6 +56,7 @@
                                         <th scope="col">Categorie</th>
                                         <th scope="col">Taglie</th>
                                         <th scope="col">@sortablelink('total_quantity', 'Totale Quantità', '', ['class' => 'link-dark'])</th>
+                                        <th scope="col">@sortablelink('visible', 'Visibile', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('created_at', 'Data creazione', '', ['class' => 'link-dark'])</th>
                                         <th scope="col"></th>
                                     </tr>
@@ -84,6 +85,11 @@
                                                     </div>
                                                 </td>
                                                 <td>{{$product->total_quantity}}</td>
+                                                <td>
+                                                    <span class="badge @if($product->visible == 1) text-bg-success @else text-bg-danger @endif p-1 px-2 fw-normal">
+                                                        {{ $product->visible == 1 ? 'Sì' : 'No' }}
+                                                    </span>
+                                                </td>
                                                 <td>
                                                     {{ \Carbon\Carbon::create($product->created_at)->locale(config('app.locale'))->isoFormat('L LT') }}
                                                 </td>

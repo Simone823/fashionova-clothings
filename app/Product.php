@@ -23,7 +23,8 @@ class Product extends Model
         'genre_id',
         'price',
         'discount_percent',
-        'description'
+        'description',
+        'visible'
     ];
 
     /**
@@ -37,6 +38,7 @@ class Product extends Model
         'price',
         'discount_percent',
         'total_quantity',
+        'visible',
         'created_at',
         'updated_at'
     ];

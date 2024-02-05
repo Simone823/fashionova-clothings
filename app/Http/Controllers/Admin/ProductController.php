@@ -77,6 +77,7 @@ class ProductController extends Controller
             'price' => 'required|numeric|between:0,9999999.99',
             'discount_percent' => 'nullable|numeric|between:0,999.99',
             'description' => 'nullable|string',
+            'visible' => 'nullable',
             'categories' => 'required|array|min:1|exists:categories,id',
             'sizes' => [
                 'required',
@@ -107,6 +108,7 @@ class ProductController extends Controller
         $newProduct->price = $request->price;
         $newProduct->discount_percent = $request->discount_percent;
         $newProduct->description = $request->description;
+        $newProduct->visible = $request->visible == 'on' ? 1 : 0;
         $newProduct->save();
 
         // cacola e setta codice prodotto
@@ -216,6 +218,7 @@ class ProductController extends Controller
             'genre_id' => 'required|exists:genres,id',
             'price' => 'required|numeric|between:0,9999999.99',
             'discount_percent' => 'nullable|numeric|between:0,999.99',
+            'visible' => 'nullable',
             'description' => 'nullable|string',
             'categories' => 'required|array|min:1|exists:categories,id',
             'sizes' => [
@@ -249,6 +252,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->discount_percent = $request->discount_percent;
         $product->description = $request->description;
+        $product->visible = $request->visible == 'on' ? 1 : 0;
         $product->update();
 
         // aggiorno le categorie

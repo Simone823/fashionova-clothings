@@ -99,6 +99,20 @@
                             @enderror
                         </div>
 
+                        {{-- visible --}}
+                        <div class="col-12 col-md-6 form-group">
+                            <div class="form-check form-switch">
+                                <label class="form-check-label" for="visible">Visibile</label>
+                                <input {{$product->visible == 1 || old('visible') == 'on' ? 'checked' : ''}} class="form-check-input" type="checkbox" role="switch" id="visible" name="visible">
+                                
+                                @error('visible')
+                                    <div class="text-danger mt-1">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                        </div>
+
                         {{-- description --}}
                         <div class="col-12 form-group">
                             <label for="description" class="form-label">Descrizione</label>
