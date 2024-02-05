@@ -124,9 +124,9 @@ class Product extends Model
     }
 
     /**
-     * Salva sullo storage 'uploads/products' le immagini, e salva sul db l'array dei path delle immagini
+     * Salva sullo storage le immagini e salva sul db l'array dei path delle immagini
      *
-     * @param ?array $imagesColors [explicite description]
+     * @param ?array $imagesColors
      *
      * @return void
      */
@@ -136,21 +136,10 @@ class Product extends Model
             // array path images
             $arrayPathImages = json_decode($this->images) ?? [];
 
-            // Array per tenere traccia del massimo numero di file per colore
-            $maxFileNumbers = [];
-
-            // Trova il massimo numero di file per ogni colore
-            foreach ($arrayPathImages as $imagePath) {
-                preg_match('/_(\w+)-(\d+)\./', $imagePath, $matches);
-                $colorName = $matches[1];
-                $numberFile = intval($matches[2]);
-                $maxFileNumbers[$colorName] = isset($maxFileNumbers[$colorName]) ? max($maxFileNumbers[$colorName], $numberFile) : $numberFile;
-            }
-
             foreach ($imagesColors as $colorId => $imagesColor) {
                 // contatore per il numero del file del colore attuale
                 $colorName = Color::where('id', $colorId)->pluck('name')->first();
-                $fileNumber = isset($maxFileNumbers[$colorName]) ? $maxFileNumbers[$colorName] + 1 : 1;
+                $fileNumber = $this->getTotalImagesByColorName($colorName) + 1;
 
                 foreach ($imagesColor as $image) {
                     // calcolo il nome del file
@@ -190,11 +179,12 @@ class Product extends Model
     public function deleteAllImages(): void
     {
         if (!empty($this->images)) {
+            // Elimino tutte le immagini del prodotto
             foreach (json_decode($this->images) as $image) {
                 Storage::delete("public/{$image}");
             }
 
-            // controllo se esiste ancora il prodotto e aggiorno il campo images
+            // se esiste ancora il prodotto, aggiorno il campo images
             if ($this) {
                 $this->images = null;
                 $this->update();
@@ -213,5 +203,30 @@ class Product extends Model
         $priceDiscounted = $this->price - ($this->price * ($this->discount_percent / 100));
 
         return number_format($priceDiscounted, 2);
+    }
+    
+    /**
+     * Ottieni il numero totale di immagini per colore
+     *
+     * @param string $colorName
+     *
+     * @return int
+     */
+    private function getTotalImagesByColorName(string $colorName): int
+    {
+        // Array per tenere traccia del massimo numero di file per colore
+        $maxFileNumbers = [];
+
+        if (!empty($this->images)) {
+            // Trova il massimo numero di file per ogni colore
+            foreach (json_decode($this->images) as $imagePath) {
+                preg_match('/_(\w+)-(\d+)\./', $imagePath, $matches);
+                $nameColor = $matches[1];
+                $numberFile = intval($matches[2]);
+                $maxFileNumbers[$nameColor] = isset($maxFileNumbers[$nameColor]) ? max($maxFileNumbers[$nameColor], $numberFile) : $numberFile;
+            }
+        }
+
+        return $maxFileNumbers[$colorName] ?? 0;
     }
 }
