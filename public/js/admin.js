@@ -40221,6 +40221,9 @@ __webpack_require__(/*! ./utils/common */ "./resources/js/utils/common.js");
 
 // Components
 __webpack_require__(/*! ./components/admin/sidebar */ "./resources/js/components/admin/sidebar.js");
+
+// Views
+__webpack_require__(/*! ./views/admin/products */ "./resources/js/views/admin/products.js");
 /***************************************** */
 
 /***/ }),
@@ -40432,6 +40435,32 @@ showInput = function showInput(idInputHtml) {
 setValueOnInput = function setValueOnInput(idInputHtml, value) {
   var input = jQuery("input[id=\"".concat(idInputHtml, "\"]"));
   input.val(value);
+};
+
+/***/ }),
+
+/***/ "./resources/js/views/admin/products.js":
+/*!**********************************************!*\
+  !*** ./resources/js/views/admin/products.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Mostra o nascondi i colori della taglia quando cambia il checkbox della taglia
+toggleSizeColorsVisibility = function toggleSizeColorsVisibility(event) {
+  var checkboxSize = event.target;
+  var sizeId = checkboxSize.value;
+  var sizeColors = document.getElementById('size-colors-' + sizeId);
+  if (checkboxSize.checked) {
+    sizeColors.classList.remove('d-none');
+  } else {
+    // resetta i campi input delle quantità dei colori
+    sizeColors.querySelectorAll('input[type="number"]').forEach(function (quantity) {
+      quantity.value = '';
+    });
+    sizeColors.classList.remove('d-block');
+    sizeColors.classList.add('d-none');
+  }
 };
 
 /***/ }),

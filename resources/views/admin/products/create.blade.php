@@ -18,7 +18,7 @@
 
             {{-- card --}}
             <div class="card px-3 py-4 shadow-sm border-0">
-                <form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.products.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     {{-- detail product --}}
@@ -157,7 +157,12 @@
                         {{-- taglie e relativi colori con relative quantità --}}
                         @foreach ($sizes as $size)
                             <div class="col-12 col-md-6 form-group mb-4">
-                                <p class="mb-2 fw-bolder text-uppercase">Taglia: {{ $size->name }}</p>
+                                <div class="form-check">
+                                    <input {{old("size-{$size->id}") ? 'checked' : ''}} onchange="toggleSizeColorsVisibility(event)" class="form-check-input size-checkbox" type="checkbox" name="size-{{ $size->id }}" id="size-{{ $size->id }}" value="{{ $size->id }}">
+                                    <label class="form-check-label" for="size-{{ $size->id }}">
+                                        {{ $size->name }}
+                                    </label>
+                                </div>
 
                                 @error('sizes')
                                     <div class="text-danger mt-1">
@@ -166,8 +171,8 @@
                                 @enderror
                                 
                                 {{-- size colors --}}
-                                <div class="size-colors">
-                                    <div class="row gy-2">
+                                <div class="size-colors {{old("size-{$size->id}") ? 'd-block' : 'd-none'}}" id="size-colors-{{ $size->id }}" >
+                                    <div class="row gy-2 gy-sm-0">
                                         {{-- color label --}}
                                         <div class="col-12 col-sm-6">
                                             <label class="form-label mb-0" >Colore</label>
@@ -181,11 +186,11 @@
                                         @foreach ($colors as $color)
                                             {{-- color name --}}
                                             <div class="col-12 col-sm-6 color">
-                                                <input type="text" id="size-{{ $size->id }}-{{$color->id}}-color_name" class="form-control" value="{{$color->name}}" readonly disabled>
+                                                <input type="text" id="size-{{ $size->id }}-{{ $color->id }}-color_name" class="form-control" value="{{ $color->name }}" readonly disabled>
                                             </div>
                                             {{-- quantity --}}
                                             <div class="col-12 col-sm-6 size-color-quantities mb-3">
-                                                <input type="number" class="form-control" id="size-{{ $size->id }}-{{$color->id}}-quantity_available" name="sizes[{{ $size->id }}][colors][{{$color->id}}][quantity_available]" value="{{ old("sizes.{$size->id}.colors.{$color->id}.quantity_available") }}" min="1">
+                                                <input type="number" class="form-control" id="size-{{ $size->id }}-{{ $color->id }}-quantity_available" name="sizes[{{ $size->id }}][colors][{{ $color->id }}][quantity_available]" value="{{ old("sizes.{$size->id}.colors.{$color->id}.quantity_available") }}" min="1">
                                                 
                                                 @error("sizes.{$size->id}.colors.{$color->id}.quantity_available")
                                                     <div class="text-danger mt-1">
@@ -237,7 +242,7 @@
                                 Salva
                             </button>
 
-                            <a href="{{url()->previous()}}" class="btn btn-danger text-uppercase">
+                            <a href="{{ url()->previous() }}" class="btn btn-danger text-uppercase">
                                 <i class="fa-solid fa-ban me-1"></i>
                                 Annulla
                             </a>
@@ -248,4 +253,21 @@
 
         </div>
     </section>
+
+    <script>
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const sizeCheckboxes = document.querySelectorAll('.size-checkbox');
+        //     sizeCheckboxes.forEach(checkbox => {
+        //         checkbox.addEventListener('change', () => {
+        //             const sizeId = checkbox.value;
+        //             const sizeColors = document.getElementById('size-colors-' + sizeId);
+        //             if (checkbox.checked) {
+        //                 sizeColors.style.display = 'block';
+        //             } else {
+        //                 sizeColors.style.display = 'none';
+        //             }
+        //         });
+        //     });
+        // });
+    </script>
 @endsection

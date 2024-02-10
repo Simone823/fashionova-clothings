@@ -159,17 +159,22 @@
                         {{-- taglie e relativi colori con relative quantità --}}
                         @foreach ($sizes as $size)
                             <div class="col-12 col-md-6 form-group mb-4">
-                                <p class="mb-2 fw-bolder text-uppercase">Taglia: {{ $size->name }}</p>
+                                <div class="form-check">
+                                    <input onchange="toggleSizeColorsVisibility(event)" {{old("size-{$size->id}") || $product->sizes->contains($size) ? 'checked' : ''}} class="form-check-input size-checkbox" type="checkbox" name="size-{{ $size->id }}" id="size-{{ $size->id }}" value="{{ $size->id }}">
+                                    <label class="form-check-label" for="size-{{ $size->id }}">
+                                        {{ $size->name }}
+                                    </label>
+                                </div>
 
                                 @error('sizes')
                                     <div class="text-danger mt-1">
                                         {{ $message }}
                                     </div>
                                 @enderror
-
+                                
                                 {{-- size colors --}}
-                                <div class="size-colors">
-                                    <div class="row gy-2">
+                                <div class="size-colors {{old("size-{$size->id}") || $product->sizes->contains($size) ? 'd-block' : 'd-none'}}" id="size-colors-{{ $size->id }}" >
+                                    <div class="row gy-2 gy-sm-0">
                                         {{-- color label --}}
                                         <div class="col-12 col-sm-6">
                                             <label class="form-label mb-0" >Colore</label>
@@ -185,11 +190,10 @@
                                             <div class="col-12 col-sm-6 color">
                                                 <input type="text" id="size-{{ $size->id }}-{{ $color->id }}-color_name" class="form-control" value="{{ $color->name }}" readonly disabled>
                                             </div>
-
                                             {{-- quantity --}}
                                             <div class="col-12 col-sm-6 size-color-quantities mb-3">
                                                 <input type="number" class="form-control" id="size-{{ $size->id }}-{{ $color->id }}-quantity_available" name="sizes[{{ $size->id }}][colors][{{ $color->id }}][quantity_available]" value="{{ old("sizes.{$size->id}.colors.{$color->id}.quantity_available",$product->colors()->where('colors.id', $color->id)->wherePivot('size_id', $size->id)->first()->pivot->quantity_available ?? '') }}" min="1">
-
+                                                
                                                 @error("sizes.{$size->id}.colors.{$color->id}.quantity_available")
                                                     <div class="text-danger mt-1">
                                                         {{ $message }}
@@ -197,13 +201,13 @@
                                                 @enderror
                                             </div>
                                         @endforeach
-                                        
+                                            
                                         {{-- line divider --}}
                                         <div class="col-12 pb-3">
                                             <div class="border-bottom border-light-subtle"></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>   
                             </div>
                         @endforeach
                     </div>
