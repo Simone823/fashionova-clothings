@@ -151,14 +151,14 @@
                     <div class="row gx-5">
                         {{-- subtitle --}}
                         <div class="col-12 mb-4">
-                            <h5 class="fw-semibold mb-0">Dettagli Taglie</h5>
+                            <h5 class="fw-semibold mb-0">Dettagli Taglie e Colori</h5>
                         </div>
                         
                         {{-- taglie e relativi colori con relative quantità --}}
                         @foreach ($sizes as $size)
                             <div class="col-12 col-md-6 form-group mb-4">
                                 <div class="form-check">
-                                    <input {{old("size-{$size->id}") ? 'checked' : ''}} onchange="toggleSizeColorsVisibility(event)" class="form-check-input size-checkbox" type="checkbox" name="size-{{ $size->id }}" id="size-{{ $size->id }}" value="{{ $size->id }}">
+                                    <input {{old("size-{$size->id}") ? 'checked' : ''}} onchange="toggleSizeColorsVisibility(event)" class="form-check-input size-checkbox" type="checkbox" name="size-{{ $size->id }}" id="size-{{ $size->id }}" data-size-id="{{$size->id}}">
                                     <label class="form-check-label" for="size-{{ $size->id }}">
                                         {{ $size->name }}
                                     </label>
@@ -190,7 +190,7 @@
                                             </div>
                                             {{-- quantity --}}
                                             <div class="col-12 col-sm-6 size-color-quantities mb-3">
-                                                <input type="number" class="form-control" id="size-{{ $size->id }}-{{ $color->id }}-quantity_available" name="sizes[{{ $size->id }}][colors][{{ $color->id }}][quantity_available]" value="{{ old("sizes.{$size->id}.colors.{$color->id}.quantity_available") }}" min="1">
+                                                <input onchange="toggleImageInputs({{$size->id}}, {{$color->id}})" type="number" class="form-control" id="size-{{ $size->id }}-{{ $color->id }}-quantity_available" name="sizes[{{ $size->id }}][colors][{{ $color->id }}][quantity_available]" value="{{ old("sizes.{$size->id}.colors.{$color->id}.quantity_available") }}" min="1">
                                                 
                                                 @error("sizes.{$size->id}.colors.{$color->id}.quantity_available")
                                                     <div class="text-danger mt-1">
@@ -214,12 +214,27 @@
                     <div class="row gy-4 mb-5">
                         {{-- subtitle --}}
                         <div class="col-12">
-                            <h5 class="fw-semibold mb-0">Dettagli Immagini per Colore</h5>
+                            <h5 class="fw-semibold mb-2">Dettagli Immagini per Colore</h5>
+                            {{-- question images colors tooltip --}}
+                            <button type="button" class="bg-transparent border-0" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Gli input per caricare le immagini verranno mostrati solo per i colori che hanno quantità disponibili.">
+                                <i class="fa-regular fa-circle-question fs-5 text-primary"></i>
+                            </button>
                         </div>
 
                         {{-- immagini per colore --}}
                         @foreach ($colors as $color)
-                            <div class="col-12 col-sm-6 size-color-images">
+                            {{-- se la validazione fallisce, controllo se le taglie hanno quantità per quel colore --}}
+                            @php
+                                $colorHasAvailableQuantity = false;
+                                foreach (old('sizes', []) as $sizeId => $sizeData) {
+                                    if (isset($sizeData['colors'][$color->id]['quantity_available']) && $sizeData['colors'][$color->id]['quantity_available'] !== null && $sizeData['colors'][$color->id]['quantity_available'] > 0) {
+                                        $colorHasAvailableQuantity = true;
+                                        break;
+                                    }
+                                }
+                            @endphp
+                        
+                            <div class="col-12 col-sm-6 size-color-images {{ $colorHasAvailableQuantity ? 'd-block' : 'd-none' }}">
                                 <p class="mb-2 fst-italic">Colore: {{$color->name}}</p>
 
                                 <label for="images_colors-{{$color->id}}" class="form-label">Immagini</label>

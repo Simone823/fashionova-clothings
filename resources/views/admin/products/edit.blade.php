@@ -160,7 +160,7 @@
                         @foreach ($sizes as $size)
                             <div class="col-12 col-md-6 form-group mb-4">
                                 <div class="form-check">
-                                    <input onchange="toggleSizeColorsVisibility(event)" {{old("size-{$size->id}") || $product->sizes->contains($size) ? 'checked' : ''}} class="form-check-input size-checkbox" type="checkbox" name="size-{{ $size->id }}" id="size-{{ $size->id }}" value="{{ $size->id }}">
+                                    <input onchange="toggleSizeColorsVisibility(event)" {{old("size-{$size->id}") || $product->sizes->contains($size) ? 'checked' : ''}} class="form-check-input size-checkbox" type="checkbox" name="size-{{ $size->id }}" id="size-{{ $size->id }}" data-size-id="{{$size->id}}">
                                     <label class="form-check-label" for="size-{{ $size->id }}">
                                         {{ $size->name }}
                                     </label>
@@ -185,6 +185,7 @@
                                             <label class="form-label mb-0">Quantità</label>
                                         </div>
 
+                                        {{-- immagini per colore --}}
                                         @foreach ($colors as $color)
                                             {{-- color name --}}
                                             <div class="col-12 col-sm-6 color">
@@ -192,7 +193,7 @@
                                             </div>
                                             {{-- quantity --}}
                                             <div class="col-12 col-sm-6 size-color-quantities mb-3">
-                                                <input type="number" class="form-control" id="size-{{ $size->id }}-{{ $color->id }}-quantity_available" name="sizes[{{ $size->id }}][colors][{{ $color->id }}][quantity_available]" value="{{ old("sizes.{$size->id}.colors.{$color->id}.quantity_available",$product->colors()->where('colors.id', $color->id)->wherePivot('size_id', $size->id)->first()->pivot->quantity_available ?? '') }}" min="1">
+                                                <input onchange="toggleImageInputs({{$size->id}}, {{$color->id}})" type="number" class="form-control" id="size-{{ $size->id }}-{{ $color->id }}-quantity_available" name="sizes[{{ $size->id }}][colors][{{ $color->id }}][quantity_available]" value="{{ old("sizes.{$size->id}.colors.{$color->id}.quantity_available",$product->colors()->where('colors.id', $color->id)->wherePivot('size_id', $size->id)->first()->pivot->quantity_available ?? '') }}" min="1">
                                                 
                                                 @error("sizes.{$size->id}.colors.{$color->id}.quantity_available")
                                                     <div class="text-danger mt-1">
@@ -216,54 +217,47 @@
                     <div class="row gy-4 mb-5">
                         {{-- subtitle --}}
                         <div class="col-12">
-                            <h5 class="fw-semibold">Dettagli Immagini per Colore</h5>
+                            <h5 class="fw-semibold mb-2">Dettagli Immagini per Colore</h5>
+                            {{-- question images colors tooltip --}}
+                            <button type="button" class="bg-transparent border-0" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Gli input per caricare le immagini verranno mostrati solo per i colori che hanno quantità disponibili.">
+                                <i class="fa-regular fa-circle-question fs-5 text-primary"></i>
+                            </button>
                         </div>
 
                         @foreach ($colors as $color)
-                            <div class="col-12 col-sm-6 size-color-images">
+                            {{-- mostra gli input immagine solo se ci sono quantità disponibili per il colore --}}
+                            @php                        
+                                // quantità disponibili per il colore corrente
+                                $quantity = $product->colors()->where('colors.id', $color->id)->first()->pivot->quantity_available ?? '';
+                                
+                                // Controllo se ci sono quantità disponibili per il colore
+                                $colorHasAvailableQuantity = $quantity !== null && $quantity > 0;
+                        
+                                // Controllo se ci sono quantità disponibili per il colore nell'array old delle validazioni
+                                if (!$colorHasAvailableQuantity) {
+                                    foreach (old('sizes', []) as $oldSizeId => $sizeData) {
+                                        if (isset($sizeData['colors'][$color->id]['quantity_available']) && $sizeData['colors'][$color->id]['quantity_available'] !== null && $sizeData['colors'][$color->id]['quantity_available'] > 0) {
+                                            $colorHasAvailableQuantity = true;
+                                            break;
+                                        }
+                                    }
+                                }
+                            @endphp
+                        
+                            <div class="col-12 col-sm-6 size-color-images {{ $colorHasAvailableQuantity ? 'd-block' : 'd-none' }}">
                                 <p class="mb-2 fst-italic">Colore: {{ $color->name }}</p>
-
-                                {{-- aggiunta nuove immagini --}}
-                                <div class="add-images_colors">
-                                    <label for="images_colors-{{ $color->id }}" class="form-label">
-                                        Aggiungi nuove immagini
-                                    </label>
-                                    <input type="file" accept="image/png,image/jpg,image/jpeg,image/webp" class="form-control" id="images_colors-{{ $color->id }}" name="images_colors[{{ $color->id }}][]" multiple>
-                                </div>
-
-                                {{-- caroselli immagini --}}
-                                @if (!empty($product->images))
-                                    @php
-                                        // se non ci sono immagine associate al colore non mostro il carosello
-                                        $colorImages = collect(json_decode($product->images))->filter(function ($image) use ($color) {
-                                            return strpos($image, "_{$color->name}-") !== false;
-                                        });
-                                    @endphp
-                                    @if (count($colorImages) > 0)
-                                        <div id="carouselImagesColor{{$color->name}}" class="carousel slide carousel-image-product mt-3 mx-auto">
-                                            <div class="carousel-inner">
-                                                @php $colorActive = false; @endphp
-                                                @foreach ($colorImages as $pathImage)
-                                                    <div class="carousel-item{{ !$colorActive ? ' active' : '' }}">
-                                                        <img src="/storage/{{ $pathImage }}" class="image-product" alt="{{str_replace(' ', '', $pathImage)}}">
-                                                        <div class="carousel-caption d-none d-md-block">
-                                                            <h5>{{str_replace(' ', '', $pathImage)}}</h5>
-                                                        </div>
-                                                    </div>
-                                                    @php $colorActive = true; @endphp
-                                                @endforeach
-                                            </div>
-                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagesColor{{$color->name}}" data-bs-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Previous</span>
-                                            </button>
-                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselImagesColor{{$color->name}}" data-bs-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Next</span>
-                                            </button>
-                                        </div>
-                                    @endif
-                                @endif
+                        
+                                <label for="images_colors-{{ $color->id }}" class="form-label">Immagini</label>
+                                <input type="file" accept="image/png,image/jpg,image/jpeg,image/webp" class="form-control" id="images_colors-{{ $color->id }}" name="images_colors[{{ $color->id }}][]" multiple>
+                                
+                                {{-- Mantieni il valore della quantità nell'input immagine --}}
+                                <input type="hidden" name="sizes[{{ $size->id }}][colors][{{ $color->id }}][quantity_available]" value="{{ $quantity }}">
+                                
+                                @error("images_colors.{$color->id}.*")
+                                    <div class="text-danger mt-1">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         @endforeach
                     </div>

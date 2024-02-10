@@ -112,5 +112,5 @@ showInput = (idInputHtml) => {
 // SETTA IL VALORE AD UN INPUT
 setValueOnInput = (idInputHtml, value) => {
     const input = jQuery(`input[id="${idInputHtml}"]`);
-    input.val(value);
+    input.val(value).trigger("change");
 }

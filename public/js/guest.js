@@ -40403,7 +40403,7 @@ showInput = function showInput(idInputHtml) {
 // SETTA IL VALORE AD UN INPUT
 setValueOnInput = function setValueOnInput(idInputHtml, value) {
   var input = jQuery("input[id=\"".concat(idInputHtml, "\"]"));
-  input.val(value);
+  input.val(value).trigger("change");
 };
 
 /***/ }),

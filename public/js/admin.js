@@ -40434,7 +40434,7 @@ showInput = function showInput(idInputHtml) {
 // SETTA IL VALORE AD UN INPUT
 setValueOnInput = function setValueOnInput(idInputHtml, value) {
   var input = jQuery("input[id=\"".concat(idInputHtml, "\"]"));
-  input.val(value);
+  input.val(value).trigger("change");
 };
 
 /***/ }),
@@ -40449,17 +40449,40 @@ setValueOnInput = function setValueOnInput(idInputHtml, value) {
 // Mostra o nascondi i colori della taglia quando cambia il checkbox della taglia
 toggleSizeColorsVisibility = function toggleSizeColorsVisibility(event) {
   var checkboxSize = event.target;
-  var sizeId = checkboxSize.value;
-  var sizeColors = document.getElementById('size-colors-' + sizeId);
+  var sizeId = checkboxSize.getAttribute('data-size-id');
+  var sizeColors = jQuery("div[id=size-colors-".concat(sizeId, "]"));
   if (checkboxSize.checked) {
-    sizeColors.classList.remove('d-none');
+    sizeColors.removeClass('d-none');
   } else {
     // resetta i campi input delle quantità dei colori
-    sizeColors.querySelectorAll('input[type="number"]').forEach(function (quantity) {
-      quantity.value = '';
+    sizeColors.find('input[type="number"]').each(function () {
+      setValueOnInput(this.id, "");
     });
-    sizeColors.classList.remove('d-block');
-    sizeColors.classList.add('d-none');
+    sizeColors.removeClass('d-block').addClass('d-none');
+  }
+};
+
+// Mostra o nascondi input file image quando cambia la quantità del colore
+toggleImageInputs = function toggleImageInputs(sizeId, colorId) {
+  var quantityInput = document.getElementById("size-".concat(sizeId, "-").concat(colorId, "-quantity_available"));
+  var imageInput = document.getElementById("images_colors-".concat(colorId));
+
+  // recupero tutti gli input delle quantità che corrispondono al pattern
+  var otherQuantities = document.querySelectorAll("input[id^=\"size-\"][id$=\"-".concat(colorId, "-quantity_available\"]"));
+
+  // constrollo se almeno una delle altre taglie ha una quantità maggiore di 0 per lo stesso colore
+  var hasOtherQuantities = Array.from(otherQuantities).some(function (input) {
+    return input != quantityInput && parseInt(input.value.trim()) > 0;
+  });
+
+  /* 
+  se la quantità dell'input corrente è maggiore di 0 o non vuota oppure se
+  almeno una delle altre taglie ha quantità > 0 per lo stesso colore, mostra l'input immagine
+  */
+  if (parseInt(quantityInput.value) > 0 && quantityInput.value != "" || hasOtherQuantities) {
+    showInput(imageInput.id);
+  } else {
+    hideInput(imageInput.id);
   }
 };
 
