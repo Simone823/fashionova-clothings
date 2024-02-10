@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         // prodotti in sconto
-        $productsDiscounted = Product::where('discount_percent', '!=', null)->where('visible', 1)->get();
+        $productsDiscounted = Product::where('discount_percent', '!=', null)->where('visible', 1)->limit(8)->get();
 
         return view('guest.home', compact('productsDiscounted'));
     }

@@ -71,7 +71,7 @@ section {
         .product-title {
             width: 100%;
             max-width: 100%;
-            font-size: 1.125rem;
+            font-size: 1.125rem !important;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;

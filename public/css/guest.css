@@ -13919,7 +13919,7 @@ section .title-section {
 .card-product .details-product .product-title {
   width: 100%;
   max-width: 100%;
-  font-size: 1.125rem;
+  font-size: 1.125rem !important;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -14077,12 +14077,9 @@ footer .logo {
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
 img {
