@@ -51,7 +51,7 @@ class ProductController extends Controller
         // relazioni
         $genres = Genre::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
-        $sizes = Size::orderBy('name', 'asc')->get();
+        $sizes = Size::orderBy('name', 'desc')->get();
         $colors = Color::orderBy('name', 'asc')->get();
 
         return view('admin.products.create', compact('genres', 'categories', 'sizes', 'colors'));
@@ -192,7 +192,7 @@ class ProductController extends Controller
 
         $genres = Genre::orderBy('name', 'asc')->get();
         $categories = Category::orderBy('name', 'asc')->get();
-        $sizes = Size::orderBy('name', 'asc')->get();
+        $sizes = Size::orderBy('name', 'desc')->get();
         $colors = Color::orderBy('name', 'asc')->get();
 
         return view('admin.products.edit', compact('product', 'genres', 'categories', 'sizes', 'colors'));
