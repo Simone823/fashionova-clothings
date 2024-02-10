@@ -64,7 +64,8 @@ a {
 // table
 table {
     tr {
-        th {
+        th,
+        td {
             white-space: nowrap !important;
         }
     }

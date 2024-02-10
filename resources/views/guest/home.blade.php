@@ -22,7 +22,7 @@
                                 <a href="/">
                                     {{-- images --}}
                                     @if (!empty($product->images))
-                                        <div id="carouselImages{{$product->name}}" class="carousel slide carousel-image-product">
+                                        <div id="carouselImages{{$product->code}}" class="carousel slide carousel-image-product">
                                             <div class="carousel-inner">
                                                 @foreach (json_decode($product->images) as $key => $pathImage)
                                                     <div class="carousel-item {{$key == 0 ? ' active' : ''}}">
@@ -32,25 +32,33 @@
                                                     </div>                                                    
                                                 @endforeach
                                             </div>
-                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages{{$product->name}}" data-bs-slide="prev">
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages{{$product->code}}" data-bs-slide="prev">
                                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                 <span class="visually-hidden">Previous</span>
                                             </button>
-                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselImages{{$product->name}}" data-bs-slide="next">
+                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselImages{{$product->code}}" data-bs-slide="next">
                                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                 <span class="visually-hidden">Next</span>
                                             </button>
                                         </div>
                                     @endif
                 
-                                    {{-- title --}}
-                                    <h3 class="fs-5">{{$product->name}}</h3>
-                                    <p class="text-danger fw-bolder mb-1">{{$product->getPriceDiscounted()}} €</p>
-                                    <p class="text-secondary">
-                                        Prima era:
-                                        <span class="text-decoration-line-through">{{$product->price}} €</span>
-                                        <span class="text-danger">-{{$product->discount_percent}}%</span>
-                                    </p>
+                                    {{-- details --}}
+                                    <div class="details-product">
+                                        <h3 class="product-title">{{$product->name}}</h3>
+                                        <div class="colors mb-2">
+                                            <span>Colori:</span>
+                                            @foreach ($product->colors->unique() as $color)
+                                                <div class="color-circle" style="background-color: {{trim(strtolower(str_replace(' ', '', $color->name)))}};"></div>
+                                            @endforeach
+                                        </div>
+                                        <p class="text-danger fw-bolder mb-1">{{$product->getPriceDiscounted()}} €</p>
+                                        <p class="text-secondary mb-0">
+                                            Prima era:
+                                            <span class="text-decoration-line-through">{{$product->price}} €</span>
+                                            <span class="text-danger">-{{$product->discount_percent}}%</span>
+                                        </p>
+                                    </div>
                                 </a>
                             </article>
                         </div>

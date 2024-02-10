@@ -48,6 +48,7 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col"></th>
                                         <th scope="col">@sortablelink('name', 'Nome', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('code', 'Codice Prodotto', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('genre.name', 'Genere', '', ['class' => 'link-dark'])</th>
@@ -58,42 +59,12 @@
                                         <th scope="col">@sortablelink('total_quantity', 'Totale Quantità', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('visible', 'Visibile', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('created_at', 'Data creazione', '', ['class' => 'link-dark'])</th>
-                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (count($products) > 0)
                                         @foreach ($products as $product)
                                             <tr>
-                                                <td>{{ $product->name }}</td>
-                                                <td>{{ $product->code }}</td>
-                                                <td>{{ $product->genre->name }}</td>
-                                                <td>{{ $product->price }}</td>
-                                                <td>{{ $product->discount_percent }}</td>
-                                                <td>
-                                                    <div class="d-flex gap-1">
-                                                        @foreach ($product->categories as $category)
-                                                            <span class="badge text-bg-dark p-1 px-2 fw-normal">{{ $category->name }}</span>
-                                                        @endforeach
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="d-flex gap-1">
-                                                        @foreach ($product->sizes as $size)
-                                                            <span class="badge text-bg-dark p-1 px-2 fw-normal">{{ $size->name }}</span>
-                                                        @endforeach
-                                                    </div>
-                                                </td>
-                                                <td>{{$product->total_quantity}}</td>
-                                                <td>
-                                                    <span class="badge @if($product->visible == 1) text-bg-success @else text-bg-danger @endif p-1 px-2 fw-normal">
-                                                        {{ $product->visible == 1 ? 'Sì' : 'No' }}
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    {{ \Carbon\Carbon::create($product->created_at)->locale(config('app.locale'))->isoFormat('L LT') }}
-                                                </td>
-
                                                 {{-- actions --}}
                                                 <td>
                                                     <div class="d-flex gap-2">
@@ -123,6 +94,34 @@
                                                             </form>
                                                         @endcan
                                                     </div>
+                                                </td>
+                                                <td>{{ $product->name }}</td>
+                                                <td>{{ $product->code }}</td>
+                                                <td>{{ $product->genre->name }}</td>
+                                                <td>{{ $product->price }}</td>
+                                                <td>{{ $product->discount_percent }}</td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        @foreach ($product->categories as $category)
+                                                            <span class="badge text-bg-dark p-1 px-2 fw-normal">{{ $category->name }}</span>
+                                                        @endforeach
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex gap-1">
+                                                        @foreach ($product->sizes as $size)
+                                                            <span class="badge text-bg-dark p-1 px-2 fw-normal">{{ $size->name }}</span>
+                                                        @endforeach
+                                                    </div>
+                                                </td>
+                                                <td>{{$product->total_quantity}}</td>
+                                                <td>
+                                                    <span class="badge @if($product->visible == 1) text-bg-success @else text-bg-danger @endif p-1 px-2 fw-normal">
+                                                        {{ $product->visible == 1 ? 'Sì' : 'No' }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::create($product->created_at)->locale(config('app.locale'))->isoFormat('L LT') }}
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -14153,7 +14153,8 @@ a {
   text-decoration: none;
 }
 
-table tr th {
+table tr th,
+table tr td {
   white-space: nowrap !important;
 }
 

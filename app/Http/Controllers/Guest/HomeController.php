@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +15,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('guest.home');
+        // prodotti in sconto
+        $productsDiscounted = Product::where('discount_percent', '!=', null)->where('visible', 1)->get();
+
+        return view('guest.home', compact('productsDiscounted'));
     }
 }
