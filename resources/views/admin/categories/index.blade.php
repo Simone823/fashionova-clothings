@@ -48,20 +48,15 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col"></th>
                                         <th scope="col">@sortablelink('name', 'Nome', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('created_at', 'Data creazione', '', ['class' => 'link-dark'])</th>
-                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (count($categories) > 0)
                                         @foreach ($categories as $category)
                                             <tr>
-                                                <td>{{ $category->name }}</td>
-                                                <td>
-                                                    {{ \Carbon\Carbon::create($category->created_at)->locale(config('app.locale'))->isoFormat('L LT') }}
-                                                </td>
-
                                                 {{-- actions --}}
                                                 <td>
                                                     <div class="d-flex gap-2">
@@ -84,6 +79,10 @@
                                                             </form>
                                                         @endcan
                                                     </div>
+                                                </td>
+                                                <td>{{ $category->name }}</td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::create($category->created_at)->locale(config('app.locale'))->isoFormat('L LT') }}
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -36,6 +36,7 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col"></th>
                                         <th scope="col">@sortablelink('user.name', 'Nome Utente', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('is_primary', 'Indirizzo Primario', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('nation.name', 'Nazione', '', ['class' => 'link-dark'])</th>
@@ -46,13 +47,21 @@
                                         <th scope="col">@sortablelink('address', 'Indirizzo', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('house_number', 'Numero Civico', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('created_at', 'Data creazione', '', ['class' => 'link-dark'])</th>
-                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (count($userAddresses) > 0)
                                         @foreach ($userAddresses as $address)
                                             <tr>
+                                                {{-- actions --}}
+                                                <td>
+                                                    {{-- show --}}
+                                                    @can('user_addresses_view')
+                                                        <a data-bs-title="Visualizza" class="btn btn-sm btn-primary" href="{{route('admin.userAddresses.show', $address->id)}}" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                                                            <i class="fa-regular fa-eye"></i>
+                                                        </a>
+                                                    @endcan
+                                                </td>
                                                 <td>{{ $address->user->name }}</td>
                                                 <td>{{ $address->is_primary == 1 ? 'Sì' : 'No' }}</td>
                                                 <td>{{ $address->nation->name }}</td>
@@ -65,16 +74,6 @@
                                                 
                                                 <td>
                                                     {{ \Carbon\Carbon::create($address->created_at)->locale(config('app.locale'))->isoFormat('L LT') }}
-                                                </td>
-
-                                                {{-- actions --}}
-                                                <td>
-                                                    {{-- show --}}
-                                                    @can('user_addresses_view')
-                                                        <a data-bs-title="Visualizza" class="btn btn-sm btn-primary" href="{{route('admin.userAddresses.show', $address->id)}}" data-bs-toggle="tooltip" data-bs-placement="bottom">
-                                                            <i class="fa-regular fa-eye"></i>
-                                                        </a>
-                                                    @endcan
                                                 </td>
                                             </tr>
                                         @endforeach

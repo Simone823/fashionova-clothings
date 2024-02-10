@@ -36,28 +36,19 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col"></th>
                                         <th scope="col">@sortablelink('name', 'Nome', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('surname', 'Cognome', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('email', 'Email', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('phone', 'Telefono', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('subject', 'Soggetto', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('created_at', 'Data creazione', '', ['class' => 'link-dark'])</th>
-                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (count($contacts) > 0)
                                         @foreach ($contacts as $contact)
                                             <tr>
-                                                <td>{{ $contact->name }}</td>
-                                                <td>{{ $contact->surname }}</td>
-                                                <td>{{ $contact->email }}</td>
-                                                <td>{{ $contact->phone }}</td>
-                                                <td>{{ $contact->subject }}</td>
-                                                <td>
-                                                    {{ \Carbon\Carbon::create($contact->created_at)->locale(config('app.locale'))->isoFormat('L LT') }}
-                                                </td>
-
                                                 {{-- actions --}}
                                                 <td>
                                                     <div class="d-flex gap-2">
@@ -80,6 +71,14 @@
                                                             </form>
                                                         @endcan
                                                     </div>
+                                                </td>
+                                                <td>{{ $contact->name }}</td>
+                                                <td>{{ $contact->surname }}</td>
+                                                <td>{{ $contact->email }}</td>
+                                                <td>{{ $contact->phone }}</td>
+                                                <td>{{ $contact->subject }}</td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::create($contact->created_at)->locale(config('app.locale'))->isoFormat('L LT') }}
                                                 </td>
                                             </tr>
                                         @endforeach

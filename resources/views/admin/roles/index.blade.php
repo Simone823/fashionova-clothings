@@ -48,6 +48,7 @@
                             <table class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col"></th>
                                         <th scope="col">
                                             @sortablelink('name', 'Nome', '', ['class' => 'link-dark'])
                                         </th>
@@ -60,24 +61,12 @@
                                         <th scope="col">
                                             @sortablelink('created_at', 'Data creazione', '', ['class' => 'link-dark'])
                                         </th>
-                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if (count($roles) > 0)
                                         @foreach ($roles as $role)
                                             <tr>
-                                                <td>{{ $role->name }}</td>
-                                                <td>{{ $role->guard_name }}</td>
-                                                <td>
-                                                    @foreach ($role->permissions as $permission)
-                                                        <span class="badge text-bg-dark p-1 px-2 fw-normal">{{ $permission->name }}</span>
-                                                    @endforeach
-                                                </td>
-                                                <td>
-                                                    {{ \Carbon\Carbon::create($role->created_at)->locale(config('app.locale'))->isoFormat('L LT') }}
-                                                </td>
-
                                                 {{-- actions --}}
                                                 <td>
                                                     <div class="d-flex gap-2">
@@ -100,6 +89,16 @@
                                                             </form>
                                                         @endcan
                                                     </div>
+                                                </td>
+                                                <td>{{ $role->name }}</td>
+                                                <td>{{ $role->guard_name }}</td>
+                                                <td>
+                                                    @foreach ($role->permissions as $permission)
+                                                        <span class="badge text-bg-dark p-1 px-2 fw-normal">{{ $permission->name }}</span>
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    {{ \Carbon\Carbon::create($role->created_at)->locale(config('app.locale'))->isoFormat('L LT') }}
                                                 </td>
                                             </tr>
                                         @endforeach
