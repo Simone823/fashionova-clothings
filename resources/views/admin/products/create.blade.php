@@ -253,21 +253,4 @@
 
         </div>
     </section>
-
-    <script>
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     const sizeCheckboxes = document.querySelectorAll('.size-checkbox');
-        //     sizeCheckboxes.forEach(checkbox => {
-        //         checkbox.addEventListener('change', () => {
-        //             const sizeId = checkbox.value;
-        //             const sizeColors = document.getElementById('size-colors-' + sizeId);
-        //             if (checkbox.checked) {
-        //                 sizeColors.style.display = 'block';
-        //             } else {
-        //                 sizeColors.style.display = 'none';
-        //             }
-        //         });
-        //     });
-        // });
-    </script>
 @endsection
