@@ -188,25 +188,33 @@
                             
                             {{-- size colors --}}
                             <div class="size-colors">
-                                @foreach ($product->colors()->wherePivot('size_id', $size->id)->get() as $color)
-                                    <div class="row gy-2">
+                                <div class="row gy-2">
+                                    {{-- color label --}}
+                                    <div class="col-12 col-sm-6">
+                                        <label class="form-label mb-0" >Colore</label>
+                                    </div>
+
+                                    {{-- quantity label --}}
+                                    <div class="col-12 col-sm-6">
+                                        <label class="form-label mb-0">Quantità</label>
+                                    </div>
+
+                                    @foreach ($product->colors()->wherePivot('size_id', $size->id)->get() as $color)
                                         {{-- color name --}}
                                         <div class="col-12 col-sm-6 color">
-                                            <label class="form-label" for="size-{{ $size->id }}-{{$color->id}}-color_name">Colore</label>
-                                            <input type="text" id="size-{{ $size->id }}-{{$color->id}}-color_name" class="form-control" value="{{$color->name}}" readonly>
+                                            <input type="text" id="size-{{ $size->id }}-{{$color->id}}-color_name" class="form-control" value="{{$color->name}}" readonly disabled>
                                         </div>
                                         
                                         {{-- quantity --}}
                                         <div class="col-12 col-sm-6 size-color-quantities mb-3">
-                                            <label for="size-{{ $size->id }}-{{$color->id}}-quantity_available" class="form-label">Quantità</label>
                                             <input type="number" class="form-control" id="size-{{ $size->id }}-{{$color->id}}-quantity_available" name="sizes[{{ $size->id }}][colors][{{$color->id}}][quantity_available]" value="{{$product->colors()->where('colors.id', $color->id)->wherePivot('size_id', $size->id)->first()->pivot->quantity_available ?? ''}}" min="1" readonly >
                                         </div>
+                                    @endforeach
+                                        
+                                    {{-- line divider --}}
+                                    <div class="col-12 pb-3">
+                                        <div class="border-bottom border-light-subtle"></div>
                                     </div>
-                                @endforeach
-
-                                {{-- line divider --}}
-                                <div class="col-12 pb-3">
-                                    <div class="border-bottom border-light-subtle"></div>
                                 </div>
                             </div>   
                         </div>
