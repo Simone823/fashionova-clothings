@@ -98,7 +98,7 @@ class ProductController extends Controller
             'sizes.*.colors.*.quantity_available' => 'nullable|integer|min:1',
             'images_colors' => 'nullable|array',
             'images_colors.*' => 'nullable|array',
-            'images_colors.*.*' => 'nullable|image|mimetypes:image/png,image/jpg,image/jpeg,image/webp|max:1024'
+            'images_colors.*.*' => 'nullable|image|mimetypes:image/png,image/jpg,image/jpeg,image/webp|max:4000'
         ]);
 
         // creo un nuovo prodotto
@@ -240,7 +240,7 @@ class ProductController extends Controller
             'sizes.*.colors.*.quantity_available' => 'nullable|integer|min:1',
             'images_colors' => 'nullable|array',
             'images_colors.*' => 'nullable|array',
-            'images_colors.*.*' => 'nullable|image|mimetypes:image/png,image/jpg,image/jpeg,image/webp|max:1024'
+            'images_colors.*.*' => 'nullable|image|mimetypes:image/png,image/jpg,image/jpeg,image/webp|max:4000'
         ]);
 
         // recupero il prodotto

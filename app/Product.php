@@ -149,7 +149,7 @@ class Product extends Model
                     $nameFile = "{$productName}_{$colorName}-{$fileNumber}.{$image->extension()}";
 
                     // ridimensiono l'immagine
-                    $imageResized = Image::make($image->getRealPath())->resize(952, 1215, function ($constraint) {
+                    $imageResized = Image::make($image->getRealPath())->fit(600, 800, function ($constraint) {
                         $constraint->aspectRatio();
                     })->encode();
                     
