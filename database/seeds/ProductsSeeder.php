@@ -699,6 +699,383 @@ class ProductsSeeder extends Seeder
                     "uploads/images/products/Felpa-logo-woman-senza-cappuccio_White-1.png"
                 )
             ],
+            [
+                'name' => 'Felpa graffito bianco senza cappuccio',
+                'genre_id' => Genre::where('name', 'Uomo')->pluck('id')->first(),
+                'price' => 56.00,
+                'discount_percent' => 5.00,
+                'visible' => 1,
+                'description' => null,
+                'categories' => Category::where('name', 'Abbigliamento')
+                    ->orWhere('name', 'Maglioni E Felpe')
+                    ->pluck('id')->toArray(),
+                'sizes' => array(
+                    array(
+                        'size_id' => Size::where('name', 'XS')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Purple')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Red')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'XL')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Purple')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Red')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'XXL')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Purple')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Red')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'S')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Purple')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Red')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'M')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Purple')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Red')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'L')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Purple')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Red')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    )
+                ),
+                'images' => array(
+                    "uploads/images/products/Felpa-graffito-bianco-senza-cappuccio_Black-1.png",
+                    "uploads/images/products/Felpa-graffito-bianco-senza-cappuccio_Green-1.png",
+                    "uploads/images/products/Felpa-graffito-bianco-senza-cappuccio_Purple-1.png",
+                    "uploads/images/products/Felpa-graffito-bianco-senza-cappuccio_Red-1.png"
+                )
+            ],
+            [
+                'name' => 'Felpa con disegno gatto dj',
+                'genre_id' => Genre::where('name', 'Uomo')->pluck('id')->first(),
+                'price' => 22.00,
+                'discount_percent' => 5.00,
+                'visible' => 1,
+                'description' => null,
+                'categories' => Category::where('name', 'Abbigliamento')
+                    ->orWhere('name', 'Maglioni E Felpe')
+                    ->pluck('id')->toArray(),
+                'sizes' => array(
+                    array(
+                        'size_id' => Size::where('name', 'XS')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'XL')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'XXL')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 40
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'S')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'M')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 100
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'L')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 30
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    )
+                ),
+                'images' => array(
+                    "uploads/images/products/Felpa-con-disegno-gatto-dj_Black-1.png",
+                    "uploads/images/products/Felpa-con-disegno-gatto-dj_White-1.png"
+                )
+            ],
+            [
+                'name' => 'Felpa testo turn the pain in to power senza cappuccio',
+                'genre_id' => Genre::where('name', 'Uomo')->pluck('id')->first(),
+                'price' => 44.00,
+                'discount_percent' => 10.00,
+                'visible' => 1,
+                'description' => null,
+                'categories' => Category::where('name', 'Abbigliamento')
+                    ->orWhere('name', 'Maglioni E Felpe')
+                    ->pluck('id')->toArray(),
+                'sizes' => array(
+                    array(
+                        'size_id' => Size::where('name', 'XS')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'XL')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'XXL')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'XXXL')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'S')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'M')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    ),
+                    array(
+                        'size_id' => Size::where('name', 'L')->pluck('id')->first(),
+                        'colors' => array(
+                            array(
+                                'color_id' => Color::where('name', 'Black')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'Green')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            ),
+                            array(
+                                'color_id' => Color::where('name', 'White')->pluck('id')->first(),
+                                'quantity_available' => 20
+                            )
+                        )
+                    )
+                ),
+                'images' => array(
+                    "uploads/images/products/Felpa-testo-turn-the-pain-in-to-power-senza-cappuccio_Black-1.png",
+                    "uploads/images/products/Felpa-testo-turn-the-pain-in-to-power-senza-cappuccio_Green-1.png",
+                    "uploads/images/products/Felpa-testo-turn-the-pain-in-to-power-senza-cappuccio_White-1.png"
+                )
+            ],
         );
 
         // creo i prodotti
