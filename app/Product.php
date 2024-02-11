@@ -152,9 +152,9 @@ class Product extends Model
                     $imageResized = Image::make($image->getRealPath())->fit(600, 800, function ($constraint) {
                         $constraint->aspectRatio();
                     })->encode();
-                    
+
                     // Salva l'immagine in storage public con il nome del file corretto
-                    $imageResized->save(Storage::path('public/uploads/images/products/'.$nameFile));
+                    $imageResized->save(Storage::path('public/uploads/images/products/' . $nameFile));
 
                     // Ottieni il percorso completo del file ridimensionato
                     $imagePath = "uploads/images/products/{$imageResized->basename}";
@@ -193,6 +193,32 @@ class Product extends Model
             }
         }
     }
+    
+    /**
+     * Elimina un'immagine specifica e aggiorna il campo images
+     *
+     * @param string $pathImage
+     *
+     * @return void
+     */
+    public function deleteImage(string $pathImage): void
+    {
+        // elimino l'immagine
+        Storage::delete("public/{$pathImage}");
+
+        // cerco il path nel campo images del prodotto
+        $productImages = json_decode($this->images);
+        $pathFound = array_search($pathImage, $productImages);
+
+        if ($pathFound !== false) {
+            // unset della key immagine trovata
+            unset($productImages[$pathFound]);
+
+            // aggiorno il campo images, ricostruendo l'array di path ripartendo da indice 0
+            $this->images = json_encode(array_values($productImages));
+            $this->update();
+        }
+    }
 
     /**
      * Ottieni il prezzo scontato
@@ -206,7 +232,7 @@ class Product extends Model
 
         return number_format($priceDiscounted, 2);
     }
-    
+
     /**
      * Ottieni il numero totale di immagini per colore
      *

@@ -321,4 +321,35 @@ class ProductController extends Controller
             "Il Prodotto con codice: '{$product->code}' e nome: '{$product->name}', è stato eliminato con successo."
         );
     }
+
+    /**
+     * Elimina una specifica immagine
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteImage(Request $request, $id)
+    {
+        // controllo il permesso utente
+        if (!Gate::allows('products_edit')) {
+            abort(401);
+        }
+
+        // validazione request
+        $request->validate([
+            'path_image' => 'required|string'
+        ]);
+
+        // recupero il prodotto
+        $product = Product::findOrFail($id);
+
+        // elimino l'immagine
+        $product->deleteImage($request->path_image);
+
+        return redirect()->back()->with(
+            'success',
+            "L'immagine: " . str_replace('uploads/images/products/', '', $request->path_image) . ", del Prodotto con codice: '{$product->code}', è stata eliminata con successo."
+        );
+    }
 }

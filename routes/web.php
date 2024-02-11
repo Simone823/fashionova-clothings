@@ -127,5 +127,6 @@ Route::middleware('auth')->group(function() {
         Route::get('/products/edit/{id}', 'ProductController@edit')->name('products.edit');
         Route::post('/products/update/{id}', 'ProductController@update')->name('products.update');
         Route::delete('/products/delete/{id}', 'ProductController@destroy')->name('products.delete');
+        Route::post('/products/delete-image/{idProduct}', 'ProductController@deleteImage')->name('products.deleteImage');
     });
 });

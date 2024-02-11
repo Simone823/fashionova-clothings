@@ -138,8 +138,17 @@
                                     @foreach (json_decode($product->images) as $key => $pathImage)
                                         <div class="carousel-item {{$key == 0 ? ' active' : ''}}">
                                             <img src="/storage/{{ $pathImage }}" class="image-product" alt="{{str_replace(' ', '', $pathImage)}}">
+                                            {{-- btn delete image --}}
                                             <div class="carousel-caption d-none d-md-block">
-                                                <h5>{{str_replace(' ', '', $pathImage)}}</h5>
+                                                <form action="{{route('admin.products.deleteImage', $product->id)}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" id="path_image" name="path_image" value="{{$pathImage}}">
+
+                                                    <button type="submit" class="btn btn-danger text-uppercase">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                        Elimina
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     @endforeach
