@@ -1,11 +1,12 @@
 #hero {
     height: 600px;
-    background: url('/storage/uploads/images/hero-bg.jpg');
+    background: url('/storage/uploads/images/hero-bg.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     position: relative;
-    border-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     overflow: hidden;
     display: flex;
     justify-content: center;
