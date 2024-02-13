@@ -76,25 +76,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // ricerca in una tabella
 searchOnTable = () => {
-    let searchInput = document.getElementById("searchInput");
-    let filter = searchInput.value.toUpperCase();
-    let table = document.querySelector("table");
-    let tr = table.getElementsByTagName("tr");
+    const valInputSearch = $("#searchInput").val().toUpperCase();
 
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td");
-        for (var j = 0; j < td.length; j++) {
-            if (td[j]) {
-                let txtValue = td[j].textContent || td[j].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                    break;
-                } else {
-                    tr[i].style.display = "none";
+    $("table tr").each(function(index) {
+        if (index !== 0) {
+            // riga attuale
+            let row = $(this);
+
+            // mostra o no la riga attuale
+            let display = false;
+
+            row.find("td").each(function() {
+                const txtValue = $(this).text().toUpperCase();
+                
+                if (txtValue.includes(valInputSearch)) {
+                    display = true;
+                    return false;
                 }
+            });
+
+            if (display) {
+                row.show();
+            } else {
+                row.hide();
             }
         }
-    }
+    });
 }
 
 // NASCONDI INPUT E LA SUA COL

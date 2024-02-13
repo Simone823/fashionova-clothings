@@ -40399,24 +40399,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // ricerca in una tabella
 searchOnTable = function searchOnTable() {
-  var searchInput = document.getElementById("searchInput");
-  var filter = searchInput.value.toUpperCase();
-  var table = document.querySelector("table");
-  var tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td");
-    for (var j = 0; j < td.length; j++) {
-      if (td[j]) {
-        var txtValue = td[j].textContent || td[j].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-          break;
-        } else {
-          tr[i].style.display = "none";
+  var valInputSearch = $("#searchInput").val().toUpperCase();
+  $("table tr").each(function (index) {
+    if (index !== 0) {
+      // riga attuale
+      var row = $(this);
+
+      // mostra o no la riga attuale
+      var display = false;
+      row.find("td").each(function () {
+        var txtValue = $(this).text().toUpperCase();
+        if (txtValue.includes(valInputSearch)) {
+          display = true;
+          return false;
         }
+      });
+      if (display) {
+        row.show();
+      } else {
+        row.hide();
       }
     }
-  }
+  });
 };
 
 // NASCONDI INPUT E LA SUA COL
