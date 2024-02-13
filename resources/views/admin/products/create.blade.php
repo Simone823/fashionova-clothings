@@ -74,7 +74,7 @@
                             <label for="price" class="form-label">
                                 Prezzo (€)*
                             </label>
-                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{old('price')}}" required>
+                            <input type="number" step="any" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{old('price')}}" required>
 
                             @error('price')
                                 <div class="text-danger mt-1">
@@ -88,7 +88,7 @@
                             <label for="discount_percent" class="form-label">
                                 Sconto (%)
                             </label>
-                            <input onchange="showInput('price_discounted')" type="number" class="form-control @error('discount_percent') is-invalid @enderror" id="discount_percent" name="discount_percent" value="{{old('discount_percent')}}">
+                            <input onchange="showInput('price_discounted')" type="number" step="any" class="form-control @error('discount_percent') is-invalid @enderror" id="discount_percent" name="discount_percent" value="{{old('discount_percent')}}">
 
                             @error('discount_percent')
                                 <div class="text-danger mt-1">
