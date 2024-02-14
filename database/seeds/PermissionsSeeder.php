@@ -29,7 +29,26 @@ class PermissionsSeeder extends Seeder
             'permissions_view',
             'permissions_create',
             'permissions_edit',
-            'permissions_delete'
+            'permissions_delete',
+            'user_addresses_view',
+            'contacts_view',
+            'contacts_delete',
+            'categories_view',
+            'categories_create',
+            'categories_edit',
+            'categories_delete',
+            'colors_view',
+            'colors_create',
+            'colors_edit',
+            'colors_delete',
+            'sizes_view',
+            'sizes_create',
+            'sizes_edit',
+            'sizes_delete',
+            'products_view',
+            'products_create',
+            'products_edit',
+            'products_delete'
         );
 
         foreach ($permissions as $permission) {
