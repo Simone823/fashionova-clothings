@@ -1,0 +1,26 @@
+#shop {
+
+    .lists-filters {
+        
+        .list-input-genres,
+        .list-input-categories,
+        .list-input-sizes,
+        .list-input-colors {
+            width: 100%;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow-x: auto;
+            padding-bottom: 10px;
+
+            &::-webkit-scrollbar {
+                height: 4px;
+                border-radius: 2px;
+            }
+    
+            &::-webkit-scrollbar-thumb {
+                background-color: $gray;
+                border-radius: 2px;
+            }
+        }
+    }
+}

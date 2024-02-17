@@ -10,58 +10,29 @@
         <div class='container'>
             {{-- prodotti in sconto --}}
             @if(count($productsDiscounted) > 0)
-                <div class="row gy-5 gx-sm-5 mb-5">
-                    {{-- title section --}}
-                    <div class='col-12'>
-                        <h1 class='title-section'>Le migliori offerte per te</h1>
+                <div class="row gy-4 mb-5">
+                    {{-- title --}}
+                    <div class='col-12 col-md-5'>
+                        <h3 class='title-section-products'>Prodotti in Sconto</h3>
+
+                        {{-- link view all products discounted --}}
+                        <a href="{{route('guest.products.productsDiscounted')}}" class="link-primary">Vedi tutti</a>
                     </div>
 
+                    {{-- description --}}
+                    <div class="col-12 col-md-7">
+                        <p class="description-section-products">
+                            Approfitta delle nostre offerte speciali su una vasta selezione di prodotti in sconto. 
+                            Trova gli sconti su abbigliamento, scarpe, accessori e molto altro ancora.
+                            Risparmia sui tuoi acquisti di moda oggi stesso!
+                        </p>
+                    </div>
+                </div>
+
+                {{-- products card --}}
+                <div class="row gy-5 gx-sm-5 mb-5">
                     @foreach ($productsDiscounted as $product)
-                        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-                            <article class="card-product">
-                                <a href="/">
-                                    {{-- images --}}
-                                    @if (!empty($product->images))
-                                        <div id="carouselImages{{$product->code}}" class="carousel slide carousel-image-product">
-                                            <div class="carousel-inner">
-                                                @foreach (json_decode($product->images) as $key => $pathImage)
-                                                    <div class="carousel-item {{$key == 0 ? ' active' : ''}}">
-                                                        <figure class="image-product">
-                                                            <img src="/storage/{{ $pathImage }}" class="image-product" alt="{{str_replace(' ', '', $pathImage)}}">
-                                                        </figure>
-                                                    </div>                                                    
-                                                @endforeach
-                                            </div>
-                                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages{{$product->code}}" data-bs-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Previous</span>
-                                            </button>
-                                            <button class="carousel-control-next" type="button" data-bs-target="#carouselImages{{$product->code}}" data-bs-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Next</span>
-                                            </button>
-                                        </div>
-                                    @endif
-                
-                                    {{-- details --}}
-                                    <div class="details-product">
-                                        <h3 class="product-title">{{$product->name}}</h3>
-                                        <div class="colors mb-2">
-                                            <span>Colori:</span>
-                                            @foreach ($product->colors->unique() as $color)
-                                                <div class="color-circle" style="background-color: {{trim(strtolower(str_replace(' ', '', $color->name)))}};"></div>
-                                            @endforeach
-                                        </div>
-                                        <p class="text-danger fw-bolder mb-1">{{$product->getPriceDiscounted()}} €</p>
-                                        <p class="text-secondary mb-0">
-                                            Prima era:
-                                            <span class="text-decoration-line-through">{{$product->price}} €</span>
-                                            <span class="text-danger">-{{$product->discount_percent}}%</span>
-                                        </p>
-                                    </div>
-                                </a>
-                            </article>
-                        </div>
+                        @include('components.guest.productCard')
                     @endforeach
                 </div>
             @endif

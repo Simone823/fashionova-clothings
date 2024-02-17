@@ -1,3 +1,14 @@
 #homepage {
     padding-top: 0;
+
+    .title-section-products {
+        font-size: 1.75rem;
+        font-weight: bold;
+    }
+
+    .description-section-products {
+        font-size: 1.125rem;
+        margin: 0;
+        color: $gray;
+    }
 }

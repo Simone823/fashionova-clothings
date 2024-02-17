@@ -14022,7 +14022,7 @@ nav .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.45);
   z-index: 0;
 }
 
@@ -14033,10 +14033,12 @@ nav .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
 
 #hero .hero-text h1,
 #hero .hero-text .h1 {
+  font-size: 1.75rem;
   line-height: 1.625;
   letter-spacing: 0.05em;
   filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04)) drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
   margin: 0;
+  margin-bottom: 1.25rem;
 }
 
 footer {
@@ -14051,6 +14053,44 @@ footer .logo {
 
 #homepage {
   padding-top: 0;
+}
+
+#homepage .title-section-products {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+#homepage .description-section-products {
+  font-size: 1.125rem;
+  margin: 0;
+  color: #535354;
+}
+
+#shop .lists-filters .list-input-genres,
+#shop .lists-filters .list-input-categories,
+#shop .lists-filters .list-input-sizes,
+#shop .lists-filters .list-input-colors {
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+#shop .lists-filters .list-input-genres::-webkit-scrollbar,
+#shop .lists-filters .list-input-categories::-webkit-scrollbar,
+#shop .lists-filters .list-input-sizes::-webkit-scrollbar,
+#shop .lists-filters .list-input-colors::-webkit-scrollbar {
+  height: 4px;
+  border-radius: 2px;
+}
+
+#shop .lists-filters .list-input-genres::-webkit-scrollbar-thumb,
+#shop .lists-filters .list-input-categories::-webkit-scrollbar-thumb,
+#shop .lists-filters .list-input-sizes::-webkit-scrollbar-thumb,
+#shop .lists-filters .list-input-colors::-webkit-scrollbar-thumb {
+  background-color: #535354;
+  border-radius: 2px;
 }
 
 #cart-shop .card-empty-shop {
@@ -14083,6 +14123,10 @@ footer .logo {
   box-sizing: border-box;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 img {
   width: 100%;
   height: 100%;
@@ -14094,5 +14138,12 @@ a {
   color: initial;
   width: -moz-max-content;
   width: max-content;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 

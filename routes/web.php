@@ -18,16 +18,20 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 // Guest
-Route::namespace('Guest')->group(function() {
+Route::namespace('Guest')->name('guest.')->group(function() {
     // Default
-    Route::get('/', 'HomeController@index')->name('guest.home');
+    Route::get('/', 'HomeController@index')->name('home');
 
     // Contact Us
-    Route::get('/contact-us', 'ContactUsController@index')->name('guest.contactUs');
-    Route::post('/contact-us/store', 'ContactUsController@store')->name('guest.contactUs.store');
+    Route::get('/contact-us', 'ContactUsController@index')->name('contactUs');
+    Route::post('/contact-us/store', 'ContactUsController@store')->name('contactUs.store');
+
+    // Products
+    Route::get('/products/shop', 'ProductController@index')->name('products.index');
+    Route::get('/products/products-discounted', 'ProductController@productsDiscounted')->name('products.productsDiscounted');
 
     // Cart Shop
-    Route::get('/cart-shop', 'CartShopController@index')->name('guest.cartShop');
+    Route::get('/cart-shop', 'CartShopController@index')->name('cartShop');
 });
 
 // Auth group

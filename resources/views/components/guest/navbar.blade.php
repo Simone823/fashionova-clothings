@@ -21,8 +21,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/products" class='nav-link text-uppercase'>
-                        Prodotti
+                    <a href="{{route('guest.products.index')}}" class="nav-link text-uppercase @if (Route::is('guest.products.index')) active @endif">
+                        Shop
                     </a>
                 </li>
                 <li class="nav-item">
