@@ -15,17 +15,14 @@
                         </figure>
 
                         <p class='mb-0 fw-bold fs-4'>Nessun articolo nel carrello.</p>
+
+                        {{-- btn go to shop --}}
+                        <a href="{{route('guest.products.shop')}}" class="btn btn-primary text-uppercase">
+                            Vai allo shop
+                        </a>
                     </div>
                 </div>
             </div>
-
-            {{-- {cart.length == 0 ? (
-            
-        ) : (
-            <div class='row'>
-                cart products
-            </div>
-        )} --}}
 
         </div>
     </section>
