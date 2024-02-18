@@ -30,10 +30,16 @@ section {
     max-width: 800px !important;
 }
 
-// SELECT
+// INPUTS
 select:disabled {
     background-color: revert !important;
     --bs-form-select-bg-img: none !important;
+}
+
+textarea {
+    height: 110px;
+    overflow-y: auto;
+    resize: none;
 }
 
 // LINE DIVIDER

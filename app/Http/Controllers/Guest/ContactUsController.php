@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ContactUsController extends Controller
 {
     /**
-     * Show the application dashboard.
+     * Show the form contact us
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -18,6 +18,12 @@ class ContactUsController extends Controller
         return view('guest.contactUs');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         // validazione

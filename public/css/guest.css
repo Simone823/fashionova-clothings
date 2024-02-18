@@ -13881,6 +13881,12 @@ select:disabled {
   --bs-form-select-bg-img: none !important;
 }
 
+textarea {
+  height: 110px;
+  overflow-y: auto;
+  resize: none;
+}
+
 .line {
   border: 1px solid rgba(83, 83, 84, 0.5);
   border-radius: 9999px;

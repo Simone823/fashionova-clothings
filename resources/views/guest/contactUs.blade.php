@@ -17,8 +17,22 @@
             <div class="row mb-5">
                 <h3 class="text-uppercase fw-bolder mb-3">Fashionova Clothings</h3>
                 <p class="fw-bolder fs-5 mb-1">Indirizzo: <span class="fw-normal">Via Esempio 10, Italia</span></p>
-                <p class="fw-bolder fs-5 mb-0">Telefono: <span class="fw-normal">000 000 0000</span></p>
+                <p class="fw-bolder fs-5 mb-0">Telefono: <span class="fw-normal">(+39) 000 000 0000</span></p>
                 <p class="fw-bolder fs-5 mb-0">Orari: <span class="fw-normal">Da Lunedi a Venerdì 9:15-12:30 / 14.30-18-00</span></p>
+            </div>
+
+            {{-- testo descrittivo --}}
+            <div class="row mb-4">
+                <div class="col-12">
+                    <p class="fw-bold fs-4">Contatta il nostro team di supporto</p>
+                    <p class="mb-0">
+                        Siamo qui per offrirti un'esperienza di assistenza personalizzata e di alta qualità. 
+                        Compila il modulo sottostante e il nostro team ti risponderà nel
+                        minor tempo possibile. <br/>
+                        Per eventuali domande sui prodotti, suggerimenti o 
+                        informazioni sulle spedizioni, siamo a tua disposizione.
+                    </p>
+                </div>
             </div>
 
             {{-- card form --}}
@@ -137,6 +151,7 @@
                             {{-- btn submit --}}
                             <div class='col-12'>
                                 <button type='submit' class='btn btn-primary text-uppercase px-5'>
+                                    <i class="fa-regular fa-paper-plane me-1"></i>
                                     Invia
                                 </button>
                             </div>
