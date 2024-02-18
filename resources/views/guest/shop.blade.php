@@ -165,8 +165,8 @@
                                 </li>
                                 <li class="px-2 mb-2">
                                     <input
-                                        {{ session()->get('filters.' . str_replace('/products/', '', request()->server('PATH_INFO')) . '.order_by', '') == 'discount_percent-asc' ? 'checked' : '' }} type="radio" class="btn-check" name="order_by" id="discount_percent-asc" value="discount_percent-asc" autocomplete="off">
-                                    <label class="btn btn btn-outline-dark" for="discount_percent-asc">Offerte</label>
+                                        {{ session()->get('filters.' . str_replace('/products/', '', request()->server('PATH_INFO')) . '.order_by', '') == 'discount_percent-desc' ? 'checked' : '' }} type="radio" class="btn-check" name="order_by" id="discount_percent-desc" value="discount_percent-desc" autocomplete="off">
+                                    <label class="btn btn btn-outline-dark" for="discount_percent-desc">Offerte</label>
                                 </li>
                             </ul>
 

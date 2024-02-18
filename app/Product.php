@@ -264,7 +264,7 @@ class Product extends Model
                 'sizes.*' => 'integer|exists:sizes,id',
                 'colors' => 'array',
                 'colors.*' => 'integer|exists:colors,id',
-                'order_by' => 'nullable|string|in:price-asc,price-desc,discount_percent-asc'
+                'order_by' => 'nullable|string|in:price-asc,price-desc,discount_percent-desc'
             ]);
 
             // azione submit
@@ -312,7 +312,13 @@ class Product extends Model
                 $column = $values[0];
                 $order = $values[1];
 
-                $query->orderBy($column, $order);
+                if ($column == 'price') {
+                    // Ordina per prezzo e ricalcola il prezzo se un prodotto è scontato
+                    $query->orderByRaw("IF(discount_percent IS NULL OR discount_percent = '', price, (price - (price * discount_percent / 100))) $order");
+                } else {
+                    // ordina per la colonna specificata
+                    $query->orderBy($column, $order);
+                }
             }
         }
     }
