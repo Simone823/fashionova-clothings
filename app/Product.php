@@ -2,9 +2,11 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Kyslik\ColumnSortable\Sortable;
 use Intervention\Image\Facades\Image;
@@ -193,7 +195,7 @@ class Product extends Model
             }
         }
     }
-    
+
     /**
      * Elimina un'immagine specifica e aggiorna il campo images
      *
@@ -231,6 +233,88 @@ class Product extends Model
         $priceDiscounted = $this->price - ($this->price * ($this->discount_percent / 100));
 
         return number_format($priceDiscounted, 2);
+    }
+    
+    /**
+     * Method scope Filtra prodotti
+     *
+     * @param Builder $query
+     * @param Request $request
+     *
+     * @return void
+     */
+    public function scopeFilterProducts(Builder $query, Request $request): void
+    {
+        // recupero il metodo del controller per salvare i filtri in base al metodo
+        $methodController = str_replace('/products/', '', $request->server('PATH_INFO'));
+
+        // Recupera i filtri salvati in sessione
+        $filters = session()->get("filters.{$methodController}", []);
+
+        if ($request->all()) {
+            // validazione request
+            $request->validate([
+                'action_submit' => 'integer',
+                'action_reset' => 'integer',
+                'genres' => 'array',
+                'genres.*' => 'integer|exists:genres,id',
+                'categories' => 'array',
+                'categories.*' => 'integer|exists:categories,id',
+                'sizes' => 'array',
+                'sizes.*' => 'integer|exists:sizes,id',
+                'colors' => 'array',
+                'colors.*' => 'integer|exists:colors,id',
+                'order_by' => 'nullable|string|in:price-asc,price-desc,discount_percent-asc'
+            ]);
+
+            // azione submit
+            if ($request->action_submit == 1) {
+                // salvo i filtri in sessione
+                $filters = $request->all();
+                session()->put("filters.{$methodController}", $filters);
+            }
+
+            // azione reset
+            if ($request->action_reset == 1) {
+                // svuoto i filtri in sessione
+                $filters = [];
+                session()->put("filters.{$methodController}", $filters);
+            }
+        }
+
+        // Applica filtri se presenti
+        if (!empty($filters)) {
+            if (isset($filters['genres'])) {
+                $query->whereIn('genre_id', $filters['genres']);
+            }
+
+            if (isset($filters['categories'])) {
+                $query->whereHas('categories', function ($categoryQuery) use ($filters) {
+                    $categoryQuery->whereIn('id', $filters['categories']);
+                });
+            }
+
+            if (isset($filters['sizes'])) {
+                $query->whereHas('sizes', function ($sizeQuery) use ($filters) {
+                    $sizeQuery->whereIn('id', $filters['sizes']);
+                });
+            }
+
+            if (isset($filters['colors'])) {
+                $query->whereHas('colors', function ($colorQuery) use ($filters) {
+                    $colorQuery->whereIn('id', $filters['colors']);
+                });
+            }
+
+            if (isset($filters['order_by']) && !empty($filters['order_by'])) {
+                // recupero la colonna e l'ordinamento
+                $values = explode('-', $filters['order_by']);
+                $column = $values[0];
+                $order = $values[1];
+
+                $query->orderBy($column, $order);
+            }
+        }
     }
 
     /**

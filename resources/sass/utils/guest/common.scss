@@ -25,84 +25,6 @@ section {
     box-shadow: 0 0.125rem 0.25rem rgba($color: $black, $alpha: 0.075);
 }
 
-.card-product {
-    max-width: none;
-    height: 100%;
-
-    .image-product {
-        min-height: 410px;
-        max-height: 410px;
-        overflow: hidden;
-        background-color: $light-gray;
-
-        img {
-            width: 100%;
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .wrapper-badges {
-            position: absolute;
-            z-index: 1;
-            top: 10px;
-            left: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-    }
-    
-    .carousel-inner {
-        max-width: 100%;
-    }
-
-    .carousel-control-next-icon {
-        background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
-    }
-
-    .carousel-control-prev-icon {
-        background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
-    }
-
-    .details-product {
-
-        .product-title {
-            width: 100%;
-            max-width: 100%;
-            font-size: 1.125rem !important;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
-        .colors {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.5rem;
-
-            .color-circle {
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                border: 1px solid $gray;
-            }
-        }
-    }
-
-    @media screen and (max-width: 576px) {
-        max-width: max-content;
-        margin: 0 auto;
-
-        .image-product {
-            max-width: 350px;
-            height: auto;
-        }
-    }
-}
-
 // MODAL
 .modal-dialog-large {
     max-width: 800px !important;
@@ -119,4 +41,12 @@ select:disabled {
     border: 1px solid rgba($color: $gray, $alpha: 0.5);
     border-radius: 9999px;
     border-width: 0.5px !important;
+}
+
+// CERCHIO COLORE
+.color-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid $gray;
 }

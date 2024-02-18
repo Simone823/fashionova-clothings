@@ -13,9 +13,18 @@
                             <div class="carousel-item {{$key == 0 ? ' active' : ''}}">
                                 <figure class="image-product">
                                     <img src="/storage/{{ $pathImage }}" class="image-product" alt="{{str_replace(' ', '', $pathImage)}}">
+                                    
+                                    {{-- badges --}}
+                                    <div class="wrapper-badges">
+                                        @if (!empty($product->discount_percent))
+                                            <span class="badge bg-danger text-uppercase">Sconto</span>
+                                        @endif
+                                    </div>
                                 </figure>
                             </div>                                                    
                         @endforeach
+
+                        <span class="badge bg-danger">Sconto</span>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages{{$product->code}}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
