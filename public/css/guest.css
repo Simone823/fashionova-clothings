@@ -13894,7 +13894,7 @@ select:disabled {
   border: 1px solid #535354;
 }
 
-nav {
+#nav-guest {
   width: 100%;
   position: sticky !important;
   top: 0;
@@ -13904,14 +13904,14 @@ nav {
   color: #fff;
 }
 
-nav .navbar-brand {
+#nav-guest .navbar-brand {
   display: block;
   width: 120px;
   padding: 0;
   margin: 0;
 }
 
-nav .navbar-collapse .navbar-nav .nav-item .nav-link {
+#nav-guest .navbar-collapse .navbar-nav .nav-item .nav-link {
   font-weight: bold;
   letter-spacing: 0.05em;
   color: #535354;
@@ -13920,8 +13920,8 @@ nav .navbar-collapse .navbar-nav .nav-item .nav-link {
   width: max-content;
 }
 
-nav .navbar-collapse .navbar-nav .nav-item .nav-link.active,
-nav .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
+#nav-guest .navbar-collapse .navbar-nav .nav-item .nav-link.active,
+#nav-guest .navbar-collapse .navbar-nav .nav-item .nav-link:hover {
   color: #000;
 }
 

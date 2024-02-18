@@ -28,7 +28,7 @@ class ProductController extends Controller
 
         // recupera i prodotti filtrati se ci sono filtri in sessione, se no torna tutti i prodotti
         $query = Product::with(['categories', 'sizes'])->where('visible', 1);
-        $products = $query->filterProducts($request)->paginate(20);
+        $products = $query->filterProducts($request)->paginate(config('default_paginate_guest'));
 
         // filtri
         $genres = Genre::orderBy('name', 'asc')->get();
@@ -55,7 +55,7 @@ class ProductController extends Controller
 
         // recupero i prodotti in sconto
         $query = Product::with(['categories', 'sizes'])->where('discount_percent', '!=', null)->where('visible', 1);
-        $products = $query->filterProducts($request)->paginate(20);
+        $products = $query->filterProducts($request)->paginate(config('default_paginate_guest'));
 
         // filtri
         $genres = Genre::orderBy('name', 'asc')->get();
@@ -83,7 +83,7 @@ class ProductController extends Controller
         // recupero i prodotti con genere 'Donna'
         $genreIdWoman = Genre::where('name', 'Donna')->pluck('id')->first();
         $query = Product::with(['categories', 'sizes'])->where('genre_id', $genreIdWoman)->where('visible', 1);
-        $products = $query->filterProducts($request)->paginate(20);
+        $products = $query->filterProducts($request)->paginate(config('default_paginate_guest'));
 
         // filtri
         $categories = Category::orderBy('name', 'asc')->get();
@@ -110,7 +110,7 @@ class ProductController extends Controller
         // recupero i prodotti con genere 'Uomo'
         $genreIdMan = Genre::where('name', 'Uomo')->pluck('id')->first();
         $query = Product::with(['categories', 'sizes'])->where('genre_id', $genreIdMan)->where('visible', 1);
-        $products = $query->filterProducts($request)->paginate(20);
+        $products = $query->filterProducts($request)->paginate(config('default_paginate_guest'));
 
         // filtri
         $categories = Category::orderBy('name', 'asc')->get();

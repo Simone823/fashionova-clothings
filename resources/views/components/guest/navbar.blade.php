@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light shadow-sm">
+<nav id="nav-guest" class="navbar navbar-expand-md navbar-light shadow-sm">
     <div class="container">
 
         {{-- logo --}}
