@@ -38,6 +38,12 @@
             {{-- details --}}
             <div class="details-product">
                 <h3 class="product-title">{{$product->name}}</h3>
+                <div class="sizes mb-2">
+                    <span>Taglie:</span>
+                    @foreach ($product->sizes as $size)
+                        <span>{{$size->name}}</span>
+                    @endforeach
+                </div>
                 <div class="colors mb-2">
                     <span>Colori:</span>
                     @foreach ($product->colors->unique() as $color)

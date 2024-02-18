@@ -14042,6 +14042,7 @@ footer .logo {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  margin-bottom: 1rem;
 }
 
 .card-product .details-product .colors {
