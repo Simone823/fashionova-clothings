@@ -1,9 +1,5 @@
-@php
-    // default metti la classe col-xl-3 se non è settato alcun valore
-    $colXl3 = isset($colXl3) ? $colXl3 : true;
-@endphp
-<div class="col-12 col-sm-6 col-lg-4 {{$colXl3 ? 'col-xl-3' : ''}}">
-    <article class="card-product" data-product-id="{{$product->id}}">
+<div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+    <article class="card-product">
         <a href="/">
             {{-- images --}}
             @if (!empty($product->images))
@@ -46,12 +42,17 @@
                         <div class="color-circle" style="background-color: {{trim(strtolower(str_replace(' ', '', $color->name)))}};"></div>
                     @endforeach
                 </div>
-                <p class="text-danger fw-bolder mb-1">{{$product->getPriceDiscounted()}} €</p>
-                <p class="text-secondary mb-0">
-                    Prima era:
-                    <span class="text-decoration-line-through">{{$product->price}} €</span>
-                    <span class="text-danger">-{{$product->discount_percent}}%</span>
-                </p>
+                @if(!empty($product->discount_percent))
+                    <p class="text-danger fw-bolder mb-1">{{$product->getPriceDiscounted()}} €</p>
+                    <p class="text-secondary mb-0">
+                        Prima era:
+                        <span class="text-decoration-line-through">{{$product->price}} €</span>
+                        <span class="text-danger">-{{$product->discount_percent}}%</span>
+                    </p>
+
+                    @else
+                        <p class="mb-0">{{$product->price}} €</p>
+                @endif
             </div>
         </a>
     </article>

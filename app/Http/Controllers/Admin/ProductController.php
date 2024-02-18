@@ -31,7 +31,7 @@ class ProductController extends Controller
         }
 
         // recupero i prodotti
-        $products = Product::sortable(['code' => 'asc'])->paginate(config('app.default_paginate'));
+        $products = Product::sortable(['created_at' => 'desc'])->paginate(config('app.default_paginate'));
 
         return view('admin.products.index', compact('products'));
     }
@@ -98,7 +98,7 @@ class ProductController extends Controller
             'sizes.*.colors.*.quantity_available' => 'nullable|integer|min:1',
             'images_colors' => 'nullable|array',
             'images_colors.*' => 'nullable|array',
-            'images_colors.*.*' => 'nullable|image|mimetypes:image/png,image/jpg,image/jpeg,image/webp|max:4000'
+            'images_colors.*.*' => 'nullable|image|mimetypes:image/png,image/jpg,image/jpeg,image/webp|max:7000'
         ]);
 
         // creo un nuovo prodotto
@@ -240,7 +240,7 @@ class ProductController extends Controller
             'sizes.*.colors.*.quantity_available' => 'nullable|integer|min:1',
             'images_colors' => 'nullable|array',
             'images_colors.*' => 'nullable|array',
-            'images_colors.*.*' => 'nullable|image|mimetypes:image/png,image/jpg,image/jpeg,image/webp|max:4000'
+            'images_colors.*.*' => 'nullable|image|mimetypes:image/png,image/jpg,image/jpeg,image/webp|max:7000'
         ]);
 
         // recupero il prodotto
