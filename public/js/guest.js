@@ -40271,6 +40271,7 @@ __webpack_require__(/*! ./utils/common */ "./resources/js/utils/common.js");
 
 // Views Guest
 __webpack_require__(/*! ./views/guest/cartShop */ "./resources/js/views/guest/cartShop.js");
+__webpack_require__(/*! ./views/guest/shop */ "./resources/js/views/guest/shop.js");
 /***************************************** */
 
 /***/ }),
@@ -40502,6 +40503,43 @@ getTotalItemToCart = function getTotalItemToCart() {
 //     // localStorage set total
 //     localStorage.setItem('total', state.total);
 // }
+
+/***/ }),
+
+/***/ "./resources/js/views/guest/shop.js":
+/*!******************************************!*\
+  !*** ./resources/js/views/guest/shop.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// invio form filtri prodotti (azione submit o reset per eliminare i filtri)
+submitFormFiltersProducts = function submitFormFiltersProducts(event) {
+  event.preventDefault();
+  var form = event.target.form;
+
+  // type btn (submit o reset)
+  var typeBtn = event.target.type;
+
+  // input hidden action submit o reset
+  var inputHiddenActionSubmit = $('input[type="hidden"][id="action_submit"]');
+  var inputHiddenActionReset = $('input[type="hidden"][id="action_reset"]');
+
+  // controllo il tipo del btn
+  if (typeBtn == 'submit') {
+    inputHiddenActionSubmit.val(1);
+    inputHiddenActionReset.val(0);
+  } else if (typeBtn == 'reset') {
+    inputHiddenActionSubmit.val(0);
+    inputHiddenActionReset.val(1);
+  } else {
+    inputHiddenActionSubmit.val(1);
+    inputHiddenActionReset.val(0);
+  }
+
+  // invio form
+  form.submit();
+};
 
 /***/ }),
 

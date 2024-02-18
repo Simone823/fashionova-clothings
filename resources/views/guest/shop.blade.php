@@ -13,75 +13,177 @@
             </div>
 
             {{-- liste filtri --}}
-            <div class="row lists-filters mb-5">
-                <div class="card border-0 bg-transparent">
-                    <div class="card-header">
-                        <p class="mb-0 fs-5 fw-semibold">Filtra per</p>
-                    </div>
+            <div class="row mb-4">
+                <form class="col-12" action="{{route("guest.products.{$controllerMethodName}")}}" method="GET">
+                    {{-- submit o reset filtri --}}
+                    <input type="hidden" name="action_submit" id="action_submit" value="0">
+                    <input type="hidden" name="action_reset" id="action_reset" value="0">
 
-                    <div class="card-body">
-                        <form class="col-12" action="{{route('guest.products.index')}}" method="GET">
-                            {{-- filtro generi --}}
-                            <div class="filter-genres mb-3">
-                                <p class="fw-bolder mb-2">Genere</p>
-                                <ul class="list-input-genres">
-                                    @foreach($genres as $genre)
-                                        <input {{in_array($genre->id, session()->get('filters.genres', [])) ? 'checked' : ''}} type="checkbox" class="btn-check" id="genres-{{$genre->id}}" name="genres[]" value="{{$genre->id}}">
+                    {{-- filtri --}}
+                    <div class="filters">
+                        {{-- filtro genere --}}
+                        <div class="dropdown-filter-genres">
+                            <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                Genere
+                                <span>
+                                    @if(count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".genres", [])) > 0)
+                                        ({{count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".genres"))}})
+                                    @endif
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @foreach($genres as $genre)
+                                    <li class="px-2 mb-2">
+                                        <input {{in_array($genre->id, session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".genres", [])) ? 'checked' : ''}} type="checkbox" class="btn-check" id="genres-{{$genre->id}}" name="genres[]" value="{{$genre->id}}">
                                         <label class="btn btn-outline-dark" for="genres-{{$genre->id}}">
                                             {{$genre->name}}
                                         </label>
-                                    @endforeach
-                                </ul>
-                            </div>
-        
-                            {{-- filtro categorie --}}
-                            <div class="filter-categories mb-3">
-                                <p class="fw-bolder mb-2">Categorie</p>
-                                <ul class="list-input-categories">
-                                    @foreach($categories as $category)
-                                        <input {{in_array($category->id, session()->get('filters.categories', [])) ? 'checked' : ''}}  type="checkbox" class="btn-check" id="categories-{{$category->id}}" name="categories[]" value="{{$category->id}}">
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                            @error('genres.*')
+                                <div class="text-danger mt-1">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+
+                        {{-- filtro categorie --}}
+                        <div class="dropdown-filter-categories">
+                            <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                Categorie
+                                <span>
+                                    @if(count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".categories", [])) > 0)
+                                        ({{count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".categories"))}})
+                                    @endif
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @foreach($categories as $category)
+                                    <li class="px-2 mb-2">
+                                        <input {{in_array($category->id, session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".categories", [])) ? 'checked' : ''}} type="checkbox" class="btn-check" id="categories-{{$category->id}}" name="categories[]" value="{{$category->id}}">
                                         <label class="btn btn-outline-dark" for="categories-{{$category->id}}">
                                             {{$category->name}}
                                         </label>
-                                    @endforeach
-                                </ul>
-                            </div>
-        
-                            {{-- filtro taglia --}}
-                            <div class="filter-sizes mb-3">
-                                <p class="fw-bolder mb-2">Taglie</p>
-                                <ul class="list-input-sizes">
-                                    @foreach($sizes as $size)
-                                        <input {{in_array($size->id, session()->get('filters.sizes', [])) ? 'checked' : ''}}  type="checkbox" class="btn-check" id="sizes-{{$size->id}}" name="sizes[]" value="{{$size->id}}">
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                            @error('categories.*')
+                                <div class="text-danger mt-1">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+
+                        {{-- filtro taglie --}}
+                        <div class="dropdown-filter-sizes">
+                            <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                Taglie
+                                <span>
+                                    @if(count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".sizes", [])) > 0)
+                                        ({{count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".sizes"))}})
+                                    @endif
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @foreach($sizes as $size)
+                                    <li class="px-2 mb-2">
+                                        <input {{in_array($size->id, session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".sizes", [])) ? 'checked' : ''}} type="checkbox" class="btn-check" id="sizes-{{$size->id}}" name="sizes[]" value="{{$size->id}}">
                                         <label class="btn btn-outline-dark" for="sizes-{{$size->id}}">
                                             {{$size->name}}
                                         </label>
-                                    @endforeach
-                                </ul>
-                            </div>
-        
-                            {{-- filtro colori --}}
-                            <div class="filter-colors mb-3">
-                                <p class="fw-bolder mb-2">Colori</p>
-                                <ul class="list-input-colors">
-                                    @foreach($colors as $color)
-                                        <input {{in_array($color->id, session()->get('filters.colors', [])) ? 'checked' : ''}}  type="checkbox" class="btn-check" id="colors-{{$color->id}}" name="colors[]" value="{{$color->id}}">
+                                    </li>
+                                @endforeach
+                            </ul>
+
+                            @error('sizes.*')
+                                <div class="text-danger mt-1">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+
+                        {{-- filtro colori --}}
+                        <div class="dropdown-filter-colors">
+                            <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                Colori
+                                <span>
+                                    @if(count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".colors", [])) > 0)
+                                        ({{count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".colors"))}})
+                                    @endif
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @foreach($colors as $color)
+                                    <li class="px-2 mb-2">
+                                        <input {{in_array($color->id, session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".colors", [])) ? 'checked' : ''}} type="checkbox" class="btn-check" id="colors-{{$color->id}}" name="colors[]" value="{{$color->id}}">
                                         <label class="btn btn-outline-dark" for="colors-{{$color->id}}">
+                                            <div class="color-circle d-inline-block" style="background-color: {{trim(strtolower(str_replace(' ', '', $color->name)))}};">
+                                            </div>
                                             {{$color->name}}
                                         </label>
-                                    @endforeach
-                                </ul>
-                            </div>
+                                    </li>
+                                @endforeach
+                            </ul>
 
-                            {{-- btn actions --}}
-                            <div class="actions">
-                                <button type="submit" class="btn btn-primary">
-                                    Filtra
-                                </button>
-                            </div>
-                        </form>
+                            @error('colors.*')
+                                <div class="text-danger mt-1">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
+
+                        {{-- ordina per --}}
+                        <div class="dropdown-filter-order-by">
+                            <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                Ordina per
+                                <span>
+                                    @if(!empty(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".order_by", '')))
+                                        (1)
+                                    @endif
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li class="px-2 mb-2">
+                                    <input {{session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".order_by", '') == 'price-asc' ? 'checked' : ''}} type="radio" class="btn-check" name="order_by" id="price-asc" value="price-asc" autocomplete="off">
+                                    <label class="btn btn-outline-dark" for="price-asc">Prezzo crescente</label>
+                                </li>
+                                <li class="px-2 mb-2">
+                                    <input {{session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".order_by", '') == 'price-desc' ? 'checked' : ''}} type="radio" class="btn-check" name="order_by" id="price-desc" value="price-desc" autocomplete="off">
+                                    <label class="btn btn btn-outline-dark" for="price-desc">Prezzo descrescente</label>
+                                </li>
+                                <li class="px-2 mb-2">
+                                    <input {{session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".order_by", '') == 'discount_percent-asc' ? 'checked' : ''}} type="radio" class="btn-check" name="order_by" id="discount_percent-asc" value="discount_percent-asc" autocomplete="off">
+                                    <label class="btn btn btn-outline-dark" for="discount_percent-asc">Offerte</label>
+                                </li>
+                            </ul>
+
+                            @error('order_by')
+                                <div class="text-danger mt-1">
+                                    {{$message}}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
-                </div>
+
+                    {{-- btn actions --}}
+                    <div class="actions">
+                        <button onclick="submitFormFiltersProducts(event);" type="submit" class="btn btn-primary text-uppercase px-4">
+                            Applica filtri
+                        </button>
+                        <button onclick="submitFormFiltersProducts(event);" type="reset" class="btn btn-secondary text-uppercase px-4">
+                            Resetta filtri
+                        </button>
+                    </div>
+
+                    <div class="count-products">
+                        <p class="mb-0 text-secondary">
+                            {{count($products)}} prodotti
+                        </p>
+                    </div>
+                </form>
             </div>
 
             {{-- list products --}}
@@ -93,7 +195,10 @@
 
                     @else
                         <div class="col-12">
-                            no prodotti
+                            <div class="bg-info bg-opacity-75 p-3">
+                                <strong>Info!</strong>
+                                Nessun Prodotto
+                            </div>
                         </div>
                 @endif
            </div>

@@ -1,26 +1,26 @@
 #shop {
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 1rem;
 
-    .lists-filters {
-        
-        .list-input-genres,
-        .list-input-categories,
-        .list-input-sizes,
-        .list-input-colors {
-            width: 100%;
-            max-width: 100%;
-            white-space: nowrap;
-            overflow-x: auto;
-            padding-bottom: 10px;
-
-            &::-webkit-scrollbar {
-                height: 4px;
-                border-radius: 2px;
-            }
-    
-            &::-webkit-scrollbar-thumb {
-                background-color: $gray;
-                border-radius: 2px;
+        .dropdown-filter-genres,
+        .dropdown-filter-categories,
+        .dropdown-filter-sizes,
+        .dropdown-filter-colors,
+        .dropdown-filter-order-by {
+            .dropdown-menu {
+                max-height: 200px;
+                overflow-y: auto;
             }
         }
+    }
+
+    .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: .625rem;
     }
 }

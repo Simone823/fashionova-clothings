@@ -13932,13 +13932,6 @@ section .title-section {
   gap: 0.5rem;
 }
 
-.card-product .details-product .colors .color-circle {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 1px solid #535354;
-}
-
 @media screen and (max-width: 576px) {
   .card-product {
     max-width: -moz-max-content;
@@ -13965,6 +13958,13 @@ select:disabled {
   border: 1px solid rgba(83, 83, 84, 0.5);
   border-radius: 9999px;
   border-width: 0.5px !important;
+}
+
+.color-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid #535354;
 }
 
 nav {
@@ -14066,31 +14066,27 @@ footer .logo {
   color: #535354;
 }
 
-#shop .lists-filters .list-input-genres,
-#shop .lists-filters .list-input-categories,
-#shop .lists-filters .list-input-sizes,
-#shop .lists-filters .list-input-colors {
-  width: 100%;
-  max-width: 100%;
-  white-space: nowrap;
-  overflow-x: auto;
-  padding-bottom: 10px;
+#shop .filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-#shop .lists-filters .list-input-genres::-webkit-scrollbar,
-#shop .lists-filters .list-input-categories::-webkit-scrollbar,
-#shop .lists-filters .list-input-sizes::-webkit-scrollbar,
-#shop .lists-filters .list-input-colors::-webkit-scrollbar {
-  height: 4px;
-  border-radius: 2px;
+#shop .filters .dropdown-filter-genres .dropdown-menu,
+#shop .filters .dropdown-filter-categories .dropdown-menu,
+#shop .filters .dropdown-filter-sizes .dropdown-menu,
+#shop .filters .dropdown-filter-colors .dropdown-menu,
+#shop .filters .dropdown-filter-order-by .dropdown-menu {
+  max-height: 200px;
+  overflow-y: auto;
 }
 
-#shop .lists-filters .list-input-genres::-webkit-scrollbar-thumb,
-#shop .lists-filters .list-input-categories::-webkit-scrollbar-thumb,
-#shop .lists-filters .list-input-sizes::-webkit-scrollbar-thumb,
-#shop .lists-filters .list-input-colors::-webkit-scrollbar-thumb {
-  background-color: #535354;
-  border-radius: 2px;
+#shop .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.625rem;
 }
 
 #cart-shop .card-empty-shop {
