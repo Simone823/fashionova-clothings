@@ -36,7 +36,7 @@ class ProductController extends Controller
         $sizes = Size::orderBy('name', 'asc')->get();
         $colors = Color::orderBy('name', 'asc')->get();
 
-        return view('guest.shop', compact('controllerMethodName', 'titlePage', 'products', 'genres', 'categories', 'sizes', 'colors'));
+        return view('guest.products.shop', compact('controllerMethodName', 'titlePage', 'products', 'genres', 'categories', 'sizes', 'colors'));
     }
 
     /**
@@ -63,7 +63,7 @@ class ProductController extends Controller
         $sizes = Size::orderBy('name', 'asc')->get();
         $colors = Color::orderBy('name', 'asc')->get();
 
-        return view('guest.shop', compact('controllerMethodName', 'titlePage', 'products', 'genres', 'categories', 'sizes', 'colors'));
+        return view('guest.products.shop', compact('controllerMethodName', 'titlePage', 'products', 'genres', 'categories', 'sizes', 'colors'));
     }
 
     /**
@@ -90,7 +90,7 @@ class ProductController extends Controller
         $sizes = Size::orderBy('name', 'asc')->get();
         $colors = Color::orderBy('name', 'asc')->get();
 
-        return view('guest.shop', compact('controllerMethodName', 'titlePage', 'products', 'categories', 'sizes', 'colors'));
+        return view('guest.products.shop', compact('controllerMethodName', 'titlePage', 'products', 'categories', 'sizes', 'colors'));
     }
 
     /**
@@ -117,6 +117,6 @@ class ProductController extends Controller
         $sizes = Size::orderBy('name', 'asc')->get();
         $colors = Color::orderBy('name', 'asc')->get();
 
-        return view('guest.shop', compact('controllerMethodName', 'titlePage', 'products', 'categories', 'sizes', 'colors'));
+        return view('guest.products.shop', compact('controllerMethodName', 'titlePage', 'products', 'categories', 'sizes', 'colors'));
     }
 }
