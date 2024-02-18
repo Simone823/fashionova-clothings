@@ -21,8 +21,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('guest.products.shop')}}" class="nav-link text-uppercase @if (Route::is('guest.products.index')) active @endif">
+                    <a href="{{route('guest.products.shop')}}" class="nav-link text-uppercase @if (Route::is('guest.products.shop')) active @endif">
                         Shop
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('guest.products.productsWoman')}}" class="nav-link text-uppercase @if (Route::is('guest.products.productsWoman')) active @endif">
+                        Donna
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('guest.products.productsMan')}}" class="nav-link text-uppercase @if (Route::is('guest.products.productsMan')) active @endif">
+                        Uomo
                     </a>
                 </li>
                 <li class="nav-item">

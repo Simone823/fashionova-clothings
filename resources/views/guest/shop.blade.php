@@ -22,32 +22,34 @@
                     {{-- filtri --}}
                     <div class="filters">
                         {{-- filtro genere --}}
-                        <div class="dropdown-filter-genres">
-                            <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                Genere
-                                <span>
-                                    @if(count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".genres", [])) > 0)
-                                        ({{count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".genres"))}})
-                                    @endif
-                                </span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                @foreach($genres as $genre)
-                                    <li class="px-2 mb-2">
-                                        <input {{in_array($genre->id, session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".genres", [])) ? 'checked' : ''}} type="checkbox" class="btn-check" id="genres-{{$genre->id}}" name="genres[]" value="{{$genre->id}}">
-                                        <label class="btn btn-outline-dark" for="genres-{{$genre->id}}">
-                                            {{$genre->name}}
-                                        </label>
-                                    </li>
-                                @endforeach
-                            </ul>
+                        @if($controllerMethodName != 'productsWoman' && $controllerMethodName != 'productsMan')
+                            <div class="dropdown-filter-genres">
+                                <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    Genere
+                                    <span>
+                                        @if(count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".genres", [])) > 0)
+                                            ({{count(session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".genres"))}})
+                                        @endif
+                                    </span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    @foreach($genres as $genre)
+                                        <li class="px-2 mb-2">
+                                            <input {{in_array($genre->id, session()->get("filters." . str_replace('/products/', '', request()->server('PATH_INFO')) . ".genres", [])) ? 'checked' : ''}} type="checkbox" class="btn-check" id="genres-{{$genre->id}}" name="genres[]" value="{{$genre->id}}">
+                                            <label class="btn btn-outline-dark" for="genres-{{$genre->id}}">
+                                                {{$genre->name}}
+                                            </label>
+                                        </li>
+                                    @endforeach
+                                </ul>
 
-                            @error('genres.*')
-                                <div class="text-danger mt-1">
-                                    {{$message}}
-                                </div>
-                            @enderror
-                        </div>
+                                @error('genres.*')
+                                    <div class="text-danger mt-1">
+                                        {{$message}}
+                                    </div>
+                                @enderror
+                            </div>
+                        @endif
 
                         {{-- filtro categorie --}}
                         <div class="dropdown-filter-categories">
