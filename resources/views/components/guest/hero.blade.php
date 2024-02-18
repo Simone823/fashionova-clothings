@@ -6,7 +6,7 @@
                     Esplora il tuo stile unico con Fashionova Clothings.
                     Scopri la moda che parla di te. Benvenuto in un mondo di eleganza senza tempo. 
                 </h1>
-                <a href='/' class='btn btn-primary'>
+                <a href='{{route('guest.products.shop')}}' class='btn btn-primary'>
                     Esplora la collezione
                 </a>
             </div>
