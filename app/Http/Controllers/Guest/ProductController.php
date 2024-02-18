@@ -27,7 +27,7 @@ class ProductController extends Controller
         $titlePage = "Shop";
 
         // recupera i prodotti filtrati se ci sono filtri in sessione, se no torna tutti i prodotti
-        $query = Product::with(['categories', 'sizes'])->where('visible', 1);
+        $query = Product::orderBy('created_at', 'desc')->with(['categories', 'sizes'])->where('visible', 1);
         $products = $query->filterProducts($request)->paginate(config('default_paginate_guest'));
 
         // filtri
@@ -54,7 +54,7 @@ class ProductController extends Controller
         $titlePage = "Prodotti in sconto";
 
         // recupero i prodotti in sconto
-        $query = Product::with(['categories', 'sizes'])->where('discount_percent', '!=', null)->where('visible', 1);
+        $query = Product::orderBy('created_at', 'desc')->with(['categories', 'sizes'])->where('discount_percent', '!=', null)->where('visible', 1);
         $products = $query->filterProducts($request)->paginate(config('default_paginate_guest'));
 
         // filtri
@@ -82,7 +82,7 @@ class ProductController extends Controller
 
         // recupero i prodotti con genere 'Donna'
         $genreIdWoman = Genre::where('name', 'Donna')->pluck('id')->first();
-        $query = Product::with(['categories', 'sizes'])->where('genre_id', $genreIdWoman)->where('visible', 1);
+        $query = Product::orderBy('created_at', 'desc')->with(['categories', 'sizes'])->where('genre_id', $genreIdWoman)->where('visible', 1);
         $products = $query->filterProducts($request)->paginate(config('default_paginate_guest'));
 
         // filtri
@@ -109,7 +109,7 @@ class ProductController extends Controller
 
         // recupero i prodotti con genere 'Uomo'
         $genreIdMan = Genre::where('name', 'Uomo')->pluck('id')->first();
-        $query = Product::with(['categories', 'sizes'])->where('genre_id', $genreIdMan)->where('visible', 1);
+        $query = Product::orderBy('created_at', 'desc')->with(['categories', 'sizes'])->where('genre_id', $genreIdMan)->where('visible', 1);
         $products = $query->filterProducts($request)->paginate(config('default_paginate_guest'));
 
         // filtri
