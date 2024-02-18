@@ -1,26 +1,24 @@
-<div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+<div class="col-12 col-md-6 col-lg-4 col-xl-3">
     <article class="card-product">
         <a href="/">
-            {{-- images --}}
+            {{-- carousel images --}}
             @if (!empty($product->images))
                 <div id="carouselImages{{$product->code}}" class="carousel slide carousel-image-product">
                     <div class="carousel-inner">
                         @foreach (json_decode($product->images) as $key => $pathImage)
                             <div class="carousel-item {{$key == 0 ? ' active' : ''}}">
-                                <figure class="image-product">
+                                <figure class="figure-image-product">
                                     <img src="/storage/{{ $pathImage }}" class="image-product" alt="{{str_replace(' ', '', $pathImage)}}">
-                                    
-                                    {{-- badges --}}
-                                    <div class="wrapper-badges">
-                                        @if (!empty($product->discount_percent))
-                                            <span class="badge bg-danger text-uppercase">Sconto</span>
-                                        @endif
-                                    </div>
                                 </figure>
                             </div>                                                    
                         @endforeach
 
-                        <span class="badge bg-danger">Sconto</span>
+                        {{-- badges --}}
+                        <div class="wrapper-badges">
+                            @if (!empty($product->discount_percent))
+                                <span class="badge bg-danger text-uppercase">Sconto</span>
+                            @endif
+                        </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages{{$product->code}}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
