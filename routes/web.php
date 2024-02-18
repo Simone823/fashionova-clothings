@@ -27,7 +27,7 @@ Route::namespace('Guest')->name('guest.')->group(function() {
     Route::post('/contact-us/store', 'ContactUsController@store')->name('contactUs.store');
 
     // Products
-    Route::get('/products/shop', 'ProductController@index')->name('products.index');
+    Route::get('/products/shop', 'ProductController@shop')->name('products.shop');
     Route::get('/products/products-discounted', 'ProductController@productsDiscounted')->name('products.productsDiscounted');
 
     // Cart Shop
