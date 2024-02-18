@@ -15,6 +15,10 @@
 
                         {{-- badges --}}
                         <div class="wrapper-badges">
+                            @if(Carbon\Carbon::parse($product->created_at)->diffInDays() < 30)
+                                <span class="badge bg-secondary text-uppercase">New</span>
+                            @endif
+
                             @if (!empty($product->discount_percent))
                                 <span class="badge bg-danger text-uppercase">Sconto</span>
                             @endif
