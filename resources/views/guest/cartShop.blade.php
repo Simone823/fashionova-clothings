@@ -8,7 +8,14 @@
 
             <div class='row'>
                 <div class='col-12'>
-                    <div class='card card-empty-shop shadow-sm'>
+
+                    {{-- card shop --}}
+                    <div class="card-shop d-none">
+                        card shop
+                    </div>
+
+                    {{-- card empty shop --}}
+                    <div class='card card-empty-shop shadow-sm d-none'>
                         {{-- icon bag --}}
                         <figure class='icon-bag'>
                             <img src='/storage/uploads/images/icon-bag-black.svg' alt='Icon bag' />

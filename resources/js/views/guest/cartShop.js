@@ -1,14 +1,31 @@
-// set local storage
-if(!localStorage.getItem('cart') || !localStorage.getItem('total')) {
-    localStorage.setItem('cart', '[]');
-    localStorage.setItem('total', '0');
-}
+$(document).ready(function() {
+    // set local storage
+    if(!localStorage.getItem('cart') || !localStorage.getItem('total')) {
+        localStorage.setItem('cart', '[]');
+        localStorage.setItem('total', '0');
+    }
+
+    // cards carrello
+    const cardShop = $('#cart-shop .card-shop');
+    const cardShopEmpty = $('#cart-shop .card-empty-shop');
+
+    // controllo se è vuoto il carello
+    if (getTotalItemToCart() == 0) {
+        cardShopEmpty.removeClass('d-none');
+    } else {
+        cardShop.removeClass('d-none');
+    }
+});
 
 // Ottieni il numero totale dei prodotti nel carrello
 getTotalItemToCart = () => {
     const itemsCart = JSON.parse(localStorage.getItem('cart'));
+
+    if (itemsCart) {
+        return itemsCart.length;
+    }
     
-    return itemsCart.length;
+    return 0;
 }
 
 //! DA TRASFORMARE

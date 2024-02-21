@@ -40452,7 +40452,7 @@ $(document).ready(function () {
   var cardShopEmpty = $('#cart-shop .card-empty-shop');
 
   // controllo se è vuoto il carello
-  if (getTotalItemToCart() <= 0) {
+  if (getTotalItemToCart() == 0) {
     cardShopEmpty.removeClass('d-none');
   } else {
     cardShop.removeClass('d-none');
