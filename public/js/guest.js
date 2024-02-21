@@ -40256,6 +40256,23 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/guest/loaderPage.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/guest/loaderPage.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// loader
+$(document).ready(function () {
+  setTimeout(function () {
+    $('#loader-page').hide();
+    $('#app').removeClass('d-none');
+  }, 800);
+});
+
+/***/ }),
+
 /***/ "./resources/js/guest.js":
 /*!*******************************!*\
   !*** ./resources/js/guest.js ***!
@@ -40268,6 +40285,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 // Utils
 __webpack_require__(/*! ./utils/common */ "./resources/js/utils/common.js");
+
+// Components Guest
+__webpack_require__(/*! ./components/guest/loaderPage */ "./resources/js/components/guest/loaderPage.js");
 
 // Views Guest
 __webpack_require__(/*! ./views/guest/cartShop */ "./resources/js/views/guest/cartShop.js");
@@ -40420,16 +40440,32 @@ setValueOnInput = function setValueOnInput(idInputHtml, value) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// set local storage
-if (!localStorage.getItem('cart') || !localStorage.getItem('total')) {
-  localStorage.setItem('cart', '[]');
-  localStorage.setItem('total', '0');
-}
+$(document).ready(function () {
+  // set local storage
+  if (!localStorage.getItem('cart') || !localStorage.getItem('total')) {
+    localStorage.setItem('cart', '[]');
+    localStorage.setItem('total', '0');
+  }
+
+  // cards carrello
+  var cardShop = $('#cart-shop .card-shop');
+  var cardShopEmpty = $('#cart-shop .card-empty-shop');
+
+  // controllo se è vuoto il carello
+  if (getTotalItemToCart() <= 0) {
+    cardShopEmpty.removeClass('d-none');
+  } else {
+    cardShop.removeClass('d-none');
+  }
+});
 
 // Ottieni il numero totale dei prodotti nel carrello
 getTotalItemToCart = function getTotalItemToCart() {
   var itemsCart = JSON.parse(localStorage.getItem('cart'));
-  return itemsCart.length;
+  if (itemsCart) {
+    return itemsCart.length;
+  }
+  return 0;
 };
 
 //! DA TRASFORMARE

@@ -11,6 +11,7 @@
 @import './utils/guest/common.scss';
 
 // Components
+@import './components/guest/loaderPage.scss';
 @import './components/guest/navbar.scss';
 @import './components/guest/hero.scss';
 @import './components/guest/footer.scss';
@@ -30,8 +31,18 @@
     box-sizing: border-box;
 }
 
+html, 
+body {
+    height: 100%;
+}
+
 body {
     overflow-x: hidden;
+}
+
+#app {
+    height: 100%;
+    overflow-y: auto;
 }
 
 img {

@@ -26,7 +26,10 @@
 </head>
 <body>
 
-    <div id="app"> 
+    {{-- loader --}}
+    @include('components.guest.loaderPage')
+
+    <div id="app" class="d-none"> 
         {{-- navbar --}}
         @include('components.guest.navbar')
 
