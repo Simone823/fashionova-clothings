@@ -1,6 +1,6 @@
 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
     <article class="card-product">
-        <a href="/">
+        <a href="{{route('guest.products.show', $product->id)}}">
             {{-- carousel images --}}
             @if (!empty($product->images))
                 <div id="carouselImages{{$product->code}}" class="carousel slide carousel-image-product">
@@ -38,6 +38,10 @@
             {{-- details --}}
             <div class="details-product">
                 <h3 class="product-title">{{$product->name}}</h3>
+                <div class="gennre mb-2">
+                    <span>Genere:</span>
+                    <span>{{$product->genre->name}}</span>
+                </div>
                 <div class="sizes mb-2">
                     <span>Taglie:</span>
                     @foreach ($product->sizes as $size)
