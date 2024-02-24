@@ -8,7 +8,7 @@
                         @foreach (json_decode($product->images) as $key => $pathImage)
                             <div class="carousel-item {{$key == 0 ? ' active' : ''}}">
                                 <figure class="figure-image-product">
-                                    <img src="/storage/{{ $pathImage }}" class="image-product" alt="{{str_replace(' ', '', $pathImage)}}">
+                                    <img src="/storage/{{ $pathImage }}" class="image-product" alt="{{str_replace('uploads/images/products/', '', $pathImage)}}">
                                 </figure>
                             </div>                                                    
                         @endforeach

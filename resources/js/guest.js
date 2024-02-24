@@ -9,5 +9,6 @@ require('./components/guest/loaderPage');
 
 // Views Guest
 require('./views/guest/cartShop');
-require('./views/guest/shop');
+require('./views/guest/products/shop');
+require('./views/guest/products/show');
 /***************************************** */

@@ -22,12 +22,12 @@
                 <div class="col-12 col-md-6">
                     {{-- carousel images --}}
                     @if (!empty($product->images))
-                        <div id="carouselImages{{$product->code}}" class="carousel slide carousel-image-product">
+                        <div id="carouselImages" class="carousel slide carousel-image-product">
                             <div class="carousel-inner">
                                 @foreach (json_decode($product->images) as $key => $pathImage)
                                     <div class="carousel-item {{$key == 0 ? ' active' : ''}}">
                                         <figure class="figure-image-product">
-                                            <img src="/storage/{{ $pathImage }}" class="image-product shadow-sm" alt="{{str_replace(' ', '', $pathImage)}}">
+                                            <img src="/storage/{{ $pathImage }}" class="image-product shadow-sm" alt="{{str_replace('uploads/images/products/', '', $pathImage)}}">
                                         </figure>
                                     </div>                                                    
                                 @endforeach
@@ -43,11 +43,11 @@
                                     @endif
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages{{$product->code}}" data-bs-slide="prev">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselImages" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselImages{{$product->code}}" data-bs-slide="next">
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselImages" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>

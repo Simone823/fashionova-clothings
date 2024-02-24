@@ -40291,7 +40291,8 @@ __webpack_require__(/*! ./components/guest/loaderPage */ "./resources/js/compone
 
 // Views Guest
 __webpack_require__(/*! ./views/guest/cartShop */ "./resources/js/views/guest/cartShop.js");
-__webpack_require__(/*! ./views/guest/shop */ "./resources/js/views/guest/shop.js");
+__webpack_require__(/*! ./views/guest/products/shop */ "./resources/js/views/guest/products/shop.js");
+__webpack_require__(/*! ./views/guest/products/show */ "./resources/js/views/guest/products/show.js");
 /***************************************** */
 
 /***/ }),
@@ -40570,10 +40571,10 @@ getTotalPriceCart = function getTotalPriceCart() {
 
 /***/ }),
 
-/***/ "./resources/js/views/guest/shop.js":
-/*!******************************************!*\
-  !*** ./resources/js/views/guest/shop.js ***!
-  \******************************************/
+/***/ "./resources/js/views/guest/products/shop.js":
+/*!***************************************************!*\
+  !*** ./resources/js/views/guest/products/shop.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -40604,6 +40605,54 @@ submitFormFiltersProducts = function submitFormFiltersProducts(event) {
   // invio form
   form.submit();
 };
+
+/***/ }),
+
+/***/ "./resources/js/views/guest/products/show.js":
+/*!***************************************************!*\
+  !*** ./resources/js/views/guest/products/show.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  // controllo se siamo nella view '#guest-products-show'
+  if ($('#guest-products-show').length > 0) {
+    // Funzione per controllare il path dell'immagine e rimuovere o aggiungere il carousel-item se necessario
+    var updateCarouselItems = function updateCarouselItems() {
+      var selectedColorName = $('input[type="radio"][name="color_id"]:checked').attr('data-color-name');
+
+      // Ricerca e rimozione immediata dei carousel-item che non corrispondono al colore selezionato
+      $('.carousel-item').each(function () {
+        var imagePath = $(this).find('.image-product').attr('src');
+        if (imagePath.indexOf(selectedColorName) === -1) {
+          // rimuovo e pusho il carousel-item rimosso
+          removedCarouselItems.push($(this).detach());
+        }
+      });
+
+      // Imposta come attivo il primo carousel-item rimasto
+      $('.carousel-item').first().addClass('active');
+    };
+    // Array per salvare gli elementi rimossi
+    var removedCarouselItems = [];
+
+    // Mostra solo i carousel-item corrispondenti al colore selezionato di default al caricamento della pagina
+    updateCarouselItems();
+
+    // quando cambia il colore aggiorno le immagini
+    $('input[type="radio"][name="color_id"]').change(function () {
+      // riappendo gli elementi rimossi se ce ne sono
+      if (removedCarouselItems.length > 0) {
+        $('#carouselImages .carousel-inner').append(removedCarouselItems);
+        removedCarouselItems = [];
+      }
+
+      // aggiorno i carousel-item in base al colore selezionato
+      updateCarouselItems();
+    });
+  }
+});
 
 /***/ }),
 
