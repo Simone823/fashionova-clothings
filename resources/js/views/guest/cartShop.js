@@ -53,7 +53,8 @@ addItemToCart = (product) => {
         productColorId: Number(selectedColorId),
         productColorName: selectedColorName,
         productSizeId: Number(selectedSizeId),
-        ProductSizeName: selectedSizeName,
+        productSizeName: selectedSizeName,
+        productImages: JSON.parse(product.images).filter(image => image.includes(selectedColorName)),
         productQuantity: 1
     };
 

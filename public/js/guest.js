@@ -40500,7 +40500,10 @@ addItemToCart = function addItemToCart(product) {
     productColorId: Number(selectedColorId),
     productColorName: selectedColorName,
     productSizeId: Number(selectedSizeId),
-    ProductSizeName: selectedSizeName,
+    productSizeName: selectedSizeName,
+    productImages: JSON.parse(product.images).filter(function (image) {
+      return image.includes(selectedColorName);
+    }),
     productQuantity: 1
   };
   if (cartShop.length == 0) {
