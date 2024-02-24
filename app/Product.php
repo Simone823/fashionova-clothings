@@ -25,6 +25,7 @@ class Product extends Model
         'genre_id',
         'price',
         'discount_percent',
+        'price_discounted',
         'description',
         'visible'
     ];
@@ -39,6 +40,7 @@ class Product extends Model
         'name',
         'price',
         'discount_percent',
+        'price_discounted',
         'total_quantity',
         'visible',
         'created_at',
@@ -227,12 +229,16 @@ class Product extends Model
      *
      * @return string
      */
-    public function getPriceDiscounted(): string
+    public function getPriceDiscounted(): ?string
     {
-        // calcolo prezzo scontato
-        $priceDiscounted = $this->price - ($this->price * ($this->discount_percent / 100));
+        if (!empty($this->discount_percent)) {
+            // calcolo prezzo scontato
+            $priceDiscounted = $this->price - ($this->price * ($this->discount_percent / 100));
 
-        return number_format($priceDiscounted, 2);
+            return number_format($priceDiscounted, 2);
+        }
+
+        return null;
     }
     
     /**

@@ -55,7 +55,7 @@
                     @endforeach
                 </div>
                 @if(!empty($product->discount_percent))
-                    <p class="text-danger fw-bolder mb-1">{{$product->getPriceDiscounted()}} €</p>
+                    <p class="text-danger fw-bolder mb-1">{{$product->price_discounted}} €</p>
                     <p class="text-secondary mb-0">
                         Prima era:
                         <span class="text-decoration-line-through">{{$product->price}} €</span>

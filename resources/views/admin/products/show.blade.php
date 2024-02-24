@@ -103,7 +103,7 @@
                             <label for="price_discounted" class="form-label">
                                 Prezzo Scontato (€)
                             </label>
-                            <input type="number" class="form-control" id="price_discounted" name="price_discounted" value="{{$product->getPriceDiscounted()}}" readonly>
+                            <input type="number" class="form-control" id="price_discounted" name="price_discounted" value="{{$product->price_discounted}}" readonly>
                         </div>
                     @endif
 

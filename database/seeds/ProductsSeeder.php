@@ -1085,6 +1085,7 @@ class ProductsSeeder extends Seeder
             $newProduct->genre_id = $product['genre_id'];
             $newProduct->price = $product['price'];
             $newProduct->discount_percent = $product['discount_percent'];
+            $newProduct->price_discounted = $newProduct->getPriceDiscounted();
             $newProduct->visible = $product['visible'];
             $newProduct->description = $product['description'];
             $newProduct->images = json_encode($product['images']);

@@ -76,7 +76,7 @@
 
                             @else
                                 <p class="product-price-discounted">
-                                    {{$product->getPriceDiscounted()}} €
+                                    {{$product->price_discounted}} €
                                     <span class="text-secondary fw-normal">IVA inclusa</span>
                                 </p>
                                 <p class="product-price-normal text-secondary">

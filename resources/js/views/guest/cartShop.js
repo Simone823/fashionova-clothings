@@ -50,6 +50,7 @@ addItemToCart = (product) => {
         productPrice: product.price,
         productDiscountPercent: product.discount_percent,
         productDescription: product.description,
+        productPriceDiscounted: product.price_discounted,
         productColorId: Number(selectedColorId),
         productColorName: selectedColorName,
         productSizeId: Number(selectedSizeId),
@@ -110,8 +111,7 @@ getTotalPriceCart = () => {
         let productTotalPrice;
 
         if (element.productDiscountPercent !== null && element.productDiscountPercent !== "") {
-            const discountPercent = parseFloat(element.productDiscountPercent);
-            productTotalPrice = (element.productPrice * element.productQuantity) - ((element.productPrice * element.productQuantity) * (discountPercent / 100));
+            productTotalPrice = (element.productPriceDiscounted * element.productQuantity);
         } else {
             productTotalPrice = (element.productPrice * element.productQuantity);
         }

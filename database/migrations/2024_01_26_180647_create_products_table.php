@@ -20,8 +20,9 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('genre_id');
             $table->foreign('genre_id')->references('id')->on('genres')->onUpdate('cascade')->onDelete('cascade');
             $table->decimal('price', 10, 2);
-            $table->integer('total_quantity')->default(0);
             $table->decimal('discount_percent', 5, 2)->nullable();
+            $table->decimal('price_discounted', 10, 2)->nullable();
+            $table->integer('total_quantity')->default(0);
             $table->text('description')->nullable();
             $table->boolean('visible')->default(0);
             $table->json('images')->nullable();

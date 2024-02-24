@@ -107,6 +107,7 @@ class ProductController extends Controller
         $newProduct->genre_id = $request->genre_id;
         $newProduct->price = $request->price;
         $newProduct->discount_percent = $request->discount_percent;
+        $newProduct->price_discounted = $newProduct->getPriceDiscounted();
         $newProduct->description = $request->description;
         $newProduct->visible = $request->visible == 'on' ? 1 : 0;
         $newProduct->save();
@@ -251,6 +252,7 @@ class ProductController extends Controller
         $product->genre_id = $request->genre_id;
         $product->price = $request->price;
         $product->discount_percent = $request->discount_percent;
+        $product->price_discounted = $product->getPriceDiscounted();
         $product->description = $request->description;
         $product->visible = $request->visible == 'on' ? 1 : 0;
         $product->update();

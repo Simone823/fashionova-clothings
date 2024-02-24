@@ -54,6 +54,7 @@
                                         <th scope="col">@sortablelink('genre.name', 'Genere', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('price', 'Prezzo (€)', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">@sortablelink('discount_percent', 'Sconto (%)', '', ['class' => 'link-dark'])</th>
+                                        <th scope="col">@sortablelink('price_discounted', 'Prezzo scontato (€)', '', ['class' => 'link-dark'])</th>
                                         <th scope="col">Categorie</th>
                                         <th scope="col">Taglie</th>
                                         <th scope="col">@sortablelink('total_quantity', 'Totale Quantità', '', ['class' => 'link-dark'])</th>
@@ -100,6 +101,7 @@
                                                 <td>{{ $product->genre->name }}</td>
                                                 <td>{{ $product->price }}</td>
                                                 <td>{{ $product->discount_percent }}</td>
+                                                <td>{{ $product->price_discounted }}</td>
                                                 <td>
                                                     <div class="d-flex gap-1">
                                                         @foreach ($product->categories as $category)

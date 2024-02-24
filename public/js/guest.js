@@ -40498,6 +40498,7 @@ addItemToCart = function addItemToCart(product) {
     productPrice: product.price,
     productDiscountPercent: product.discount_percent,
     productDescription: product.description,
+    productPriceDiscounted: product.price_discounted,
     productColorId: Number(selectedColorId),
     productColorName: selectedColorName,
     productSizeId: Number(selectedSizeId),
@@ -40557,8 +40558,7 @@ getTotalPriceCart = function getTotalPriceCart() {
   cartShop.forEach(function (element) {
     var productTotalPrice;
     if (element.productDiscountPercent !== null && element.productDiscountPercent !== "") {
-      var discountPercent = parseFloat(element.productDiscountPercent);
-      productTotalPrice = element.productPrice * element.productQuantity - element.productPrice * element.productQuantity * (discountPercent / 100);
+      productTotalPrice = element.productPriceDiscounted * element.productQuantity;
     } else {
       productTotalPrice = element.productPrice * element.productQuantity;
     }
