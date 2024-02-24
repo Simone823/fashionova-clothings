@@ -16,7 +16,7 @@ class ProductController extends Controller
      * Shop (tutti i prodotti)
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
     public function shop(Request $request)
     {
@@ -43,7 +43,7 @@ class ProductController extends Controller
      * Lista prodotti in sconto
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
     public function productsDiscounted(Request $request)
     {
@@ -70,7 +70,7 @@ class ProductController extends Controller
      * Lista genere 'Donna'
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
     public function productsWoman(Request $request)
     {
@@ -97,7 +97,7 @@ class ProductController extends Controller
      * Lista genere 'Uomo'
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
     public function productsMan(Request $request)
     {
@@ -118,5 +118,20 @@ class ProductController extends Controller
         $colors = Color::orderBy('name', 'asc')->get();
 
         return view('guest.products.shop', compact('controllerMethodName', 'titlePage', 'products', 'categories', 'sizes', 'colors'));
+    }
+    
+    /**
+     * Visualizza prodotto
+     *
+     * @param $id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        // recupero il prodotto
+        $product = Product::findOrFail($id);
+
+        return view('guest.products.show', compact('product'));
     }
 }

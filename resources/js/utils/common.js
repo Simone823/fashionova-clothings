@@ -106,18 +106,24 @@ searchOnTable = () => {
 
 // NASCONDI INPUT E LA SUA COL
 hideInput = (idInputHtml) => {
-    const input = jQuery(`input[id="${idInputHtml}"]`);
+    const input = $(`input[id="${idInputHtml}"]`);
     input.parent().addClass("d-none");
 }
 
 // MOSTRA INPUT E LA SUA COL
 showInput = (idInputHtml) => {
-    const input = jQuery(`input[id="${idInputHtml}"]`);
+    const input = $(`input[id="${idInputHtml}"]`);
     input.parent().removeClass("d-none");
 }
 
 // SETTA IL VALORE AD UN INPUT
 setValueOnInput = (idInputHtml, value) => {
-    const input = jQuery(`input[id="${idInputHtml}"]`);
+    const input = $(`input[id="${idInputHtml}"]`);
     input.val(value).trigger("change");
+}
+
+// SETTA IL VALORE AD UNA SELECT
+setValueOnSelect = (idSelectHtml, value) => {
+    const select = $(`select[id="${idSelectHtml}"]`);
+    select.val(value).trigger("change");
 }

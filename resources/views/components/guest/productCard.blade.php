@@ -51,7 +51,7 @@
                 <div class="colors mb-2">
                     <span>Colori:</span>
                     @foreach ($product->colors->unique() as $color)
-                        <div class="color-circle" style="background-color: {{trim(strtolower(str_replace(' ', '', $color->name)))}};"></div>
+                        <div class="color-circle" style="background-color: {{trim(strtolower(str_replace(' ', '-', $color->name)))}};"></div>
                     @endforeach
                 </div>
                 @if(!empty($product->discount_percent))

@@ -31,6 +31,7 @@ Route::namespace('Guest')->name('guest.')->group(function() {
     Route::get('/products/products-discounted', 'ProductController@productsDiscounted')->name('products.productsDiscounted');
     Route::get('/products/products-woman', 'ProductController@productsWoman')->name('products.productsWoman');
     Route::get('/products/products-man', 'ProductController@productsMan')->name('products.productsMan');
+    Route::get('/products/show/{id}', 'ProductController@show')->name('products.show');
 
     // Cart Shop
     Route::get('/cart-shop', 'CartShopController@index')->name('cartShop');

@@ -17,7 +17,79 @@ $(document).ready(function() {
     }
 });
 
-// Ottieni il numero totale dei prodotti nel carrello
+
+// AGGIUNGI UN PRODOTTO AL CARRELLO
+addItemToCart = (product) => {
+    // colore selezionato
+    const inputColor = $('input[type="radio"][name="color_id"]:checked');
+    const selectedColorId = inputColor.val();
+    const selectedColorName = inputColor.attr('data-color-name');
+
+    // taglia selezionata
+    const selectSize = $('select[id="size_id"]');
+    const selectedSizeId = selectSize.val();
+    const selectedSizeName = $('select[id="size_id"] option:selected').attr('data-size-name');
+
+    // controllo se ha selezionato il colore e la taglia
+    if (selectedColorId == undefined || selectedColorId == "" || selectedColorId == 0) {
+        return alert('Devi selezionare un Colore.');
+    } else if (selectedSizeId == undefined || selectedSizeId == "" || selectedSizeId == 0) {
+        return alert('Devi selezionare una Taglia.');
+    }
+
+    // carrello
+    const cartShop = JSON.parse(localStorage.getItem('cart', '[]'));
+
+    // costruisco l'oggetto prodotto per il carrello
+    const item = {
+        productId: product.id,
+        productCode: product.code,
+        productName: product.name,
+        productGenreId: product.genre_id,
+        productGenreName: product.genre.name,
+        productPrice: product.price,
+        productDiscountPercent: product.discount_percent,
+        productDescription: product.description,
+        productColorId: Number(selectedColorId),
+        productColorName: selectedColorName,
+        productSizeId: Number(selectedSizeId),
+        ProductSizeName: selectedSizeName,
+        productQuantity: 1
+    };
+
+    if (cartShop.length == 0) {
+        // pusho il prodotto in cartShop
+        cartShop.push(item);
+    } else {
+        // recupero il prodotto nel carrello che abbia almeno l'id la taglia e il colore uguale
+        let productFind = cartShop.find(element => element.productId == item.productId && element.productColorId == item.productColorId && element.productSizeId == item.productSizeId);
+
+        // se esiste lo stesso prodotto nel carrello aggiorno la quantità
+        if (productFind == undefined) {
+            // pusho il nuovo prodotto
+            cartShop.push(item);
+        } else {
+            // aggiorno la quantità
+            cartShop.forEach(element => {
+                if(element.productId == productFind.productId) {
+                    element.productQuantity += 1;
+                }
+            });
+        }
+    }
+
+    // salva cartShop e prezzo totale sul local storage
+    localStorage.setItem("cart", JSON.stringify(cartShop));
+    localStorage.setItem("total", getTotalPriceCart());
+
+    // reset valore taglia selezionata
+    setValueOnSelect(selectSize.attr('id'), "");
+
+    // aggiorno il badge totale elementi sulla nav del carrello
+    $('#nav-guest .cart-total-item').html(getTotalItemToCart());
+}
+
+// OTTIENI IL NUMERO TOTALE DEI PRODOTTI PRESENTI NEL CARRELLO
 getTotalItemToCart = () => {
     const itemsCart = JSON.parse(localStorage.getItem('cart'));
 
@@ -28,74 +100,26 @@ getTotalItemToCart = () => {
     return 0;
 }
 
-//! DA TRASFORMARE
-// addToCart: (state, action) => {
-//     if(state.cart.length === 0) {
-//         state.cart.push(action.payload);
-//     } else {
-//         // find item
-//         let findItem = state.cart.find(el => el.id === action.payload.id);
-        
-//         if(findItem === undefined) {
-//             state.cart.push(action.payload);
-//         }
-//     }
+// OTTIENI IL PREZZO TOTALE DEL CARRELLO
+getTotalPriceCart = () => {
+    const cartShop = JSON.parse(localStorage.getItem('cart', '[]'));
+    let totalPrice = 0;
 
-//     // somma prezzo stesso prodotto
-//     let sumItem;
+    cartShop.forEach((element) => {
+        let productTotalPrice;
 
-//     // somma totale prezzo
-//     let totalCart = 0;
+        if (element.productDiscountPercent !== null && element.productDiscountPercent !== "") {
+            const discountPercent = parseFloat(element.productDiscountPercent);
+            productTotalPrice = (element.productPrice * element.productQuantity) - ((element.productPrice * element.productQuantity) * (discountPercent / 100));
+        } else {
+            productTotalPrice = (element.productPrice * element.productQuantity);
+        }
 
-//     // for state cart
-//     for (let i = 0; i < state.cart.length; i++) {
-//         sumItem = state.cart[i].likes * 1;
-//         totalCart += sumItem;
-//     }
+        productTotalPrice = parseFloat(productTotalPrice).toFixed(2);
+        totalPrice += parseFloat(productTotalPrice);
+    });
 
-//     // state total
-//     state.total = totalCart;
+    totalPrice = totalPrice.toFixed(2);
 
-//     // set item localStorage
-//     localStorage.setItem('cart', JSON.stringify(state.cart));
-
-//     // localStorage set item total 
-//     localStorage.setItem('total', totalCart);
-// },
-
-// removeToCart: (state, action) => {
-//     state.cart = state.cart.filter((el) => el.id !== action.payload);
-
-//     // somma prezzo stesso prodotto
-//     let sumItem;
-
-//     // somma totale prezzo
-//     let totalCart = 0;
-
-//     // for state cart
-//     for (let i = 0; i < state.cart.length; i++) {
-//         sumItem = state.cart[i].likes * 1;
-//         totalCart += sumItem;
-//     }
-
-//     // state total 
-//     state.total = totalCart;
-
-//     // set cart localStorage
-//     localStorage.setItem('cart', JSON.stringify(state.cart));
-
-//     // localStorage set item total 
-//     localStorage.setItem('total', totalCart);
-// },
-
-// removeAllToCart: (state) => {
-//     // reset
-//     state.cart = [];
-//     state.total = 0;
-
-//     // localStorage cart
-//     localStorage.setItem('cart', JSON.stringify(state.cart));
-
-//     // localStorage set total
-//     localStorage.setItem('total', state.total);
-// }
+    return totalPrice;
+}
