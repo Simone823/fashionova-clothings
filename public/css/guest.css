@@ -14178,27 +14178,82 @@ footer .logo {
   pointer-events: none;
 }
 
-#shop .filters {
+#guest-products-shop .filters {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 
-#shop .filters .dropdown-filter-genres .dropdown-menu,
-#shop .filters .dropdown-filter-categories .dropdown-menu,
-#shop .filters .dropdown-filter-sizes .dropdown-menu,
-#shop .filters .dropdown-filter-colors .dropdown-menu,
-#shop .filters .dropdown-filter-order-by .dropdown-menu {
+#guest-products-shop .filters .dropdown-filter-genres .dropdown-menu,
+#guest-products-shop .filters .dropdown-filter-categories .dropdown-menu,
+#guest-products-shop .filters .dropdown-filter-sizes .dropdown-menu,
+#guest-products-shop .filters .dropdown-filter-colors .dropdown-menu,
+#guest-products-shop .filters .dropdown-filter-order-by .dropdown-menu {
   max-height: 200px;
   overflow-y: auto;
 }
 
-#shop .actions {
+#guest-products-shop .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 0.625rem;
+}
+
+#guest-products-show .carousel-image-product {
+  width: 100%;
+  max-width: 350px;
+}
+
+#guest-products-show .carousel-image-product .carousel-inner {
+  position: relative;
+}
+
+#guest-products-show .carousel-image-product .carousel-inner .carousel-item .figure-image-product {
+  background-color: #d7d7d7;
+}
+
+#guest-products-show .carousel-image-product .carousel-inner .carousel-item .figure-image-product img {
+  min-height: 450px;
+  max-height: 450px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+#guest-products-show .carousel-image-product .carousel-inner .wrapper-badges {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#guest-products-show .carousel-image-product .carousel-control-next-icon {
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'><path d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/></svg>");
+}
+
+#guest-products-show .carousel-image-product .carousel-control-prev-icon {
+  background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+}
+
+#guest-products-show .details-product .product-name {
+  font-weight: bold;
+}
+
+#guest-products-show .details-product .product-price,
+#guest-products-show .details-product .product-price-discounted {
+  font-size: calc(1.275rem + 0.3vw);
+}
+
+#guest-products-show .details-product .product-price-discounted {
+  color: #e3342f;
+  font-weight: 600;
+  margin: 0;
 }
 
 * {

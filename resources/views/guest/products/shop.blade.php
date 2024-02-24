@@ -3,7 +3,7 @@
 @section('metaTitle', $titlePage ?? 'Shop')
 
 @section('content')
-    <section id='shop'>
+    <section id='guest-products-shop'>
         <div class='container'>
             {{-- title --}}
             <div class="row mb-5">
