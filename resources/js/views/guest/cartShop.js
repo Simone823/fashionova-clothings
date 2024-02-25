@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // set local storage
-    if(!localStorage.getItem('cart') || !localStorage.getItem('total')) {
+    if (!localStorage.getItem('cart') || !localStorage.getItem('total')) {
         localStorage.setItem('cart', '[]');
         localStorage.setItem('total', '0');
     }
@@ -32,9 +32,21 @@ addItemToCart = (product) => {
 
     // controllo se ha selezionato il colore e la taglia
     if (selectedColorId == undefined || selectedColorId == "" || selectedColorId == 0) {
-        return alert('Devi selezionare un Colore.');
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Devi selezionare un Colore.",
+            timer: 3000,
+            timerProgressBar: true,
+        });
     } else if (selectedSizeId == undefined || selectedSizeId == "" || selectedSizeId == 0) {
-        return alert('Devi selezionare una Taglia.');
+        return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Devi selezionare una Taglia.",
+            timer: 3000,
+            timerProgressBar: true,
+        });
     }
 
     // carrello
@@ -73,7 +85,7 @@ addItemToCart = (product) => {
         } else {
             // aggiorno la quantità
             cartShop.forEach(element => {
-                if(element.productId == productFind.productId) {
+                if (element.productId == productFind.productId) {
                     element.productQuantity += 1;
                 }
             });
@@ -89,6 +101,14 @@ addItemToCart = (product) => {
 
     // aggiorno il badge totale elementi sulla nav del carrello
     $('#nav-guest .cart-total-item').html(getTotalItemToCart());
+
+    return Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Il Prodotto è stato aggiunto al carrello.",
+        timer: 3000,
+        timerProgressBar: true,
+    });
 }
 
 // OTTIENI IL NUMERO TOTALE DEI PRODOTTI PRESENTI NEL CARRELLO
@@ -98,7 +118,7 @@ getTotalItemToCart = () => {
     if (itemsCart) {
         return itemsCart.length;
     }
-    
+
     return 0;
 }
 

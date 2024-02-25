@@ -1,5 +1,9 @@
 /*** IMPORTS ***/
+// Bootstrap
 require('./bootstrap');
+
+// Sweetalert 2
+Swal = require('sweetalert2');
 
 // Utils
 require('./utils/common');
