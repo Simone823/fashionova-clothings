@@ -35,6 +35,7 @@ Route::namespace('Guest')->name('guest.')->group(function() {
 
     // Cart Shop
     Route::get('/cart-shop', 'CartShopController@index')->name('cartShop');
+    Route::get('/cart-shop/checkout', 'CartShopController@checkout')->name('cartShop.checkout');
 });
 
 // Auth group

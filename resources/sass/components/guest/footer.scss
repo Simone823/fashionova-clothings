@@ -1,9 +1,10 @@
 footer {
     width: 100%;
-    background-color: $light-gray;
+    background-color: $white;
 
     .logo {
-        width: 180px;
+        width: 100%;
+        max-width: 180px;
         display: block;
     }
 }

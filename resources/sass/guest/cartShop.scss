@@ -1,4 +1,50 @@
-#cart-shop {
+#guest-cart-shop {
+    
+    .card {
+        padding: 24px;
+
+        .list-products {
+            li {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+
+                .product-image {
+                    background-color: $light-gray;
+                    width: 100%;
+                    max-width: 95px;
+                    height: auto;
+                    box-shadow: 0 0.125rem 0.25rem rgba($color: $black, $alpha: 0.075);
+                }
+
+                .details-product {
+                    flex-grow: 1;
+
+                    .product-name {
+                        font-size: 16px;
+                        margin-bottom: 5px;
+                    }
+
+                    .product-genre,
+                    .product-color {
+                        margin-bottom: 0;
+                    }
+
+                    .product-size {
+                        margin-bottom: 5px;
+                    }
+
+                    .product-price {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
 
     .card-empty-shop {
         width: 100%;

@@ -15170,17 +15170,21 @@ section .title-section {
 }
 
 .card {
-  background-color: #d7d7d7;
+  border: 0;
+  background-color: #fff;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card .card-header {
+  border: 0;
 }
 
 .card-login {
   width: 100%;
   max-width: 520px;
   margin: 0 auto;
-  background-color: #d7d7d7;
   border: 0;
   padding-bottom: 24px;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
 .modal-dialog-large {
@@ -15299,7 +15303,7 @@ textarea {
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: #d7d7d7;
+  background-color: #fff;
   color: #fff;
 }
 
@@ -15381,11 +15385,12 @@ textarea {
 
 footer {
   width: 100%;
-  background-color: #d7d7d7;
+  background-color: #fff;
 }
 
 footer .logo {
-  width: 180px;
+  width: 100%;
+  max-width: 180px;
   display: block;
 }
 
@@ -15468,7 +15473,51 @@ footer .logo {
   color: #535354;
 }
 
-#cart-shop .card-empty-shop {
+#guest-cart-shop .card {
+  padding: 24px;
+}
+
+#guest-cart-shop .card .list-products li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#guest-cart-shop .card .list-products li:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+#guest-cart-shop .card .list-products li .product-image {
+  background-color: #d7d7d7;
+  width: 100%;
+  max-width: 95px;
+  height: auto;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+#guest-cart-shop .card .list-products li .details-product {
+  flex-grow: 1;
+}
+
+#guest-cart-shop .card .list-products li .details-product .product-name {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+#guest-cart-shop .card .list-products li .details-product .product-genre,
+#guest-cart-shop .card .list-products li .details-product .product-color {
+  margin-bottom: 0;
+}
+
+#guest-cart-shop .card .list-products li .details-product .product-size {
+  margin-bottom: 5px;
+}
+
+#guest-cart-shop .card .list-products li .details-product .product-price {
+  font-weight: bold;
+}
+
+#guest-cart-shop .card-empty-shop {
   width: 100%;
   max-width: 750px;
   margin: 0 auto;
@@ -15480,7 +15529,7 @@ footer .logo {
   padding: 48px 24px;
 }
 
-#cart-shop .card-empty-shop .icon-bag {
+#guest-cart-shop .card-empty-shop .icon-bag {
   width: 160px;
   margin: 0;
   padding: 0;
@@ -15612,6 +15661,7 @@ body {
 }
 
 body {
+  background-color: #eeeeee;
   overflow-x: hidden;
 }
 

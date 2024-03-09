@@ -45098,18 +45098,12 @@ $(document).ready(function () {
   // set local storage
   if (!localStorage.getItem('cart') || !localStorage.getItem('total')) {
     localStorage.setItem('cart', '[]');
-    localStorage.setItem('total', '0');
+    localStorage.setItem('total', '0.00');
   }
 
-  // cards carrello
-  var cardShop = $('#cart-shop .card-shop');
-  var cardShopEmpty = $('#cart-shop .card-empty-shop');
-
-  // controllo se è vuoto il carello
-  if (getTotalItemToCart() == 0) {
-    cardShopEmpty.removeClass('d-none');
-  } else {
-    cardShop.removeClass('d-none');
+  // controllo se siamo nella view guest cart shop
+  if ($('#guest-cart-shop').length > 0) {
+    showOrHideCartShop();
   }
 });
 
@@ -45162,13 +45156,12 @@ addItemToCart = function addItemToCart(product) {
     productColorName: selectedColorName,
     productSizeId: Number(selectedSizeId),
     productSizeName: selectedSizeName,
-    productImages: JSON.parse(product.images).filter(function (image) {
+    productImage: JSON.parse(product.images).filter(function (image) {
       return image.includes(selectedColorName);
-    }),
+    })[0],
     productQuantity: 1
   };
   if (cartShop.length == 0) {
-    // pusho il prodotto in cartShop
     cartShop.push(item);
   } else {
     // recupero il prodotto nel carrello che abbia almeno l'id la taglia e il colore uguale
@@ -45176,12 +45169,10 @@ addItemToCart = function addItemToCart(product) {
       return element.productId == item.productId && element.productColorId == item.productColorId && element.productSizeId == item.productSizeId;
     });
 
-    // se esiste lo stesso prodotto nel carrello aggiorno la quantità
+    // se esiste lo stesso prodotto pusho nel carrello, altrimenti aggiorno la quantità 
     if (productFind == undefined) {
-      // pusho il nuovo prodotto
       cartShop.push(item);
     } else {
-      // aggiorno la quantità
       cartShop.forEach(function (element) {
         if (element.productId == productFind.productId) {
           element.productQuantity += 1;
@@ -45206,6 +45197,34 @@ addItemToCart = function addItemToCart(product) {
     timer: 3000,
     timerProgressBar: true
   });
+};
+
+// RIMUOVI UN PRODOTTO DAL CARRELLO 
+removeItemToCart = function removeItemToCart(productId, productColorId, productSizeId) {
+  // filtro i prodotti nel carrello rimuovendo il prodotto eliminato
+  var cartShop = JSON.parse(localStorage.getItem('cart')).filter(function (product) {
+    return product.productId !== productId || product.productColorId !== productColorId || product.productSizeId !== productSizeId;
+  });
+
+  // aggiorno il carrello e il totale
+  localStorage.setItem("cart", JSON.stringify(cartShop));
+  localStorage.setItem("total", getTotalPriceCart());
+
+  // Trova e rimuovi l'elemento dalla lista nel DOM
+  $('#guest-cart-shop .card-shop .list-products li').each(function () {
+    var liProductId = Number($(this).attr('data-productId'));
+    var liProductColorId = Number($(this).attr('data-productColorId'));
+    var liProductSizeId = Number($(this).attr('data-productSizeId'));
+
+    // rimuovo il prodotto dalla lista
+    if (liProductId == productId && liProductColorId == productColorId && liProductSizeId == productSizeId) {
+      $(this).remove();
+    }
+  });
+
+  // aggiorno il badge totale elementi sulla nav del carrello
+  $('#nav-guest .cart-total-item').html(getTotalItemToCart());
+  showOrHideCartShop();
 };
 
 // OTTIENI IL NUMERO TOTALE DEI PRODOTTI PRESENTI NEL CARRELLO
@@ -45233,6 +45252,38 @@ getTotalPriceCart = function getTotalPriceCart() {
   });
   totalPrice = totalPrice.toFixed(2);
   return totalPrice;
+};
+showOrHideCartShop = function showOrHideCartShop() {
+  // cards carrello
+  var cardShop = $('#row-card-shop-not-empty');
+  var cardShopEmpty = $('#row-card-shop-empty');
+
+  // controllo se è vuoto il carello
+  if (getTotalItemToCart() == 0) {
+    cardShop.hide();
+    cardShopEmpty.removeClass('d-none');
+  } else {
+    var cartShop = JSON.parse(localStorage.getItem('cart'));
+    if ($('#row-card-shop-not-empty .card-shop .list-products').children().length == 0) {
+      cartShop.forEach(function (product) {
+        var _product$productPrice;
+        var liProduct = "\n                    <li data-productId=\"".concat(product.productId, "\" data-productColorId=\"").concat(product.productColorId, "\" data-productSizeId=\"").concat(product.productSizeId, "\">\n                        <figure class=\"product-image\">\n                            <img src=\"/storage/").concat(product.productImage, "\" alt=\"").concat(product.productName, "\">\n                        </figure>\n    \n                        <div class=\"details-product\">\n                            <p class=\"product-name\">").concat(product.productName, "</p>\n                            <p class=\"product-genre text-secondary\">\n                                Genere: <span>").concat(product.productGenreName, "</span>\n                            </p>\n                            <p class=\"product-color text-secondary\">\n                                Colore: <span>").concat(product.productColorName, "</span>\n                            </p>\n                            <p class=\"product-size text-secondary\">\n                                Taglia: <span>").concat(product.productSizeName, "</span>\n                            </p>\n                            <p class=\"product-price ").concat(product.productPriceDiscounted ? 'text-danger' : '', "\">\n                                ").concat((_product$productPrice = product.productPriceDiscounted) !== null && _product$productPrice !== void 0 ? _product$productPrice : product.productPrice, "\n                            </p>\n                        </div>\n    \n                        <div class=\"btn-actions\">\n                            <button onclick=\"removeItemToCart(").concat(product.productId, ", ").concat(product.productColorId, ", ").concat(product.productSizeId, ");\" type=\"button\" class=\"btn btn-sm btn-danger\">\n                                <i class=\"fa-solid fa-trash\"></i>\n                                Elimina\n                            </button>\n                        </div>\n                    </li>\n                ");
+        $('#row-card-shop-not-empty .card-shop .list-products').append(liProduct);
+        cardShop.removeClass('d-none');
+      });
+    }
+  }
+  updateCardTotal();
+};
+updateCardTotal = function updateCardTotal() {
+  $('.card-total .subtotal span').html("".concat(getTotalPriceCart(), " \u20AC"));
+  var shippingPrice = 0.00;
+  if (getTotalPriceCart() < 50) {
+    shippingPrice = 10.00;
+    $('.card-total .shipping span').html("".concat(shippingPrice.toFixed(2), " \u20AC"));
+  }
+  var totalWithShipping = parseFloat(Number(getTotalPriceCart()) + shippingPrice);
+  $('.card-total .total span').html("".concat(totalWithShipping.toFixed(2), " \u20AC"));
 };
 
 /***/ }),
