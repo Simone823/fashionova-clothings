@@ -28,6 +28,18 @@ class LoginController extends Controller
      */
     protected function redirectTo(): string
     {
+        // Controlla se c'è un URL di redirect
+        if (session()->has('redirect_to') && Auth::user()->hasRole('User')) {
+            // Ottieni l'URL di checkout dalla sessione
+            $redirectTo = session('redirect_to');
+
+            // Rimuovi l'URL di checkout dalla sessione
+            session()->forget('redirect_to');
+
+            // Reindirizza l'utente all'URL di checkout salvato
+            return $redirectTo;
+        }
+
         // Controlla il ruolo dell'utente dopo il login
         if (!Auth::user()->hasRole('User')) {
             return '/admin/dashboard';
